@@ -1,0 +1,24 @@
+{
+  "name": "notebook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chemistwang/notebook.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chemistwang/notebook/issues"
+  },
+  "homepage": "https://github.com/chemistwang/notebook#readme",
+  "devDependencies": {
+    "vuepress": "^1.5.3"
+  }
+}
