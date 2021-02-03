@@ -49,6 +49,19 @@ module.exports = {
                 ]
             },
             {
+                text: '大数据',
+                ariaLabel: 'BigData Menu',
+                items: [
+                    { text: 'Hadoop', link: '/bigdata/hadoop/' },
+                    { text: 'Hive', link: '/bigdata/hive/' },
+                    { text: 'Hbase', link: '/bigdata/hbase/' },
+                    { text: 'Scala', link: '/bigdata/scala/' },
+                    { text: 'Spark', link: '/bigdata/spark/' },
+                    { text: 'Flink', link: '/bigdata/flink/' },
+                    { text: 'Kylin', link: '/bigdata/kylin/' }
+                ]
+            },
+            {
                 text: '开发工具',
                 ariaLabel: 'Tool Menu',
                 items: [
@@ -122,6 +135,8 @@ module.exports = {
             '/db/mongo/': ['install', 'mongo', 'problem'],
             '/db/redis/': ['redis'],
             '/db/postgresql/': ['intro', 'install', 'command', 'problem'],
+            //大数据
+            '/bigdata/hadoop/': ['route', 'cloud', 'hadoop', 'hdfs', 'mapreduce', 'yarn', 'hive'],
             //开发工具
             '/tool/vim/': ['vim', 'gvimrc'],
             '/tool/git/': ['gitflow', 'gitCommand', 'gitServer'],
