@@ -22,6 +22,7 @@ module.exports = {
                     { text: 'React', link: '/frontend/react/' },
                     { text: 'Webpack', link: '/frontend/webpack/' },
                     { text: 'Websocket', link: '/frontend/websocket/' },
+                    { text: 'infrastructure', link: '/frontend/infrastructure/' },
                 ]
             },
             {
@@ -32,6 +33,7 @@ module.exports = {
                     { text: 'Node', link: '/backend/node/' },
                     { text: 'Java', link: '/backend/java/' },
                     { text: 'Maven', link: '/backend/maven/' },
+                    { text: 'Gradle', link: '/backend/gradle/' },
                     { text: 'Spring', link: '/backend/spring/' },
                     { text: 'SpringMVC', link: '/backend/springmvc/' },
                     { text: 'Spring Boot', link: '/backend/springboot/' },
@@ -43,6 +45,7 @@ module.exports = {
                 text: '数据库',
                 ariaLabel: 'DB Menu',
                 items: [
+                    { text: 'SQL', link: '/db/sql/' },
                     { text: 'Mongo', link: '/db/mongo/' },
                     { text: 'Redis', link: '/db/redis/' },
                     { text: 'PostgresQL', link: '/db/postgresql/' },
@@ -53,12 +56,16 @@ module.exports = {
                 ariaLabel: 'BigData Menu',
                 items: [
                     { text: 'Hadoop', link: '/bigdata/hadoop/' },
+                    { text: 'Sqoop', link: '/bigdata/sqoop/' },
                     { text: 'Hive', link: '/bigdata/hive/' },
                     { text: 'Hbase', link: '/bigdata/hbase/' },
+                    { text: 'Kettle', link: '/bigdata/kettle/' },
                     { text: 'Scala', link: '/bigdata/scala/' },
                     { text: 'Spark', link: '/bigdata/spark/' },
                     { text: 'Flink', link: '/bigdata/flink/' },
-                    { text: 'Kylin', link: '/bigdata/kylin/' }
+                    { text: 'Kylin', link: '/bigdata/kylin/' },
+                    { text: 'Azkaban', link: '/bigdata/azkaban/' },
+                    { text: 'Oozie', link: '/bigdata/oozie/' },
                 ]
             },
             {
@@ -79,7 +86,8 @@ module.exports = {
                 ariaLabel: 'Video Menu',
                 items: [
                     { text: '直播', link: '/video/live/' },
-                    { text: 'FFmpeg', link: '/video/ffmpeg/' }
+                    { text: 'FFmpeg', link: '/video/ffmpeg/' },
+                    { text: 'WebRTC', link: '/video/webrtc/' },
                 ]
             },
             {
@@ -90,7 +98,7 @@ module.exports = {
                     { text: 'Kafka', link: '/other/kafka/' },
                     { text: 'Gateway', link: '/other/gateway/' },
                     { text: 'SSO', link: '/other/sso/' },
-
+                    { text: '知识点', link: '/other/point/' },
                 ]
             },
             {
