@@ -57,7 +57,7 @@ Azkaban3.x在安装前需要自己编译成二进制包。
 
 需要注意的是不同版本的 `Azkaban` 依赖 `Gradle` 版本不同，可以在解压之后的 `/gradle/wrapper/gradle-wrapper.properties` 查看。
 
-1. 下载对应grale包
+1. 下载对应gradle包
 
 在编译时程序会自动去图中所示的地址进行下载，但是下载速度很慢。为避免影响编译过程，建议先手动下载至 /gradle/wrapper/ 目录下：
 
@@ -158,7 +158,113 @@ Exception in thread "main" java.lang.NoClassDefFoundError: Could not initialize 
 4078 QuorumPeerMain
 ```
 
-**验证方式二**：访问 8081 端口，查看 Web UI 界面，默认的登录名密码都是 `azkaban`，如果需要修改或新增用户，可以在 `conf/azkaban-users.xml` 文件中进行配置：
+**验证方式二**：访问 8081 端口，查看 Web UI 界面，默认的登录名密码都是 `azkaban`，如果需要修改或新增用户，可以在 `conf/azkaban-users.xml` 文件中进行配置。
+
+## 实战
+
+Azkaban内置的任务类型支持 `command`, `java`
+
+### 单一job案例
+
+1. 创建 job 描述文件
+
+```
+vim first.job
+#first job
+type=command
+command=echo 'this is my first job'
+```
+
+2. 将 job 资源文件打包成 zip 文件
+
+```
+zip first.zip first.job
+```
+
+3. 在web页面上执行即可
+
+::: tip 遇到的问题
+
+**场景描述**：在执行操作的时候，这个简单的输出任务一直没有执行，查看日志：
+
+```
+07-02-2021 15:02:45 CST first INFO - Failed with 5 inputs with exception e = null
+07-02-2021 15:02:45 CST first INFO - Cannot request memory (Xms 0 kb, Xmx 0 kb) from system for job first, sleep for 60 secs and retry, attempt 1 of 720
+```
+
+**原因**：azkaban源码要求执行主机可用内存必须大于`3G`才能满足执行任务的条件
+
+**解决方案**：
+
+``` bash
+vi /opt/module/azkaban-solo-server-0.1.0-SNAPSHOT/plugins/jobtypes/commonprivate.properties
+
+# 添加，以取消内存检查，然后重启服务
+# memCheck.enabled=false
+```
+
+:::
+
+
+### 邮件通知配置案例
+
+1. 修改配置文件
+
+``` bash
+/opt/module/azkaban-solo-server-0.1.0-SNAPSHOT/conf/azkaban.properties
+```
+
+``` bash
+# 配置邮箱发送端
+mail.sender=chemputer_dev@163.com
+mail.host=smtp.163.com
+mail.user=chemputer_dev@163.com
+mail.password=XBASUEDLZDOAPNJC
+```
+
+2. 配置邮件接收
+
+在 `Execute Flow first` 的 `Notification` 中设置成功失败接收邮件地址。
+
+
+### 多job工作流案例
+
+配置一个 `1` -> [`2` + `3`] -> `4` 的工作流程
+
+1. 分别创建 `.job` 文件并打成 `zip` 包
+
+``` bash
+# first.job
+type=command
+command=echo 'first'
+
+# second.job
+type=command
+command=echo 'second'
+dependencies=first # 这里写文件名
+
+# third.job
+type=command
+command=echo 'third'
+dependencies=first
+
+# fourth.job
+tyoe=command
+command=echo 'fourth'
+dependencies=second,third
+```
+
+2. 在客户端创建项目并上传
+
+
+### Java操作任务
+
+### HDFS操作任务
+
+### MapReduce任务
+
+
+### Hive脚本任务
 
 
 
