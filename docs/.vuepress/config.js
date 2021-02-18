@@ -22,7 +22,7 @@ module.exports = {
                     { text: 'React', link: '/frontend/react/' },
                     { text: 'Webpack', link: '/frontend/webpack/' },
                     { text: 'Websocket', link: '/frontend/websocket/' },
-                    { text: 'infrastructure', link: '/frontend/infrastructure/' },
+                    { text: 'Infrastructure', link: '/frontend/infrastructure/' },
                 ]
             },
             {
@@ -39,6 +39,7 @@ module.exports = {
                     { text: 'Spring Boot', link: '/backend/springboot/' },
                     { text: 'Spring Security', link: '/backend/springsecurity/' },
                     { text: 'Mybatis', link: '/backend/mybatis/' },
+                    { text: 'Nginx', link: '/backend/nginx/' },
                 ]
             },
             {
@@ -139,10 +140,11 @@ module.exports = {
             '/backend/springboot/': ['springbootJourney'],
             '/backend/springsecurity/': ['temp'],
             '/backend/mybatis/': ['mybatisProblem'],
+            '/backend/nginx/': ['tengine'],
             //数据库
             '/db/mongo/': ['install', 'mongo', 'problem'],
             '/db/redis/': ['redis'],
-            '/db/postgresql/': ['intro', 'install', 'command', 'problem'],
+            '/db/postgresql/': ['intro', 'install', 'command', 'code', 'problem'],
             //大数据
             '/bigdata/hadoop/': ['route', 'cloud', 'hadoop', 'hdfs', 'mapreduce', 'yarn', 'hive'],
             //开发工具

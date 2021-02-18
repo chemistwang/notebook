@@ -17,6 +17,9 @@
 - [腾讯AlloyTeam](http://www.alloyteam.com/) `前端好文`
 - [Chrome开发工具](https://developers.google.cn/web/tools/chrome-devtools) `Chrome`
 - [程序员整理素材](http://tools.stanzhai.site/) `程序员发展`
+- [爱思资源网](http://www.aseoe.com/) `专注web前端的资源网站`
+- [现代JavaScript教程](https://zh.javascript.info/) `两个字: 专业!`
+
 ## 素材
 
 - [爱给网](https://www.aigei.com/) `音效配乐` `3D模型` `视频素材` `游戏素材`
@@ -25,11 +28,16 @@
 ## 课程
 
 - [doyoudo](https://www.doyoudo.com/) `设计类`
+- [尚硅谷](http://www.atguigu.com/download.shtml) `B站也有官方账号，技术入门佳品`
 
 ## 资源
 
 - [apache资源包](http://archive.apache.org/dist/) `apache资源包`
 - [字节图标库](https://iconpark.bytedance.com) `icon`
+
+## 文章
+
+- [Github快速入门中文版](https://docs.github.com/cn/github/getting-started-with-github/quickstart)
 
 ## 工具
 
@@ -38,6 +46,8 @@
 - [在线DOS游戏](https://dos.zczc.cz/) `dos游戏`
 - [智商测试](https://www.zxgj.cn/m/zhishang) `智商测试`
 - [Springboot Banner](https://www.bootschool.net/ascii) `Springboot Banner`
+- [Badge](https://badge.fury.io/) `Github` `icon` `markdown`
+- [Shields.io](https://shields.io/category/platform-support) `Github` `icon` `markdown`
 
 ## 大佬博客
 
@@ -55,6 +65,47 @@
 - [Artiely](https://artiely.gitee.io/)
 - [Evan's blog](https://xugaoyi.com/)
 - [小火柴的前端小册子](https://xiaohuochai.site/)
+- [程序猿DD](https://blog.didispace.com/) `java`技术栈，还有友链
+- [纯洁的微笑](http://www.ityouknow.com/) 之前是看过他的 `springboot系列文章` ,没想到还是西安的乡党，啊哈哈
+- [Haorooms](https://www.haorooms.com/) `前端`
+- [CTeam](https://c.team/) 非常有趣的团队，也有很多优秀的作品
+- [HackTl](https://hack.tl/) CTeam旗下，专注 `安全行业`
+
+## 常用开发平台
+
+- [微信公众平台](https://mp.weixin.qq.com/) `微信`
+- [字节跳动小程序](https://microapp.bytedance.com/) `字节跳动`
+- [百度智能小程序](https://smartprogram.baidu.com/docs/introduction/enter_application/) `百度`
+- [oppo开放平台](https://open.oppomobile.com/wiki/doc#id=10522) `oppo`
+- [vivo小游戏](https://minigame.vivo.com.cn/documents/#/api/service/newaccount?id=key) `vivo`
+
+## 乱七八糟项目案例
+
+- 8个精选springboot项目
+
+1. 简介：支付服务：支付宝、微信、银联详细 代码案例，目前已经1800+Star。十分钟让你快速搭建一个支付服务，内附各种教程。
+[项目地址](https://gitee.com/52itstyle/spring-boot-pay)
+
+2. 简介：从0到1构建分布式秒杀系统，脱离案例讲架构都是耍流氓，码云GVP项目。这个是自5月以来最上心的一个项目，尽管只是一个案例，但是从中也学到了不少知识。
+[项目地址](https://gitee.com/52itstyle/spring-boot-seckill)
+
+3. 简介：邮件发送服务，文本，附件，模板，队列，多线程，定时任务实现多种功能。
+[项目地址](https://gitee.com/52itstyle/spring-boot-mail)
+
+4. 简介：ES全文搜索引擎，基于Elasticsearch构建网站日志处理系统，通过数据同步工具等一些列开源组件来快速构建一个日志处理系统，项目雏形初步成型中。
+[项目地址](https://gitee.com/52itstyle/spring-boot-elasticsearch)
+
+5. 简介：基于spring-boot+quartz的CRUD任务管理系统 。
+[项目地址](https://gitee.com/52itstyle/spring-boot-quartz)
+
+6. 简介：spring-boot-doc是一款针对IT团队开发的简单好用的文档管理系统。
+[项目地址](https://gitee.com/52itstyle/spring-boot-doc)
+
+7. 简介：没什么好介绍的，集成了Fastdfs而已。
+[项目地址](https://gitee.com/52itstyle/spring-boot-fastdfs)
+
+8. 简介：讯飞语音JavaWeb语音合成解决方案。
+[项目地址](https://gitee.com/52itstyle/xufei_msc)
 
 《假如国宝会说话》
 《第十放映室》
