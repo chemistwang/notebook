@@ -17,6 +17,7 @@ module.exports = {
                     { text: 'Css', link: '/frontend/css/' },
                     { text: 'Javascript', link: '/frontend/js/' },
                     { text: 'Echarts', link: '/frontend/echarts/' },
+                    { text: 'Axios', link: '/frontend/axios/' },
                     { text: 'Vue', link: '/frontend/vue/' },
                     { text: 'Angular', link: '/frontend/angular/' },
                     { text: 'React', link: '/frontend/react/' },
@@ -100,6 +101,8 @@ module.exports = {
                     { text: 'Gateway', link: '/other/gateway/' },
                     { text: 'SSO', link: '/other/sso/' },
                     { text: '知识点', link: '/other/point/' },
+                    { text: 'Python', link: '/other/python/' },
+                    { text: 'minIO', link: '/other/minIO/' },
                 ]
             },
             {
@@ -139,11 +142,11 @@ module.exports = {
             '/backend/spring/': ['spring'],
             '/backend/springboot/': ['springbootJourney'],
             '/backend/springsecurity/': ['temp'],
-            '/backend/mybatis/': ['mybatisProblem'],
+            '/backend/mybatis/': ['problem'],
             '/backend/nginx/': ['tengine'],
             //数据库
             '/db/mongo/': ['install', 'mongo', 'problem'],
-            '/db/redis/': ['redis'],
+            '/db/redis/': ['intro', 'install', 'redis', 'code'],
             '/db/postgresql/': ['intro', 'install', 'command', 'code', 'problem'],
             //大数据
             '/bigdata/hadoop/': ['route', 'cloud', 'hadoop', 'hdfs', 'mapreduce', 'yarn', 'hive'],
@@ -163,6 +166,7 @@ module.exports = {
             '/other/kafka/': ['kafkaScene', 'kafkaIntro', 'kafkaInstall', 'kafkaCode', 'kafkaInterview'],
             '/other/gateway/': [],
             '/other/sso/': ['cas'],
+            '/other/python/': ['jupyter'],
             //编码
             '/code/leetcode/': [],
             '/code/codewar/': ['codewar'],

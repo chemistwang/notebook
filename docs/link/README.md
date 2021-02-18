@@ -10,6 +10,8 @@
 - [codelf](https://unbug.github.io/codelf/) `搜代码的o((⊙﹏⊙))o`
 - [Google Trends](https://trends.google.com/trends/) `科学上网`
 - [Magi](https://magi.com/) `蛮有创意的搜索引擎`
+- [Codepen](https://codepen.io/) `搜前端代码，蛮有趣，还能在线编辑`
+- [Hellogithub](https://hellogithub.com/) `Github优质项目`
 ## 技术
 
 - [前端观察](https://qianduan.net/) `前端技术分享`
@@ -19,6 +21,11 @@
 - [程序员整理素材](http://tools.stanzhai.site/) `程序员发展`
 - [爱思资源网](http://www.aseoe.com/) `专注web前端的资源网站`
 - [现代JavaScript教程](https://zh.javascript.info/) `两个字: 专业!`
+- [w3schools](https://www.w3schools.com/) `w3schools官方`
+- [NEC](http://nec.netease.com/) `网易css规范`
+- [Animate](https://animate.style/) `css动效库`
+- [Echarts](https://echarts.apache.org/zh/index.html) 现在移交Apache孵化，UI和API变得友好多了
+- [Linux命令大全](https://man.linuxde.net/) `Linux`
 
 ## 素材
 
@@ -51,6 +58,7 @@
 
 ## 大佬博客
 
+- [Douglas Crockford](https://www.crockford.com/blog.html) `JSON` 就是他推广的数据格式！
 - [庞国明](http://pangguoming.com/about)
 - [wangzichen](http://www.codedog.fun/) 总结很详细的 `k8s` 部署教程
 - [Zihua Li](https://zihua.li/) 学习 `redisio` 时发现的博主
@@ -70,6 +78,7 @@
 - [Haorooms](https://www.haorooms.com/) `前端`
 - [CTeam](https://c.team/) 非常有趣的团队，也有很多优秀的作品
 - [HackTl](https://hack.tl/) CTeam旗下，专注 `安全行业`
+- [Webhek](https://www.webhek.com/) `写过一篇用纯css实现26个字母` [链接](https://www.webhek.com/post/css-sans.html)
 
 ## 常用开发平台
 
@@ -106,6 +115,13 @@
 
 8. 简介：讯飞语音JavaWeb语音合成解决方案。
 [项目地址](https://gitee.com/52itstyle/xufei_msc)
+
+
+## 数据融合应用平台产品
+
+- [RestCloud](http://www.restcloud.cn/restcloud/mycms/index.html)
+- [DStream](http://www.dstream.com.cn/document.html)
+- [DataHunter](https://www.datahunter.cn/user/videos.html)
 
 《假如国宝会说话》
 《第十放映室》
