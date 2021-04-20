@@ -12,6 +12,14 @@
 - [Magi](https://magi.com/) `蛮有创意的搜索引擎`
 - [Codepen](https://codepen.io/) `搜前端代码，蛮有趣，还能在线编辑`
 - [Hellogithub](https://hellogithub.com/) `Github优质项目`
+
+## 算法网站
+
+- [leetcode](https://leetcode-cn.com/)
+- [赛码](https://www.acmcoder.com/index) `专注面试`
+- [codility](https://www.codility.com/)
+- [hihocoder](http://hihocoder.com/) `难度较大`
+
 ## 技术
 
 - [前端观察](https://qianduan.net/) `前端技术分享`

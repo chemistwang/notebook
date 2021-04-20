@@ -24,6 +24,7 @@ module.exports = {
                     { text: 'Webpack', link: '/frontend/webpack/' },
                     { text: 'Websocket', link: '/frontend/websocket/' },
                     { text: 'Infrastructure', link: '/frontend/infrastructure/' },
+                    { text: '面试题', link: '/frontend/interview/' },
                 ]
             },
             {
@@ -74,6 +75,7 @@ module.exports = {
                 text: '开发工具',
                 ariaLabel: 'Tool Menu',
                 items: [
+                    { text: 'Brew', link: '/tool/brew/' },
                     { text: 'Vim', link: '/tool/vim/' },
                     { text: 'Git', link: '/tool/git/' },
                     { text: 'Docker', link: '/tool/docker/' },
@@ -151,6 +153,7 @@ module.exports = {
             //大数据
             '/bigdata/hadoop/': ['route', 'cloud', 'hadoop', 'hdfs', 'mapreduce', 'yarn', 'hive'],
             //开发工具
+            '/tool/brew/': ['problem'],
             '/tool/vim/': ['vim', 'gvimrc'],
             '/tool/git/': ['gitflow', 'gitCommand', 'gitServer'],
             '/tool/docker/': ['docker', 'portainer'],
