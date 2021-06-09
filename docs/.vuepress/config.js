@@ -138,7 +138,7 @@ module.exports = {
             '/frontend/vue/': ['vueDev'],
             //后端开发
             '/backend/linux/': ['intro', 'centos', 'command', 'network', 'shortcut'],
-            '/backend/node/': [],
+            '/backend/node/': ['npm'],
             '/backend/java/': ['base', 'jdbc', 'interview'],
             '/backend/maven/': ['mavenIntro', 'mavenProblem'],
             '/backend/spring/': ['spring'],
@@ -148,7 +148,7 @@ module.exports = {
             '/backend/nginx/': ['tengine'],
             //数据库
             '/db/mongo/': ['install', 'mongo', 'problem'],
-            '/db/redis/': ['intro', 'install', 'redis', 'code'],
+            '/db/redis/': ['intro', 'install', 'redis', 'code', 'problem'],
             '/db/postgresql/': ['intro', 'install', 'command', 'code', 'problem'],
             //大数据
             '/bigdata/hadoop/': ['route', 'cloud', 'hadoop', 'hdfs', 'mapreduce', 'yarn', 'hive'],
