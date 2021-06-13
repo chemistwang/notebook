@@ -115,14 +115,14 @@ module.exports = {
                     { text: 'CodeWar', link: '/code/codewar/' },
                 ]
             },
-            {
-                text: '插件',
-                ariaLabel: 'Plugin Menu',
-                items: [
-                    { text: 'Chrome', link: '/plugin/chrome/' },
-                    { text: 'Vscode', link: '/plugin/vscode/' },
-                ]
-            },
+            // {
+            //     text: '插件',
+            //     ariaLabel: 'Plugin Menu',
+            //     items: [
+            //         { text: 'Chrome', link: '/plugin/chrome/' },
+            //         { text: 'Vscode', link: '/plugin/vscode/' },
+            //     ]
+            // },
             { text: '资源列表', link: '/link/' },
             // { text: '个人博客', link: 'https://chemistwang.github.io' },
             { text: '介绍', link: '/introduce/' },
@@ -174,8 +174,8 @@ module.exports = {
             '/code/leetcode/': [],
             '/code/codewar/': ['codewar'],
             //插件
-            '/plugin/chrome': ['chrome'],
-            '/plugin/vscode': ['vscode'],
+            // '/plugin/chrome': ['ch'],
+            // '/plugin/vscode': ['vs'],
         },
         // sidebarDepth: 3,
 
