@@ -82,6 +82,7 @@ module.exports = {
                     { text: 'Docker Compose', link: '/tool/dockercompose/' },
                     { text: 'Kubernetes', link: '/tool/kubernetes/' },
                     { text: 'Jenkins', link: '/tool/jenkins/' },
+                    { text: 'Travis', link: '/tool/travis/' },
                     { text: 'Nginx', link: '/tool/nginx/' }
                 ]
             },
@@ -138,7 +139,7 @@ module.exports = {
             '/frontend/vue/': ['vueDev'],
             //后端开发
             '/backend/linux/': ['intro', 'centos', 'command', 'network', 'shortcut'],
-            '/backend/node/': ['npm'],
+            '/backend/node/': ['install', 'npm'],
             '/backend/java/': ['base', 'jdbc', 'interview'],
             '/backend/maven/': ['mavenIntro', 'mavenProblem'],
             '/backend/spring/': ['spring'],
