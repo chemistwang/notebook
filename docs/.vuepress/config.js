@@ -82,8 +82,7 @@ module.exports = {
                     { text: 'Docker Compose', link: '/tool/dockercompose/' },
                     { text: 'Kubernetes', link: '/tool/kubernetes/' },
                     { text: 'Jenkins', link: '/tool/jenkins/' },
-                    { text: 'Travis', link: '/tool/travis/' },
-                    { text: 'Nginx', link: '/tool/nginx/' }
+                    { text: 'Travis', link: '/tool/travis/' }
                 ]
             },
             {
@@ -146,7 +145,7 @@ module.exports = {
             '/backend/springboot/': ['springbootJourney'],
             '/backend/springsecurity/': ['temp'],
             '/backend/mybatis/': ['problem'],
-            '/backend/nginx/': ['tengine'],
+            '/backend/nginx/': ['install', 'https', 'conf', 'tengine'],
             //数据库
             '/db/mongo/': ['install', 'mongo', 'problem'],
             '/db/redis/': ['intro', 'install', 'redis', 'code', 'problem'],
@@ -161,7 +160,6 @@ module.exports = {
             '/tool/dockercompose/': ['dockercompose', 'problem'],
             '/tool/kubernetes/': ['introduce', 'centosDeploy'],
             '/tool/jenkins/': ['jenkins'],
-            '/tool/nginx/': [''],
             //视频
             '/video/live/': ['media1', 'media2', 'media3', 'media4', 'media5', 'media6', 'media7'],
             '/video/ffmpeg/': ['ffmpeg1', 'ffmpeg2'],

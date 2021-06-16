@@ -88,6 +88,7 @@
 - [HackTl](https://hack.tl/) CTeam旗下，专注 `安全行业`
 - [Webhek](https://www.webhek.com/) `写过一篇用纯css实现26个字母` [链接](https://www.webhek.com/post/css-sans.html)
 - [蓝色梦想](https://www.bluesdream.com/)
+- [KAYGB](https://blog.kaygb.com) `博客的功能好全面`
 
 ## 常用开发平台
 

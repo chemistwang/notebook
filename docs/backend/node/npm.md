@@ -1,6 +1,6 @@
 ## npm
 
-1. 如何发布包
+### 如何发布NPM包
 
 [官方链接](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry)
 
@@ -98,3 +98,15 @@ npm notice
 ```
 
 然后会收到一份发布成功的邮件📧
+
+
+### 分享几个有趣的NPM包
+
+1. [boxen](https://www.npmjs.com/package/boxen)
+
+2. [chalk](https://www.npmjs.com/package/chalk)
+
+
+### 代码热更新工具
+
+[supervisor](https://www.npmjs.com/package/supervisor)

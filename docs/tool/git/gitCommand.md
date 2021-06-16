@@ -57,3 +57,7 @@
 > git比其他版本控制系统设计的优秀，因为Git跟踪并管理的是修改，而非文件
 > 
 
+
+
+指定文件夹克隆指定分支
+git clone -b yourBranchName yourBranch yourDirName

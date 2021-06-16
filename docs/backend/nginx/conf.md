@@ -1,8 +1,6 @@
-nginx....
+# 配置文件案例
 
-nginx 做重定向
-
-
+## nginx做重定向
 
 ``` YAML
 server{
@@ -30,8 +28,7 @@ server {
 
 302 临时重定向
 
-
-
+## 指定ip访问
 
 
 Nginx 指定ip访问
@@ -42,20 +39,4 @@ deny all;
 ```
 
 
-
-upstream 配置项
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## upstream 配置项
