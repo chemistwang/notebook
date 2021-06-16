@@ -40,3 +40,81 @@ deny all;
 
 
 ## upstream 配置项
+
+
+
+## 重定向服务器
+
+场景案例：
+公司的s3服务器受备案影响不能访问，需要绕过备案，而服务的整体迁移非常繁琐又容易出错
+
+方案1:
+使用proxy重定向
+失败
+
+方案2:
+使用rewrite
+失败
+
+方案3:
+使用ngx_headers_more
+
+之前的配置
+
+```
+server{
+        listen 80;
+        server_name yourDomain.com;
+        location /xx/ {
+            proxy_pass http://127.0.0.1:3000/;
+            proxy_set_header Host $http_host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
+        }
+
+        listen 443 ssl; # managed by Certbot
+
+        ssl_certificate /etc/nginx/cert/chemputer.top.pem;
+        ssl_certificate_key /etc/nginx/cert/chemputer.top.key;
+}
+```
+
+现在的配置
+
+```
+server{
+        listen 80;
+        server_name yourDomain.com;
+        location /xx/ {
+            proxy_pass http://yourAnotherIp:3500/;
+            # 指向另外一个服务器的ip
+            more_set_headers "Host: yourAnotherIp";
+            #proxy_set_header Host $http_host;
+            #proxy_set_header X-Real-IP $remote_addr;
+            #proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            #proxy_set_header X-Forwarded-Proto $scheme;
+            #proxy_set_header Upgrade $http_upgrade;
+            #proxy_set_header Connection "upgrade";
+        }
+
+        listen 443 ssl; # managed by Certbot
+
+        ssl_certificate /etc/nginx/cert/chemputer.top.pem;
+        ssl_certificate_key /etc/nginx/cert/chemputer.top.key;
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
