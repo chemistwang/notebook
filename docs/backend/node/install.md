@@ -1,6 +1,6 @@
-## 安装
+# 安装
 
-1. centos环境
+## centos
 
 ``` bash
 # 下载nodejs 12

@@ -1,6 +1,6 @@
 # 安装
 
-## linux
+## Ubuntu
 
 1. 查看linux版本
 
@@ -32,4 +32,55 @@ echo "mongodb-org-tools hold" | sudo dpkg --set-selections
 9. sudo service mongod restart //重启
 10. mongo //进入mongo shell
 11. pgrep mongo -l //查看进程
+```
+
+
+## CentOS
+
+[官方安装地址](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat-tarball/)
+
+1. 需要先安装社区版所需要的依赖
+
+``` bash
+sudo yum install libcurl openssl xz-libs
+```
+
+2. 下载对应版本
+
+``` bash
+wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-4.4.6.tgz
+```
+
+3. 解压到指定目录
+
+``` bash
+tar -zxvf mongodb-linux-x86_64-rhel70-4.4.6.tgz -C /opt/module/
+```
+
+4. 配置环境变量
+
+``` bash
+# 个人比较喜欢创建软连接
+sudo ln -s /opt/module/mongodb-linux-x86_64-rhel70-4.4.6/bin/* /usr/local/bin/
+```
+
+5. 创建mongo相关目录
+
+``` bash
+sudo mkdir -p /var/lib/mongo   # mongo数据文件夹
+sudo mkdir -p /var/log/mongodb # mongo日志文件夹
+```
+
+6. 为创建的目录设置用户组
+
+``` bash
+useradd mongod # 创建用户
+sudo chown -R mongod:mongod /var/lib/mongo
+sudo chown -R mongod:mongod /var/log/mongodb
+```
+
+7. 启动mongo
+
+```bash
+mongod --dbpath /var/lib/mongo --logpath /var/log/mongodb/mongod.log --fork
 ```
