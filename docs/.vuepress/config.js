@@ -82,7 +82,8 @@ module.exports = {
                     { text: 'Docker Compose', link: '/tool/dockercompose/' },
                     { text: 'Kubernetes', link: '/tool/kubernetes/' },
                     { text: 'Jenkins', link: '/tool/jenkins/' },
-                    { text: 'Travis', link: '/tool/travis/' }
+                    { text: 'Travis', link: '/tool/travis/' },
+                    { text: 'Prometheus', link: '/tool/prometheus/' },
                 ]
             },
             {
@@ -159,7 +160,8 @@ module.exports = {
             '/tool/docker/': ['docker', 'portainer'],
             '/tool/dockercompose/': ['dockercompose', 'problem'],
             '/tool/kubernetes/': ['introduce', 'centosDeploy'],
-            '/tool/jenkins/': ['jenkins'],
+            '/tool/travis/': [''],
+            '/tool/prometheus/': ['install', 'plugin', 'grafana'],
             //视频
             '/video/live/': ['media1', 'media2', 'media3', 'media4', 'media5', 'media6', 'media7'],
             '/video/ffmpeg/': ['ffmpeg1', 'ffmpeg2'],

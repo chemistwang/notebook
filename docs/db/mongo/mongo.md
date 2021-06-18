@@ -1,7 +1,10 @@
 # mongodb
 
-## 创建新用户
 
+
+## 常用命令
+
+1. 创建新用户
 ```
 use admin
 db.auth('sumh','herinai917')
@@ -17,6 +20,14 @@ db.createUser({
     }]
 })
 ```
+
+``` bash
+show users # 查看用户
+db.dropUser('chemputer') # 删除用户
+```
+
+
+
 
 ## 用户权限(role)
  * ` Read `：允许用户读取指定数据库
