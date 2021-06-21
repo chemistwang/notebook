@@ -84,6 +84,7 @@ module.exports = {
                     { text: 'Jenkins', link: '/tool/jenkins/' },
                     { text: 'Travis', link: '/tool/travis/' },
                     { text: 'Prometheus', link: '/tool/prometheus/' },
+                    { text: 'Serverless', link: '/tool/serverless/' },
                 ]
             },
             {
@@ -156,12 +157,13 @@ module.exports = {
             //开发工具
             '/tool/brew/': ['problem'],
             '/tool/vim/': ['vim', 'gvimrc'],
-            '/tool/git/': ['gitflow', 'gitCommand', 'gitServer'],
+            '/tool/git/': ['gitflow', 'gitCommand', 'gitServer', 'gitlab'],
             '/tool/docker/': ['docker', 'portainer'],
             '/tool/dockercompose/': ['dockercompose', 'problem'],
             '/tool/kubernetes/': ['introduce', 'centosDeploy'],
             '/tool/travis/': [''],
             '/tool/prometheus/': ['install', 'plugin', 'grafana'],
+            '/tool/serverless/': [],
             //视频
             '/video/live/': ['media1', 'media2', 'media3', 'media4', 'media5', 'media6', 'media7'],
             '/video/ffmpeg/': ['ffmpeg1', 'ffmpeg2'],

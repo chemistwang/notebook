@@ -48,7 +48,14 @@ git clone git@yourIp:/home/git/repo/chemputer.git
 git clone ssh://git@yourIp:2222/home/git/repo/chemputer.git
 ```
 
+6. 禁用shell登陆
 
+出于安全考虑，创建的git用户不允许登陆服务器，通过 `root` 编辑 `/etc/passwd`文件
 
+``` bash 
+git:x:1000:1000:,,,:/home/git:/bin/bash
+# 修改为
+git:x:1000:1000:,,,:/home/git:/usr/bin/git-shell
+```
 
 ## CentOS
