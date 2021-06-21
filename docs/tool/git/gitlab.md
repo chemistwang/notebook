@@ -54,7 +54,7 @@ vi /etc/gitlab/gitlab.rb
 [参考地址](https://cloud.tencent.com/developer/article/1139779)
 
 
-## gitlab服务构成
+## Gitlab服务构成
 
 [参考地址](https://www.cnblogs.com/niuben/p/10867877.html)
 

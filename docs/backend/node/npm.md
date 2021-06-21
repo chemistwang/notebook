@@ -107,6 +107,12 @@ npm notice
 2. [chalk](https://www.npmjs.com/package/chalk)
 
 
-## 代码热更新工具
+## 常用工具
 
-[supervisor](https://www.npmjs.com/package/supervisor)
+代码热更新工具
+
+[supervisor](https://www.npmjs.com/package/supervisor) 
+
+代理
+
+[superagent](https://www.npmjs.com/package/superagent)
