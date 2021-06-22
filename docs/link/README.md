@@ -34,6 +34,7 @@
 - [Animate](https://animate.style/) `css动效库`
 - [Echarts](https://echarts.apache.org/zh/index.html) 现在移交Apache孵化，UI和API变得友好多了
 - [Linux命令大全](https://man.linuxde.net/) `Linux`
+- [书栈网](https://www.bookstack.cn/) `文档`
 
 ## 素材
 

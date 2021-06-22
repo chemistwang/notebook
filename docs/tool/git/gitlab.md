@@ -52,28 +52,43 @@ vi /etc/gitlab/gitlab.rb
 ```
 
 [参考地址](https://cloud.tencent.com/developer/article/1139779)
-
+[官方配置地址](https://docs.gitlab.com/omnibus/settings/configuration.html)
 
 ## Gitlab服务构成
 
+``` bash
+cat /opt/gitlab/embedded/service/gitlab-rails/VERSION # 查看版本号
+13.12.4-ee
+```
+
 [参考地址](https://www.cnblogs.com/niuben/p/10867877.html)
 
-- Nginx：静态web服务器。
-- gitlab-shell：用于处理Git命令和修改authorized keys列表。
+- alertmanager:
+- gitaly:
+- gitlab-exporter:
 - gitlab-workhorse: 轻量级的反向代理服务器。
+- gitlab-shell：用于处理Git命令和修改authorized keys列表。
+- grafana:
 - logrotate：日志文件管理工具。
 - postgresql：数据库。
+- postgres-exporter:
 - redis：缓存数据库。
+- redis-exporter:
+- prometheus
+- unicorn
+- puma
+
+[Puma文档](https://docs.gitlab.com/omnibus/settings/puma.html)
+
+官方提示从 `GitLab 14.0` 之后，`Puma` 将会取代 `Unicorn`
+
 - sidekiq：用于在后台执行队列任务（异步执行）。
-- unicorn：An HTTP server for Rack applications，GitLab Rails应用是托管在这个服务器上面的。
+- Nginx：静态web服务器。
 
 
 ## 常用命令
 
 ``` bash
-
-cat /opt/gitlab/embedded/service/gitlab-rails/VERSION # 查看版本号
-
 gitlab-ctl start # 启动所有 gitlab 组件；
 
 gitlab-ctl stop # 停止所有 gitlab 组件；
@@ -83,7 +98,6 @@ gitlab-ctl restart # 重启所有 gitlab 组件；
 gitlab-ctl status # 查看服务状态；
 
 gitlab-ctl reconfigure # 启动服务；
-
 ```
 
 

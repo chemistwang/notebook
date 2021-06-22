@@ -1,6 +1,8 @@
 # 安装
 
-## CentOS
+[官方网站](https://prometheus.io/)
+
+## Linux
 
 1. 下载
 

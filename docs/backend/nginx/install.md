@@ -5,7 +5,7 @@
 强烈推荐使用源码编译安装，这样后面添加模块的时候会非常方便。
 :::
 
-centos7.4
+## CentOS7.6
 
 1. 下载
 
@@ -15,7 +15,9 @@ wget http://nginx.org/download/nginx-1.20.1.tar.gz
 
 2. 解压
 
+``` bash
 tar -zxvf nginx-1.20.1.tar.gz -C /opt/module
+```
 
 3. 编译
 
@@ -29,7 +31,7 @@ make install
 4. 修改相应配置文件
 
 ``` bash
-cd /usr/local/nginx/conf
+vi /usr/local/nginx/conf/nginx.conf
 ```
 
 5. 启动nginx

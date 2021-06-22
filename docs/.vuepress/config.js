@@ -84,6 +84,7 @@ module.exports = {
                     { text: 'Jenkins', link: '/tool/jenkins/' },
                     { text: 'Travis', link: '/tool/travis/' },
                     { text: 'Prometheus', link: '/tool/prometheus/' },
+                    { text: 'Grafana', link: '/tool/grafana/' },
                     { text: 'Serverless', link: '/tool/serverless/' },
                 ]
             },
@@ -117,14 +118,14 @@ module.exports = {
                     { text: 'CodeWar', link: '/code/codewar/' },
                 ]
             },
-            // {
-            //     text: '插件',
-            //     ariaLabel: 'Plugin Menu',
-            //     items: [
-            //         { text: 'Chrome', link: '/plugin/chrome/' },
-            //         { text: 'Vscode', link: '/plugin/vscode/' },
-            //     ]
-            // },
+            {
+                text: '插件',
+                ariaLabel: 'Plugin Menu',
+                items: [
+                    { text: 'Chrome', link: '/plugin/chrome/' },
+                    { text: 'Vscode', link: '/plugin/vscode/' },
+                ]
+            },
             { text: '资源列表', link: '/link/' },
             // { text: '个人博客', link: 'https://chemistwang.github.io' },
             { text: '介绍', link: '/introduce/' },
@@ -157,12 +158,13 @@ module.exports = {
             //开发工具
             '/tool/brew/': ['problem'],
             '/tool/vim/': ['vim', 'gvimrc'],
-            '/tool/git/': ['gitflow', 'gitCommand', 'gitServer', 'gitlab'],
+            '/tool/git/': ['install', 'gitCommand', 'gitflow', 'gitServer', 'gitlab'],
             '/tool/docker/': ['docker', 'portainer'],
             '/tool/dockercompose/': ['dockercompose', 'problem'],
             '/tool/kubernetes/': ['introduce', 'centosDeploy'],
             '/tool/travis/': [''],
-            '/tool/prometheus/': ['install', 'plugin', 'grafana'],
+            '/tool/prometheus/': ['install', 'plugin'],
+            '/tool/grafana/': ['install', 'plugin'],
             '/tool/serverless/': [],
             //视频
             '/video/live/': ['media1', 'media2', 'media3', 'media4', 'media5', 'media6', 'media7'],
@@ -177,8 +179,8 @@ module.exports = {
             '/code/leetcode/': [],
             '/code/codewar/': ['codewar'],
             //插件
-            // '/plugin/chrome': ['ch'],
-            // '/plugin/vscode': ['vs'],
+            '/plugin/chrome/': ['ch'],
+            '/plugin/vscode/': ['vs'],
         },
         // sidebarDepth: 3,
 
