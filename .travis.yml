@@ -10,3 +10,6 @@ before_install:
   -in id_rsa.enc -out ~/.ssh/id_rsa -d
 addons:
   ssh_known_hosts: 1.15.222.63
+after_success:
+# - rm -rf <部署服务器用户名>@<部署服务器地址>:/home/xxx/project-file/*
+- scp -o stricthostkeychecking=no -r ./dist/* root@1.15.222.63:/root/notebook/dist
