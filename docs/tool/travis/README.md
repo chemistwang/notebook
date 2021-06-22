@@ -47,7 +47,7 @@ gem install travis
 5. 使用 `github-token` 登陆
 
 ```bash
-travis login --github-token yourGithubToken
+travis login --pro --github-token yourGithubToken
 Successfully logged in as chemistwang!
 ```
 
@@ -58,6 +58,8 @@ travis login --com
 travis login --org
 travis login --auto
 ```
+
+`--pro`需要加上
 :::
 
 github-token的生成参考 [](https://github.com/settings/tokens)
