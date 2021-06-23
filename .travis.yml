@@ -11,6 +11,4 @@ before_install:
 addons:
   ssh_known_hosts: 1.15.222.63
 after_success:
-- ssh root@1.15.222.63 
-- cd /root/notebook && git pull
-- npm run build
+- ssh root@1.15.222.63 'cd /root/notebook && git pull && npm run build'
