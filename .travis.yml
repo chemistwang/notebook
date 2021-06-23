@@ -4,7 +4,7 @@ node_js:
 branchs:
   only:
   - master
-# script: npm run build
+script: npm run build
 before_install:
 - openssl aes-256-cbc -K $encrypted_3d92ad42968a_key -iv $encrypted_3d92ad42968a_iv
   -in id_rsa.enc -out ~/.ssh/id_rsa -d
