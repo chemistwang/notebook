@@ -90,6 +90,7 @@
 - [Webhek](https://www.webhek.com/) `写过一篇用纯css实现26个字母` [链接](https://www.webhek.com/post/css-sans.html)
 - [蓝色梦想](https://www.bluesdream.com/)
 - [KAYGB](https://blog.kaygb.com) `博客的功能好全面`
+- [zhuwenlong](https://www.zhuwenlong.com/) `首页是个视频，好有想法`
 
 ## 常用开发平台
 
@@ -98,6 +99,15 @@
 - [百度智能小程序](https://smartprogram.baidu.com/docs/introduction/enter_application/) `百度`
 - [oppo开放平台](https://open.oppomobile.com/wiki/doc#id=10522) `oppo`
 - [vivo小游戏](https://minigame.vivo.com.cn/documents/#/api/service/newaccount?id=key) `vivo`
+
+## 社区
+
+
+
+## 趋势
+
+- [Tiobe](https://www.tiobe.com/tiobe-index/) `编程语言趋势图`
+
 
 ## 乱七八糟项目案例
 

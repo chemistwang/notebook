@@ -42,6 +42,7 @@ module.exports = {
                     { text: 'Spring Security', link: '/backend/springsecurity/' },
                     { text: 'Mybatis', link: '/backend/mybatis/' },
                     { text: 'Nginx', link: '/backend/nginx/' },
+                    { text: 'OpenResty', link: '/backend/openresty/' },
                 ]
             },
             {
@@ -149,6 +150,7 @@ module.exports = {
             '/backend/springsecurity/': ['temp'],
             '/backend/mybatis/': ['problem'],
             '/backend/nginx/': ['install', 'https', 'conf', 'tengine'],
+            '/backend/openresty/': [],
             //数据库
             '/db/mongo/': ['install', 'mongo', 'problem'],
             '/db/redis/': ['intro', 'install', 'redis', 'code', 'problem'],
@@ -158,7 +160,7 @@ module.exports = {
             //开发工具
             '/tool/brew/': ['problem'],
             '/tool/vim/': ['vim', 'gvimrc'],
-            '/tool/git/': ['install', 'gitCommand', 'gitflow', 'gitServer', 'gitlab'],
+            '/tool/git/': ['install', 'gitCommand', 'gitflow', 'gitServer', 'gitlab', 'gitlfs'],
             '/tool/docker/': ['docker', 'portainer'],
             '/tool/dockercompose/': ['dockercompose', 'problem'],
             '/tool/kubernetes/': ['introduce', 'centosDeploy'],

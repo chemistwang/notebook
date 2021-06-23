@@ -59,8 +59,14 @@ travis login --org
 travis login --auto
 ```
 
-`--pro`需要加上
+`--pro`需要加上，否则后面的 `travis encrypt-file ~/.ssh/id_rsa --pro` 命令用不了，会提示 `not logged in, please run travis login --pro`
 :::
+
+
+``` bash
+travis encrypt-file super_secret.txt --pro
+not logged in, please run travis login --pro
+```
 
 github-token的生成参考 [](https://github.com/settings/tokens)
 
@@ -68,3 +74,56 @@ github-token的生成参考 [](https://github.com/settings/tokens)
 
 
 6. 
+
+``` bash
+➜  notebook git:(master) ✗ travis encrypt-file ~/.ssh/id_rsa --add
+Detected repository as chemistwang/notebook, is this correct? |yes| yes 
+encrypting /Users/wyl/.ssh/id_rsa for chemistwang/notebook
+storing result as id_rsa.enc
+storing secure env variables for decryption
+
+
+Overwrite the config file /Users/wyl/Desktop/notebook/.travis.yml with the content below?
+
+This reformats the existing file.
+
+---
+language: node_js
+node_js:
+- '12'
+branchs:
+  only:
+  - master
+script: npm run build
+before_install:
+- openssl aes-256-cbc -K $encrypted_3d92ad42968a_key -iv $encrypted_3d92ad42968a_iv
+  -in id_rsa.enc -out ~\/.ssh/id_rsa -d
+
+
+(y/N)
+y
+
+Make sure to add id_rsa.enc to the git repository.
+Make sure not to add /Users/wyl/.ssh/id_rsa to the git repository.
+Commit all changes to your .travis.yml.
+```
+
+7. 部署脚本
+
+```
+language: node_js
+node_js:
+- '12'
+branchs:
+  only:
+  - master
+script: npm run build
+before_install:
+- openssl aes-256-cbc -K $encrypted_3d92ad42968a_key -iv $encrypted_3d92ad42968a_iv
+  -in id_rsa.enc -out ~/.ssh/id_rsa -d
+addons:
+  ssh_known_hosts: 1.15.222.63
+after_success:
+# - rm -rf <部署服务器用户名>@<部署服务器地址>:/home/xxx/project-file/*
+- scp -o stricthostkeychecking=no -r ./dist/* root@1.15.222.63:/root/notebook
+```
