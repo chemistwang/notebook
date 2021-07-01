@@ -14,12 +14,12 @@ docker是一种容器技术，解决软件跨环境迁移的问题
 
 ## 3. 安装docker
 
-- mac
+- MacOS
 
-> 资源地址：NAS/资源/0.安装源文件/3.开发/Docker/Docker.dmg
+> [官方下载地址](https://desktop.docker.com/mac/stable/arm64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=module)
 
 
-- ubuntu
+- Ubuntu
 
 ```
 1. apt-get update
@@ -42,7 +42,7 @@ docker是一种容器技术，解决软件跨环境迁移的问题
 ```
 
 
-- centos
+- CentOS
 
 ```
 1. sudo yum install -y yum-utils
@@ -82,38 +82,38 @@ docker是一种容器技术，解决软件跨环境迁移的问题
 
 
 ``` bash
-systemctl start docker //启动
-systemctl stop docker //停止
-systemctl restart docker //重启
-systemctl status docker //查看docker状态
-systemctl enable docker //设置开机启动docker服务
+systemctl start docker # 启动
+systemctl stop docker # 停止
+systemctl restart docker # 重启
+systemctl status docker # 查看docker状态
+systemctl enable docker # 设置开机启动docker服务
 ```
 
 - 搜索镜像
 
 ``` bash
-docker search ubuntu //在dockerhub搜索ubuntu镜像
-docker search ubuntu --filter=stars=999 //搜索星数大于999的ubuntu镜像
+docker search ubuntu # 在dockerhub搜索ubuntu镜像
+docker search ubuntu --filter=stars=999 # 搜索星数大于999的ubuntu镜像
 ```
 
 
 - 镜像操作
 
 ``` bash
-docker pull hello-world //拉取hello-world镜像，默认最新版本 :latest
-docker pull mongo:4.2.5 //拉取mongo镜像，版本为4.2.5
-//指定版本时，先去dockerhub网站上找对应的官方维护版本,否则找不到
+docker pull hello-world # 拉取hello-world镜像，默认最新版本 :latest
+docker pull mongo:4.2.5 # 拉取mongo镜像，版本为4.2.5
+# 指定版本时，先去dockerhub网站上找对应的官方维护版本,否则找不到
 
-docker images //查看本机镜像列表
-docker images -q //查看本机镜像（只展示镜像id）
-docker images --digests //显示摘要信息
-docker images --no-trunc //不截断信息
+docker images # 查看本机镜像列表
+docker images -q # 查看本机镜像（只展示镜像id）
+docker images --digests # 显示摘要信息
+docker images --no-trunc # 不截断信息
 
-docker rmi -f hello-world //删除单个镜像 (-f表示强制删除)
-docker rmi ubuntu mongo redis //删除多个镜像
-docker rmi $(docker images -qa) //全部删除
-docker save -o Desktop/nginx.tar nginx //镜像的备份
-docker load -i Desktop/nginx //镜像的恢复
+docker rmi -f hello-world # 删除单个镜像 (-f表示强制删除)
+docker rmi ubuntu mongo redis # 删除多个镜像
+docker rmi $(docker images -qa) # 全部删除
+docker save -o Desktop/nginx.tar nginx # 镜像的备份
+docker load -i Desktop/nginx #镜像的恢复
 ```
 
 - 容器操作
@@ -127,8 +127,8 @@ docker run \
 ubuntu \ 
 /bin/bash //启动容器
 
-docker start <containerId/containerName> //启动容器
-docker restart <containerId/containerName> //重启容器
+docker start <containerId/containerName> #启动容器
+docker restart <containerId/containerName> #重启容器
 
 ```
 
@@ -143,43 +143,44 @@ docker restart <containerId/containerName> //重启容器
 查看容器
 
 ``` bash
-docker ps //查看正在运行的容器
-docker ps -a //查看所有容器
-docker ps -l //最近一个运行的容器
-docker ps -n 10 //最近10个创建的容器
-docker ps -q //只显示容器id
-docker inspect <containerId/containerName> //查看容器内部细节（以json串的形式表现
-docker logs -t -f --tail 3 //-t 加入时间戳 -f 跟随最新日志打印 --tail n 显示最后n条
-docker top 容器id或容器名//查看容器内运行的进程
+docker ps # 查看正在运行的容器
+docker ps -a # 查看所有容器
+docker ps -l # 最近一个运行的容器
+docker ps -n 10 # 最近10个创建的容器
+docker ps -q # 只显示容器id
+docker inspect <containerId/containerName> # 查看容器内部细节（以json串的形式表现
+docker logs -t -f --tail 3 # -t 加入时间戳 -f 跟随最新日志打印 --tail n 显示最后n条
+docker top 容器id或容器名 # 查看容器内运行的进程
 ```
 
 进入容器
 
-```
-docker attach <containerId/containerName> //重新进入运行中的容器
-docker exec -t myubuntu ls //在myubuntu容器中执行ls命令
+``` bash
+docker attach <containerId/containerName> # 重新进入运行中的容器
+docker exec -t myubuntu ls # 在myubuntu容器中执行ls命令
 ```
 
 停止容器
 
-```
-docker stop <containerId/containerName> //停止容器
-docker kill <containerId/containerName> //强制停止容器
+``` bash
+docker stop <containerId/containerName> # 停止容器
+docker kill <containerId/containerName> # 强制停止容器
 ```
 
 删除容器
 
-```
-docker rm <containerId/containerName> //删除已经关闭的容器
-docker rm $(docker ps -qa) //删除全部容器（方法1）
-docker ps -qa | xargs docker rm //删除全部容器（方法2）
+``` bash
+docker container prune # 删除停止的容器
+docker rm <containerId/containerName> # 删除已经关闭的容器
+docker rm $(docker ps -qa) # 删除全部容器（方法1）
+docker ps -qa | xargs docker rm # 删除全部容器（方法2）
 ```
 
 ## 6. 容器数据卷
 
 ``` bash
 docker run -it -v /hostpath:/containerpath ubuntu
-docker run -it -v /hostpath:/ontainerpath:ro ubuntu //ro =》readonly
+docker run -it -v /hostpath:/ontainerpath:ro ubuntu # ro =》readonly
 ```
 
 数据卷概念
@@ -210,8 +211,8 @@ docker run -it -v /hostpath:/ontainerpath:ro ubuntu //ro =》readonly
 
 安装docker时，docker会默认创建一个内部的桥接网络docker0，每创建一个容器分配一个虚拟网卡，容器之间可以根据ip互相访问
 
-```
-docker inspect <containerId/containerName> //查看容器详情中的 IPAddress
+``` bash
+docker inspect <containerId/containerName> # 查看容器详情中的 IPAddress
 ```
 
 > 缺点：必须知道每个容器确切的ip，实际使用中并不实用
@@ -220,7 +221,7 @@ docker inspect <containerId/containerName> //查看容器详情中的 IPAddress
 
 运行容器的时候加上参数link，charming_morse是另外一个容器的name，c2为该容器的别名
 
-```
+``` bash
 docker run -it --name c1 --link charming_morse:c2 ubuntu
 ```
 
@@ -231,14 +232,14 @@ docker run -it --name c1 --link charming_morse:c2 ubuntu
 
 docker存在3种网络，host，null，bridge，默认创建的都是bridge网络
  
-```
-docker network ls //查看所有网络
-docker network create --driver <null/host/bridge> mybridge //新建一个网络桥接
-docker network inspect mybridge //查看网络ip
-docker port <containerId/containerName> //查看指定容器的端口映射
+``` bash
+docker network ls # 查看所有网络
+docker network create --driver <null/host/bridge> mybridge # 新建一个网络桥接
+docker network inspect mybridge # 查看网络ip
+docker port <containerId/containerName> # 查看指定容器的端口映射
 ```
 
-```
+``` bash
 docker run -it \
 --name xxx \
 --network yournetworkname
@@ -246,11 +247,11 @@ docker run -it \
 ubuntu
 ```
 
-```
+``` bash
 docker run -it --name ccc --network hahaha --network-alias ccc ubuntu
 docker run -it --name vvv --network hahaha --network-alias vvv ubuntu
 ```
-```
+``` bash
 docker run -it --name ccc --network hahaha --network-alias xxx ubuntu
 docker run -it --name vvv --network hahaha --network-alias xxx1 ubuntu/ping
 ```
@@ -262,9 +263,9 @@ docker run -it --name vvv --network hahaha --network-alias xxx1 ubuntu/ping
 
 - 1. 拉取镜像并创建
 
-```
-docker pull registry //拉取registry镜像
-docker run -d -p 5000:5000 --restart always --name registry registry //后台启动registry仓库
+``` bash
+docker pull registry # 拉取registry镜像
+docker run -d -p 5000:5000 --restart always --name registry registry # 后台启动registry仓库
 ```
 
 - 2. 打开浏览器输入 `http://yourIp:5000/v2/_catalog`; 显示`{"repositories":[]}`表示私有仓库搭建成功并且内容为空
@@ -277,25 +278,25 @@ docker run -d -p 5000:5000 --restart always --name registry registry //后台启
 
 - 4. 重启docker服务
 
-```
+``` bash
 systemctl restart docker
 ```
 
 - 5. 给要提交的镜像打上标签
 
-```
+``` bash
 docker tag ubuntu yourIp:5000/ubuntu
 ```
 
 - 6. 推送至私有仓库
 
-```
+``` bash
 docker push yourIp:5000/ubuntu
 ```
 
 - 7. 拉取私有仓库镜像
 
-```
+``` bash
 docker pull yourIp:5000/ubuntu
 ```
 

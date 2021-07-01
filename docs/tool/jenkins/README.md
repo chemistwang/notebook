@@ -12,10 +12,6 @@ jenkins...
 
 
 
-### ## jenkins
-
-
-
 ### 在docker中安装jenkins
 
 1. docker pull jenkins/jenkins

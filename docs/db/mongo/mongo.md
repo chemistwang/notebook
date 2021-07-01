@@ -7,19 +7,26 @@
 1. 创建新用户
 ```
 use admin
-db.auth('sumh','herinai917')
+db.auth('yourName','yourPwd')
 use HERIN_MILK_OPPO
 
 
 db.createUser({
-    user: 'wechat',
-    pwd: '68gzQVhh60PZ',
+    user: 'yourName',
+    pwd: 'yourPwd',
     roles: [{
         role: 'readWrite', 
-        db: 'HERIN_DOP_GAME_BYTEDANCE',
+        db: 'YOUR_DB_NAME',
     }]
 })
 ```
+
+db.createUser({
+    user: "yourName",
+    pwd: "yourPwd",
+    roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+})
+
 
 ``` bash
 show users # 查看用户

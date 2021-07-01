@@ -142,7 +142,7 @@ module.exports = {
             '/frontend/vue/': ['vueDev'],
             //后端开发
             '/backend/linux/': ['intro', 'centos', 'command', 'network', 'shortcut'],
-            '/backend/node/': ['install', 'npm'],
+            '/backend/node/': ['install', 'npm', 'express', 'nest'],
             '/backend/java/': ['base', 'jdbc', 'interview'],
             '/backend/maven/': ['mavenIntro', 'mavenProblem'],
             '/backend/spring/': ['spring'],
@@ -161,7 +161,7 @@ module.exports = {
             '/tool/brew/': ['problem'],
             '/tool/vim/': ['vim', 'gvimrc'],
             '/tool/git/': ['install', 'gitCommand', 'gitflow', 'gitServer', 'gitlab', 'gitlfs'],
-            '/tool/docker/': ['docker', 'portainer'],
+            '/tool/docker/': ['docker', 'version', 'harbor', 'portainer'],
             '/tool/dockercompose/': ['dockercompose', 'problem'],
             '/tool/kubernetes/': ['introduce', 'centosDeploy'],
             '/tool/travis/': [''],
