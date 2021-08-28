@@ -14,15 +14,13 @@ module.exports = {
                 ariaLabel: 'Frontend Menu',
                 items: [
                     { text: 'Html', link: '/frontend/html/' },
-                    { text: 'Css', link: '/frontend/css/' },
+                    { text: 'CSS', link: '/frontend/css/' },
                     { text: 'Javascript', link: '/frontend/js/' },
                     { text: 'Echarts', link: '/frontend/echarts/' },
-                    { text: 'Axios', link: '/frontend/axios/' },
                     { text: 'Vue', link: '/frontend/vue/' },
                     { text: 'Angular', link: '/frontend/angular/' },
                     { text: 'React', link: '/frontend/react/' },
                     { text: 'Webpack', link: '/frontend/webpack/' },
-                    { text: 'Websocket', link: '/frontend/websocket/' },
                     { text: 'Infrastructure', link: '/frontend/infrastructure/' },
                     { text: '面试题', link: '/frontend/interview/' },
                 ]
@@ -132,7 +130,7 @@ module.exports = {
             //前端开发
             '/frontend/html/': ['html'],
             '/frontend/css/': ['css', 'interview'],
-            '/frontend/js/': ['ajax', 'animation', 'canvas', 'es6', 'eventloop', 'funcProgram', 'interview'],
+            '/frontend/js/': ['basic', 'function', 'network', 'animation', 'canvas', 'es6', 'eventloop', 'funcProgram', 'interview'],
             '/frontend/echarts/': ['echarts'],
             '/frontend/vue/': ['vueDev'],
             //后端开发

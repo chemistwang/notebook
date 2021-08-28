@@ -1,0 +1,125 @@
+# 函数
+
+## IIFE
+
+### 1. 定义
+
+IIFE: Immediately Invoked Function Expression，意为立即调用的函数表达式
+
+### 2. 为什么需要 IIFE
+
+只有全局作用域（global scope）、函数作用域（function scope），从 ES6 开始才有块级作用域（block scope）。
+
+在 JS 中，只有 function，只有 function，只有 function 才能实现作用域隔离，因此如果要将一段代码中的变量、函数等的定义隔离出来，只能将这段代码封装到一个函数中。
+
+### 3. IIFE 的常见形式
+
+```js
+(function foo() {
+  console.log("IIFE");
+})(); //较常见
+// or
+(function foo() {
+  console.log("IIFE");
+})();
+```
+
+### 4. IIFE 的函数名和参数
+
+```js
+var a = 2;
+(function IIFE(global) {
+  var a = 3;
+  console.log(a); // 3
+  console.log(global.a); // 2
+})(window);
+
+console.log(a); // 2
+```
+
+> [参考资料](http://softlab.sdut.edu.cn/blog/subaochen/2016/02/%E8%AF%B4%E4%B8%80%E8%AF%B4js%E7%9A%84iife/)
+
+## 模块化
+
+### 1. IIFE
+
+### 2. AMD
+
+### 3. CMD
+
+### 4. CommonJS
+
+### 5. UMD
+
+### 6. ES6 Modules
+
+### 7.
+
+### commonJS, AMD, CMD, ES6 对比
+
+前提：js 模块化开发，特别是浏览器端
+
+`AMD(Asynchronous Module Definition)`是`RequireJS`在推广过程中对模块定义的规范化产出 (一个规范)
+`CMD(Common Module Definition)`是`SeaJS`在推广过程中对模块定义的规范化产出 （一个规范）
+`CommonJS Modules/2.0`是`BravoJS`在推广过程中对模块定义的规范化产出 （一个规范）
+
+- AMD (可能更适合浏览器端)
+
+对于依赖的模块，提前执行
+
+```js
+define(['./a', './b'], function(a, b){
+	//依赖提前声明好
+	...
+	a.doSomething();
+	b.doSomething();
+})
+```
+
+> 无需遍历就能找到，性能有所提升，缺点需要
+
+- CMD （可能更适合服务器端）
+
+对于依赖的模块，延迟执行， 推崇 as lazy as possible
+
+```js
+define(function(require,exports,module){
+	var a = require('./a');
+	a.doSomething();
+	...
+	var b = require('./b');
+	b.doSomething();
+	...
+})
+```
+
+> 代码在运行时，不知道依赖，需要遍历所有的 require 关键字，找到后面的依赖，具体将 function toString()后，用正则匹配出 require 关键字后面的依赖，牺牲性能获取更多开发便利
+
+- ES6
+
+export/import 对模块进行导入导出
+
+- CommonJS
+
+前三者一般用于浏览器，Nodejs 使用 CommonJS 规范
+
+规定 `module` 代表 当前模块, 是一个对象
+它的 `exports` 属性, 是对外的接口，加载某个模块，其实是加载该模块的 `module.exports` 属性
+
+若在命令行调用某个模块，eg: `node something.js`，则 `module.parent`为`null`，为入口脚本
+
+内置 `require` 用于加载模块文件, 后缀名默认为 `.js`
+
+### export 和 export default 的区别
+
+ES5 中，用 `module.exports` 和 `exports` 导出模块，用 `require` 引入模块
+ES6 中，新增 `export` 和 `export default` 导出模块，用 `import` 导入模块
+
+```js
+const a = {};
+export default a;
+import a from "...";
+
+export const b = function() {};
+import { b } from "...";
+```
