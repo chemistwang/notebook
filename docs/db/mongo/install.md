@@ -111,7 +111,7 @@ touch /opt/module/mongodb/mongod.conf
 processManagement:
    fork: true
 net:
-   bindIp: localhost
+   bindIp: 127.0.0.1
    port: 27017
 storage:
    dbPath: /var/lib/mongo

@@ -43,6 +43,7 @@ module.exports = {
                     { text: 'Mybatis', link: '/backend/mybatis/' },
                     { text: 'Nginx', link: '/backend/nginx/' },
                     { text: 'OpenResty', link: '/backend/openresty/' },
+                    { text: 'Rust', link: '/backend/rust/' },
                 ]
             },
             {
@@ -78,6 +79,8 @@ module.exports = {
                 items: [
                     { text: 'Brew', link: '/tool/brew/' },
                     { text: 'Vim', link: '/tool/vim/' },
+                    { text: 'Vscode', link: '/tool/vscode/' },
+                    { text: 'Chrome', link: '/tool/chrome/' },
                     { text: 'Git', link: '/tool/git/' },
                     { text: 'Docker', link: '/tool/docker/' },
                     { text: 'Docker Compose', link: '/tool/dockercompose/' },
@@ -119,14 +122,6 @@ module.exports = {
                     { text: 'CodeWar', link: '/code/codewar/' },
                 ]
             },
-            {
-                text: '插件',
-                ariaLabel: 'Plugin Menu',
-                items: [
-                    { text: 'Chrome', link: '/plugin/chrome/' },
-                    { text: 'Vscode', link: '/plugin/vscode/' },
-                ]
-            },
             { text: '资源列表', link: '/link/' },
             // { text: '个人博客', link: 'https://chemistwang.github.io' },
             { text: '介绍', link: '/introduce/' },
@@ -151,6 +146,7 @@ module.exports = {
             '/backend/mybatis/': ['problem'],
             '/backend/nginx/': ['install', 'https', 'conf', 'tengine'],
             '/backend/openresty/': [],
+            '/backend/rust/': ['install'],
             //数据库
             '/db/mongo/': ['install', 'mongo', 'problem'],
             '/db/redis/': ['intro', 'install', 'redis', 'code', 'problem'],
@@ -160,6 +156,8 @@ module.exports = {
             //开发工具
             '/tool/brew/': ['problem'],
             '/tool/vim/': ['vim', 'gvimrc'],
+            '/tool/chrome/': ['ch'],
+            '/tool/vscode/': ['vs'],
             '/tool/git/': ['install', 'gitCommand', 'gitflow', 'gitServer', 'gitlab', 'gitlfs'],
             '/tool/docker/': ['docker', 'version', 'harbor', 'portainer'],
             '/tool/dockercompose/': ['dockercompose', 'problem'],
@@ -180,9 +178,6 @@ module.exports = {
             //编码
             '/code/leetcode/': [],
             '/code/codewar/': ['codewar'],
-            //插件
-            '/plugin/chrome/': ['ch'],
-            '/plugin/vscode/': ['vs'],
         },
         // sidebarDepth: 3,
 
