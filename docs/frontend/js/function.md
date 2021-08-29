@@ -37,31 +37,26 @@ var a = 2;
 console.log(a); // 2
 ```
 
-> [参考资料](http://softlab.sdut.edu.cn/blog/subaochen/2016/02/%E8%AF%B4%E4%B8%80%E8%AF%B4js%E7%9A%84iife/)
+> [宿宝臣的博客](http://softlab.sdut.edu.cn/blog/subaochen/2016/02/%E8%AF%B4%E4%B8%80%E8%AF%B4js%E7%9A%84iife/)
 
 ## 模块化
 
 ### 1. IIFE
 
+在刀耕火种的年代，作为脚本语言的 Javascript 为了避免全局变量污染，只能使用闭包来实现模块化。
+
+```js
+(functino(window){
+	window.jQuery = window.$ = JQuery
+})(window)
+```
+
+- 优点：有效解决命名冲突的问题
+- 缺点：是对于依赖管理，还是束手无策。由于浏览器是从上至下执行脚本，因此为了维持脚本间的依赖关系，就必须手动维护好 script 标签的相对顺序。
+
 ### 2. AMD
 
-### 3. CMD
-
-### 4. CommonJS
-
-### 5. UMD
-
-### 6. ES6 Modules
-
-### 7.
-
-### commonJS, AMD, CMD, ES6 对比
-
-前提：js 模块化开发，特别是浏览器端
-
 `AMD(Asynchronous Module Definition)`是`RequireJS`在推广过程中对模块定义的规范化产出 (一个规范)
-`CMD(Common Module Definition)`是`SeaJS`在推广过程中对模块定义的规范化产出 （一个规范）
-`CommonJS Modules/2.0`是`BravoJS`在推广过程中对模块定义的规范化产出 （一个规范）
 
 - AMD (可能更适合浏览器端)
 
@@ -77,6 +72,10 @@ define(['./a', './b'], function(a, b){
 ```
 
 > 无需遍历就能找到，性能有所提升，缺点需要
+
+### 3. CMD
+
+`CMD(Common Module Definition)`是`SeaJS`在推广过程中对模块定义的规范化产出 （一个规范）
 
 - CMD （可能更适合服务器端）
 
@@ -95,9 +94,9 @@ define(function(require,exports,module){
 
 > 代码在运行时，不知道依赖，需要遍历所有的 require 关键字，找到后面的依赖，具体将 function toString()后，用正则匹配出 require 关键字后面的依赖，牺牲性能获取更多开发便利
 
-- ES6
+### 4. CommonJS
 
-export/import 对模块进行导入导出
+`CommonJS Modules/2.0`是`BravoJS`在推广过程中对模块定义的规范化产出 （一个规范）
 
 - CommonJS
 
@@ -109,6 +108,16 @@ export/import 对模块进行导入导出
 若在命令行调用某个模块，eg: `node something.js`，则 `module.parent`为`null`，为入口脚本
 
 内置 `require` 用于加载模块文件, 后缀名默认为 `.js`
+
+### 5. UMD
+
+### 6. ES6 Modules
+
+- ES6
+
+export/import 对模块进行导入导出
+
+### 7.
 
 ### export 和 export default 的区别
 
@@ -123,3 +132,37 @@ import a from "...";
 export const b = function() {};
 import { b } from "...";
 ```
+
+## 函数式编程
+
+### 多种 js 编程方式
+
+- 命令式编程：通过详细描述行为的编程方式
+- 基于原型的面向对象编程
+- 元编程：对 js 执行模型数据进行编写和操作的编程方式
+
+区别于 `命令式编程`
+
+`函数式编程`特点:
+
+- 纯函数，避免副作用
+- js 高阶函数（将函数作为输入或者输出）
+- 使用 `map`, `filter`, `reduce` 而不是 `for`, `while`
+- 避免数据变动
+- 解决数据变变动，持久化数据结构（闭包）（immutable）
+
+> 命令式语言技术对全局作用域的依赖使得 js 存在不安全性
+> 函数式程序类似一个用来转换数据的机器
+> 使之运行，使之正确，使之快速
+
+js 的对象系统，提供封装数据与操作，然而有时封装被用来限制某些元素的可见性，称为数据隐藏；
+js 对象系统中，并没有提供直接隐藏数据的方式，因此使用一, 种叫闭包的方式隐藏数据；
+
+闭包也是一种函数，使用闭包函数技术，能够与大多数面向对象一样，实现有效的数据隐藏
+闭包就是一个函数，捕获作用域内的外部绑定
+
+很多高阶函数的强大之处都与变量作用域，尤其是闭包密切相关
+
+- 确定抽象，并为其构建函数
+- 利用已有的函数来构建更为复杂的抽象
+- 通过将现有的函数传给其他的函数来构建更加复杂的抽象

@@ -2,16 +2,10 @@
 
 ## 数据类型
 
-```js
-// String
-// Number
-// Boolean
-// Undefined
-// Null
+一共 8 种数据类型，分别是 `Undefined`, `Null`, `Boolean`, `String`, `Symbol`, `Number`, `BigInt`, `Object`
 
-// Object => 子类：Array/RegExp/Date/Error
-```
+其中 `Object` 有几个子类 `Array`/ `RegExp` /`Date`/`Error`
 
-`The ECMAScript language types are Undefined, Null, Boolean, String, Symbol, Number, BigInt, and Object.`
+- [参考资料](https://tc39.es/ecma262/#sec-ecmascript-language-types)
 
-https://tc39.es/ecma262/#sec-ecmascript-language-types
+## 正则

@@ -129,10 +129,10 @@ module.exports = {
         sidebar: {
             //前端开发
             '/frontend/html/': ['html'],
-            '/frontend/css/': ['css', 'interview'],
-            '/frontend/js/': ['basic', 'function', 'network', 'animation', 'canvas', 'es6', 'eventloop', 'funcProgram', 'interview'],
+            '/frontend/css/': ['basic', 'animation', 'case', 'interview'],
+            '/frontend/js/': ['basic', 'function', 'network', 'animation', 'canvas', 'es6', 'eventloop','interview'],
             '/frontend/echarts/': ['echarts'],
-            '/frontend/vue/': ['vueDev'],
+            '/frontend/vue/': ['problem', 'interview'],
             //后端开发
             '/backend/linux/': ['intro', 'centos', 'command', 'network', 'shortcut'],
             '/backend/node/': ['install', 'npm', 'express', 'nest'],

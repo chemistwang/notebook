@@ -1,5 +1,9 @@
 # 网络和并发
 
+### 点击网站，浏览器都经历了什么
+
+### JWT
+
 ## AJAX
 
 requestAnimationFrame
