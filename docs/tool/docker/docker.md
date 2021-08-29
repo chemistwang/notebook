@@ -1,8 +1,8 @@
-# Docker 
+# Docker
 
 ## 1. 目的
 
-docker是一种容器技术，解决软件跨环境迁移的问题
+docker 是一种容器技术，解决软件跨环境迁移的问题
 
 ## 2. 架构
 
@@ -12,12 +12,11 @@ docker是一种容器技术，解决软件跨环境迁移的问题
 
 ![docker架构](https://cdn.herinapp.com/tower/docker/docker.jpg)
 
-## 3. 安装docker
+## 3. 安装 docker
 
 - MacOS
 
 > [官方下载地址](https://desktop.docker.com/mac/stable/arm64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=module)
-
 
 - Ubuntu
 
@@ -41,7 +40,6 @@ docker是一种容器技术，解决软件跨环境迁移的问题
 9. docker info
 ```
 
-
 - CentOS
 
 ```
@@ -59,7 +57,7 @@ docker是一种容器技术，解决软件跨环境迁移的问题
 
 ## 4. 配置国内镜像加速器(阿里云)
 
-> 默认是从dockerhub上下载镜像，国内阿里云镜像速度会快
+> 默认是从 dockerhub 上下载镜像，国内阿里云镜像速度会快
 
 > 1. 登录阿里云
 > 2. 点击控制台
@@ -67,8 +65,7 @@ docker是一种容器技术，解决软件跨环境迁移的问题
 > 4. 左侧栏选择 `镜像加速器`
 > 5. 根据操作文档添加加速器地址
 
-
-- mac 
+- mac
 
 ![mac添加镜像](https://cdn.herinapp.com/tower/docker/registry-mirror.jpg)
 
@@ -78,10 +75,9 @@ docker是一种容器技术，解决软件跨环境迁移的问题
 
 ## 5. 常用命令
 
-- 启动docker服务(linux)
+- 启动 docker 服务(linux)
 
-
-``` bash
+```bash
 systemctl start docker # 启动
 systemctl stop docker # 停止
 systemctl restart docker # 重启
@@ -91,15 +87,14 @@ systemctl enable docker # 设置开机启动docker服务
 
 - 搜索镜像
 
-``` bash
+```bash
 docker search ubuntu # 在dockerhub搜索ubuntu镜像
 docker search ubuntu --filter=stars=999 # 搜索星数大于999的ubuntu镜像
 ```
 
-
 - 镜像操作
 
-``` bash
+```bash
 docker pull hello-world # 拉取hello-world镜像，默认最新版本 :latest
 docker pull mongo:4.2.5 # 拉取mongo镜像，版本为4.2.5
 # 指定版本时，先去dockerhub网站上找对应的官方维护版本,否则找不到
@@ -120,11 +115,11 @@ docker load -i Desktop/nginx #镜像的恢复
 
 运行容器
 
-``` bash
+```bash
 docker run \
 -it \
 --name myubuntu \
-ubuntu \ 
+ubuntu \
 /bin/bash //启动容器
 
 docker start <containerId/containerName> #启动容器
@@ -133,16 +128,15 @@ docker restart <containerId/containerName> #重启容器
 ```
 
 > 参数说明:
-> -i:保持容器运行。通常与-t同时使用。加入it这两个参数后，容器创建后自动进入容器中；退出容器后，容器自动关闭
-> -t:为容器重新分配一个伪输入终端，通常与-i同时使用
-> -d:以守护（后台）模式运行，需要使用docker exec进入容器。退出后，容器不会关闭
-> -it创建的容器一般称为交互式容器，-id创建的容器一般称为守护式容器
+> -i:保持容器运行。通常与-t 同时使用。加入 it 这两个参数后，容器创建后自动进入容器中；退出容器后，容器自动关闭
+> -t:为容器重新分配一个伪输入终端，通常与-i 同时使用
+> -d:以守护（后台）模式运行，需要使用 docker exec 进入容器。退出后，容器不会关闭
+> -it 创建的容器一般称为交互式容器，-id 创建的容器一般称为守护式容器
 > --name:为创建的容器命名
-
 
 查看容器
 
-``` bash
+```bash
 docker ps # 查看正在运行的容器
 docker ps -a # 查看所有容器
 docker ps -l # 最近一个运行的容器
@@ -155,21 +149,21 @@ docker top 容器id或容器名 # 查看容器内运行的进程
 
 进入容器
 
-``` bash
+```bash
 docker attach <containerId/containerName> # 重新进入运行中的容器
 docker exec -t myubuntu ls # 在myubuntu容器中执行ls命令
 ```
 
 停止容器
 
-``` bash
+```bash
 docker stop <containerId/containerName> # 停止容器
 docker kill <containerId/containerName> # 强制停止容器
 ```
 
 删除容器
 
-``` bash
+```bash
 docker container prune # 删除停止的容器
 docker rm <containerId/containerName> # 删除已经关闭的容器
 docker rm $(docker ps -qa) # 删除全部容器（方法1）
@@ -178,7 +172,7 @@ docker ps -qa | xargs docker rm # 删除全部容器（方法2）
 
 ## 6. 容器数据卷
 
-``` bash
+```bash
 docker run -it -v /hostpath:/containerpath ubuntu
 docker run -it -v /hostpath:/ontainerpath:ro ubuntu # ro =》readonly
 ```
@@ -192,8 +186,8 @@ docker run -it -v /hostpath:/ontainerpath:ro ubuntu # ro =》readonly
 
 作用
 
-- docker容器删除后，容器中产生的数据也会随之销毁，数据卷提供容器数据持久化
-- docker容器不能直接与外部机器交换文件，通过数据卷间接通信
+- docker 容器删除后，容器中产生的数据也会随之销毁，数据卷提供容器数据持久化
+- docker 容器不能直接与外部机器交换文件，通过数据卷间接通信
 - 容器之间进行数据交互，通过数据卷
 
 注意事项
@@ -202,44 +196,43 @@ docker run -it -v /hostpath:/ontainerpath:ro ubuntu # ro =》readonly
 - 若目录不存在，则会自动创建
 - 可以挂载多个数据卷
 
-
 ## 7. docker 网络通讯
 
 通讯的三种方式
 
-- 虚拟ip访问
+- 虚拟 ip 访问
 
-安装docker时，docker会默认创建一个内部的桥接网络docker0，每创建一个容器分配一个虚拟网卡，容器之间可以根据ip互相访问
+安装 docker 时，docker 会默认创建一个内部的桥接网络 docker0，每创建一个容器分配一个虚拟网卡，容器之间可以根据 ip 互相访问
 
-``` bash
+```bash
 docker inspect <containerId/containerName> # 查看容器详情中的 IPAddress
 ```
 
-> 缺点：必须知道每个容器确切的ip，实际使用中并不实用
+> 缺点：必须知道每个容器确切的 ip，实际使用中并不实用
 
-- 参数link
+- 参数 link
 
-运行容器的时候加上参数link，charming_morse是另外一个容器的name，c2为该容器的别名
+运行容器的时候加上参数 link，charming_morse 是另外一个容器的 name，c2 为该容器的别名
 
-``` bash
+```bash
 docker run -it --name c1 --link charming_morse:c2 ubuntu
 ```
 
 > 缺点：对容器创建的顺序有要求，若集群内多个容器要互访，使用就不方便
-> 最新官方推荐使用--network进行访问，--link应该要被抛弃了，官方已经不推荐使用（待证实）
+> 最新官方推荐使用--network 进行访问，--link 应该要被抛弃了，官方已经不推荐使用（待证实）
 
-- 创建bridge网络
+- 创建 bridge 网络
 
-docker存在3种网络，host，null，bridge，默认创建的都是bridge网络
- 
-``` bash
+docker 存在 3 种网络，host，null，bridge，默认创建的都是 bridge 网络
+
+```bash
 docker network ls # 查看所有网络
 docker network create --driver <null/host/bridge> mybridge # 新建一个网络桥接
 docker network inspect mybridge # 查看网络ip
 docker port <containerId/containerName> # 查看指定容器的端口映射
 ```
 
-``` bash
+```bash
 docker run -it \
 --name xxx \
 --network yournetworkname
@@ -247,62 +240,57 @@ docker run -it \
 ubuntu
 ```
 
-``` bash
+```bash
 docker run -it --name ccc --network hahaha --network-alias ccc ubuntu
 docker run -it --name vvv --network hahaha --network-alias vvv ubuntu
 ```
-``` bash
+
+```bash
 docker run -it --name ccc --network hahaha --network-alias xxx ubuntu
 docker run -it --name vvv --network hahaha --network-alias xxx1 ubuntu/ping
 ```
 
-> 访问容器中的服务可以用<网络别名>：<服务端口>，网络别名，不用顾虑ip的变动
+> 访问容器中的服务可以用<网络别名>：<服务端口>，网络别名，不用顾虑 ip 的变动
 
+## 8. Dockerfile
 
-## 8. 搭建私有docker仓库
+## 9. 搭建私有 docker 仓库
 
 - 1. 拉取镜像并创建
 
-``` bash
+```bash
 docker pull registry # 拉取registry镜像
 docker run -d -p 5000:5000 --restart always --name registry registry # 后台启动registry仓库
 ```
 
-- 2. 打开浏览器输入 `http://yourIp:5000/v2/_catalog`; 显示`{"repositories":[]}`表示私有仓库搭建成功并且内容为空
+- 2. 打开浏览器输入 `http://yourIp:5000/v2/_catalog`;  显示`{"repositories":[]}`表示私有仓库搭建成功并且内容为空
 
-- 3. 修改宿主机daemon.json
+- 3. 修改宿主机 daemon.json
 
 ```
 {"insecure-registries": ["yourIp:5000"]}
 ```
 
-- 4. 重启docker服务
+- 4. 重启 docker 服务
 
-``` bash
+```bash
 systemctl restart docker
 ```
 
 - 5. 给要提交的镜像打上标签
 
-``` bash
+```bash
 docker tag ubuntu yourIp:5000/ubuntu
 ```
 
 - 6. 推送至私有仓库
 
-``` bash
+```bash
 docker push yourIp:5000/ubuntu
 ```
 
 - 7. 拉取私有仓库镜像
 
-``` bash
+```bash
 docker pull yourIp:5000/ubuntu
 ```
-
-
-
-
-
-
-
