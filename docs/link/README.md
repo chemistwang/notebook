@@ -13,6 +13,7 @@
 - [Codepen](https://codepen.io/) `搜前端代码，蛮有趣，还能在线编辑`
 - [Hellogithub](https://hellogithub.com/) `Github优质项目`
 - [芋道源码](https://www.iocoder.cn/) `专注源码`
+- [Tumars 前端记录](https://github.com/tumars/fe-record)
 
 ## 算法网站
 
@@ -37,6 +38,7 @@
 - [Echarts](https://echarts.apache.org/zh/index.html) `现在移交 Apache 孵化，UI 和 API 变得友好多了`
 - [Linux 命令大全](https://man.linuxde.net/) `Linux`
 - [书栈网](https://www.bookstack.cn/) `文档`
+- [API 安全清单](https://github.com/shieldfy/API-Security-Checklist/blob/master/README-zh.md) `API` `Security`
 
 ## 素材
 
