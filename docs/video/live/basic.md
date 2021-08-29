@@ -1,6 +1,6 @@
 # 视频基本知识
 
-### 视频器的播放原理
+## 一、视频器的播放原理
 
 ![原理](http://cdn.chemputer.top/notebook/live/process.jpg)
 
@@ -19,11 +19,13 @@
 - 第四步：视音频同步
   > 根据解封装模块处理过程中获取到的参数信息，同步解码出来的视频和音频数据，并将视频音频数据送至系统的显卡和声卡播放出来。
 
-### 封装格式
+## 二、封装格式
 
 视频码流和音频码流按照一定的格式存储在一个文件中，（MP4、RMVB、TS、FLV、AVI）
 
-### 视频编码数据
+![格式](http://cdn.chemputer.top/notebook/live/format.jpg)
+
+## 三、视频编码数据
 
 - H264 简介
 
@@ -34,7 +36,7 @@
   > 比较复杂，包含帧内预测、帧间预测、熵编码、环路滤波等环节构成
   > 可以将图像数据压缩 100 倍以上
 
-### 音频编码数据
+## 四、音频编码数据
 
 - AAC 格式简介
 
@@ -43,12 +45,12 @@
 - AAC 压缩方法
   > 将音频数据压缩 10 倍以上
 
-### 视频像素数据 (YUV420P、RGB)
+## 五、视频像素数据 (YUV420P、RGB)
 
 - eg：保存屏幕每个像素点的像素值
   > 3600 _ 25 _ 1920 _ 1080 _ 3 = 559.9G
 
-### 音频采样数据
+## 六、音频采样数据
 
 - eg.保存音频中每个采样点的值
   > 4min _ 60 _ 44100 _ 2 _ 2 = 42.3M
@@ -58,52 +60,6 @@
 
 资料：https://blog.csdn.net/leixiaohua1020/article/list/1?t=1
 
-## 二、视频参数（流媒体系统，封装格式，视频编码，音频编码，播放器）对比
+## 七、视频参数（流媒体系统，封装格式，视频编码，音频编码，播放器）对比
 
-地址：https://blog.csdn.net/leixiaohua1020/article/details/11842919
-
-## 四、常见直播流协议及其 web 上的解决方案（拉流）
-
-### 1. RTMP （Real Time Messaging Protocol） RTMP 采用的封装格式是 FLV
-
-- 简介：Adobe 公司，私有协议，基于 TCP，默认端口 1935
-
-- 可用于测试的 rtmp 流
-
-```
-rtmp://media3.sinovision.net:1935/live/livestream //美国中文电视
-rtmp://58.200.131.2:1935/livetv/hunantv //湖南卫视
-```
-
-### 2. RTSP （Real Time Streaming Protocol）
-
-- 简介：研究不多，一般多为监控流（据说是行业标准）
-
-### 3. HLS （HTTP Live Streaming）
-
-- 简介：Apple 公司，包括一个 m3u8 的索引文件，TS 媒体分片文件和 key 加密串文件
-
-### 4. http-flv 协议
-
-FLV（Flash Video）是 Adobe 公司设计开发的一种流行的流媒体格式，由于其视频文件体积轻巧、封装简单等特点，使其很适合在互联网上进行应用。此外，FLV 可以使用 Flash Player 进行播放，
-
-### 5. webRTC 协议
-
-### 6. websocket 协议
-
-## 五、常用流媒体服务器
-
-### 1. Nginx
-
-### 2. NMS（node-media-server）
-
-## 六、常用推流工具（推流）
-
-### 1. OBS （ Open Broadcaster Software ）
-
-- 简介
-- 地址 https://obsproject.com/
-
-### 2. FFmpeg
-
-## 七、直播的实现方案
+> 地址：https://blog.csdn.net/leixiaohua1020/article/details/11842919

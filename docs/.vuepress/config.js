@@ -174,7 +174,7 @@ module.exports = {
             '/tool/grafana/': ['install', 'plugin'],
             '/tool/serverless/': [],
             //视频
-            '/video/live/': ['media1', 'media2', 'media3', 'media4', 'media5', 'media6', 'media7'],
+            '/video/live/': ['basic', 'protocol', 'tool', 'analysis', 'push', 'pull', 'server', 'testaddr', 'extra'],
             '/video/ffmpeg/': ['ffmpeg1', 'ffmpeg2'],
             //其他
             '/other/zookeeper/': ['zookeeper', 'zookeeperInstall', 'zookeeperCode'],
