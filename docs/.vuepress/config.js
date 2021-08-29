@@ -130,7 +130,7 @@ module.exports = {
             //前端开发
             '/frontend/html/': ['html'],
             '/frontend/css/': ['basic', 'animation', 'case', 'interview'],
-            '/frontend/js/': ['basic', 'function', 'network', 'animation', 'canvas', 'es6', 'eventloop','interview'],
+            '/frontend/js/': ['basic', 'function', 'network', 'animation', 'canvas', 'es6', 'eventloop', 'test', 'algorithm', 'case', 'interview'],
             '/frontend/echarts/': ['echarts'],
             '/frontend/vue/': ['problem', 'interview'],
             //后端开发

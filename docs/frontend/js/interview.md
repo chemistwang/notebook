@@ -1,5 +1,9 @@
 # 面试题
 
+### 不可变对象
+
+https://segmentfault.com/a/1190000017294051
+
 ### typeof 返回哪些字符串
 
 ```js
