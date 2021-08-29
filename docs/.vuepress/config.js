@@ -175,7 +175,7 @@ module.exports = {
             '/tool/serverless/': [],
             //视频
             '/video/live/': ['basic', 'protocol', 'tool', 'analysis', 'push', 'pull', 'server', 'testaddr', 'extra'],
-            '/video/ffmpeg/': ['ffmpeg1', 'ffmpeg2'],
+            '/video/ffmpeg/': ['basic', 'practice', 'case'],
             //其他
             '/other/zookeeper/': ['zookeeper', 'zookeeperInstall', 'zookeeperCode'],
             '/other/kafka/': ['kafkaScene', 'kafkaIntro', 'kafkaInstall', 'kafkaCode', 'kafkaInterview'],

@@ -17,6 +17,8 @@ demux 解复用
 
 ## 简介
 
+视频行业中的“瑞士军刀”
+
 - ffmpeg 转换多媒体
 - ffplay 简单的播放器
 - ffprobe 媒体参数分析工具
@@ -27,10 +29,16 @@ demux 解复用
 
 ## 转换格式
 
-`ffmpeg -i input.xxx output.xxx`
-`ffmpeg -i input.flac -acodec libmp3lame -ar 44100 -ab 320k -ac2 output.mp3`
+- `ffmpeg -i input.xxx output.xxx`
+- `ffmpeg -i input.flac -acodec libmp3lame -ar 44100 -ab 320k -ac2 output.mp3`
 
-`ffmpeg -i input.webm -s 1920x1080 -pix_fmt yuv420p (pixel format)(ffmpeg -pix_fmts) -vcodec libx264 -preset medium (编码器预设) -profile:v high -level:v 4.1 (1080p) -crf 23 (constant rate factor)(恒定速率因子模式) -acodec aac -ar 44100 -ac 2 -b:a 128k (=-ab) output.mp4`
+- `ffmpeg -i input.webm -s 1920x1080 -pix_fmt yuv420p (pixel format)(ffmpeg -pix_fmts) -vcodec libx264 -preset medium (编码器预设) -profile:v high -level:v 4.1 (1080p) -crf 23 (constant rate factor)(恒定速率因子模式) -acodec aac -ar 44100 -ac 2 -b:a 128k (=-ab) output.mp4`
+
+temp
+
+- `ffmpeg -i xxx.xx -b:v 640k output.ts`
+
+- `ffmpeg -i rtmp://58.200.131.2:1935/livetv/hunantv -c copy -f hls -hls_time 5.0 -hls_list_size 0 -hls_wrap 15 ./a.m3u8`
 
 ## 查看支持的编码格式
 

@@ -17,7 +17,7 @@
 
 ## cooledit pro2
 
-音频编辑工具，pcm播放工具
+音频编辑工具，pcm 播放工具
 
 ## Elecard Stream Eye Tools
 
@@ -26,12 +26,12 @@
 - 简介：码流分析工具：
 - 地址：http://www.elecard.com/en/index.html
 
-
 ## CodecVisa
 
 - 简介：码流分析工具：
 - 地址：http://www.codecian.com/
 
 ## Intel Video Pro Analyzer 2014
-- 简介：该工具是专门针对最新的H.265和VP9的
+
+- 简介：该工具是专门针对最新的`H.265`和`VP9`的
 - 地址：https://software.intel.com/en-us/media-solutions-portal
