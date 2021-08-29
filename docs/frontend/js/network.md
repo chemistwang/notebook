@@ -44,6 +44,8 @@ try {
 
 [axios 中文网](http://www.axios-js.com/)
 
+https://www.kancloud.cn/yunye/axios/234845
+
 axios-retry
 
 axios

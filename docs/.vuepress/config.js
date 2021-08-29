@@ -38,6 +38,7 @@ module.exports = {
                     { text: 'SpringMVC', link: '/backend/springmvc/' },
                     { text: 'Spring Boot', link: '/backend/springboot/' },
                     { text: 'Spring Security', link: '/backend/springsecurity/' },
+                    { text: 'Spring Cloud', link: '/backend/springcloud/' },
                     { text: 'Mybatis', link: '/backend/mybatis/' },
                     { text: 'Nginx', link: '/backend/nginx/' },
                     { text: 'OpenResty', link: '/backend/openresty/' },
@@ -113,6 +114,13 @@ module.exports = {
                 ]
             },
             {
+                text: '课堂学习笔记',
+                ariaLabel: 'ClassNotebook Menu',
+                items: [
+                    { text: '腾讯云学堂', link: '/class/tencentcloud/' },
+                ]
+            }, 
+            {
                 text: '编码',
                 ariaLabel: 'Code Menu',
                 items: [
@@ -140,6 +148,7 @@ module.exports = {
             '/backend/maven/': ['mavenIntro', 'mavenProblem'],
             '/backend/spring/': ['spring'],
             '/backend/springboot/': ['springbootJourney'],
+            '/backend/springcloud/': [],
             '/backend/springsecurity/': ['temp'],
             '/backend/mybatis/': ['problem'],
             '/backend/nginx/': ['install', 'https', 'conf', 'tengine'],
@@ -173,6 +182,8 @@ module.exports = {
             '/other/gateway/': [],
             '/other/sso/': ['cas'],
             '/other/python/': ['jupyter'],
+            //课堂学习笔记
+            '/class/tencentcloud/': ['class1', 'class2'],
             //编码
             '/code/leetcode/': [],
             '/code/codewar/': ['codewar'],
