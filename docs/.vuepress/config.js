@@ -16,6 +16,7 @@ module.exports = {
                     { text: 'Html', link: '/frontend/html/' },
                     { text: 'CSS', link: '/frontend/css/' },
                     { text: 'Javascript', link: '/frontend/js/' },
+                    { text: 'Typescript', link: '/frontend/ts/' },
                     { text: 'Echarts', link: '/frontend/echarts/' },
                     { text: 'Vue', link: '/frontend/vue/' },
                     { text: 'Angular', link: '/frontend/angular/' },
@@ -39,7 +40,6 @@ module.exports = {
                     { text: 'Spring Boot', link: '/backend/springboot/' },
                     { text: 'Spring Security', link: '/backend/springsecurity/' },
                     { text: 'Spring Cloud', link: '/backend/springcloud/' },
-                    { text: 'Mybatis', link: '/backend/mybatis/' },
                     { text: 'Nginx', link: '/backend/nginx/' },
                     { text: 'OpenResty', link: '/backend/openresty/' },
                     { text: 'Rust', link: '/backend/rust/' },
@@ -53,6 +53,9 @@ module.exports = {
                     { text: 'Mongo', link: '/db/mongo/' },
                     { text: 'Redis', link: '/db/redis/' },
                     { text: 'PostgresQL', link: '/db/postgresql/' },
+                    { text: 'Mybatis', link: '/db/mybatis/' },
+                    { text: 'Sequelize', link: '/db/sequelize/' },
+                    { text: '案例', link: '/db/case/' },
                 ]
             },
             {
@@ -158,6 +161,7 @@ module.exports = {
             '/db/mongo/': ['install', 'mongo', 'problem'],
             '/db/redis/': ['intro', 'install', 'redis', 'code', 'problem'],
             '/db/postgresql/': ['intro', 'install', 'command', 'code', 'problem'],
+            '/db/case/': [],
             //大数据
             '/bigdata/hadoop/': ['route', 'cloud', 'hadoop', 'hdfs', 'mapreduce', 'yarn', 'hive'],
             //开发工具

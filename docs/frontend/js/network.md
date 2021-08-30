@@ -2,7 +2,13 @@
 
 ### 点击网站，浏览器都经历了什么
 
+DNS 缓存
+
 ### JWT
+
+https://jwt.io/
+
+token 一般放在 Authorization 自定义头，而不是放在 Cookie。目的是解决跨域不能共享 Cookie 的问题
 
 ## AJAX
 
