@@ -10,7 +10,7 @@ docker 是一种容器技术，解决软件跨环境迁移的问题
 - 容器（container）: 镜像的实例化
 - 仓库（registry）: 是集中存放镜像文件的场所
 
-![docker架构](https://cdn.herinapp.com/tower/docker/docker.jpg)
+![docker架构](http://cdn.chemputer.top/notebook/docker/architecture.jpg)
 
 ## 3. 安装 docker
 

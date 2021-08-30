@@ -1,72 +1,71 @@
 # 安装
 
-## mac安装（单机版）
+## mac 安装（单机版）
 
-可以直接使用brew安装单机版
+可以直接使用 brew 安装单机版
 
-> kafka会依赖zookeeper，但是brew会帮你装好
+> kafka 会依赖 zookeeper，但是 brew 会帮你装好
 
-``` bash
+```bash
 brew install kafka
 ```
 
 使用命令直接感受下
 
-``` bash
+```bash
 # 创建topic
 kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic mytopic
 ```
 
-``` bash
+```bash
 # 删除topic
 kafka-topics --delete --zookeeper localhost:2181 --topic mytopic
 ```
 
-``` bash
+```bash
 # 列出创建的主题
 kafka-topics --list --zookeeper localhost:2181
 ```
 
-``` bash
+```bash
 # 生产
 kafka-console-producer --broker-list localhost:9092 --topic mytopic
 ```
 
-``` bash
+```bash
 # 查看主题中的消息
 kafka-console-consumer --bootstrap-server localhost:9092 --topic mytopic --from-beginning
 ```
 
-``` bash
+```bash
 # 消费
 kafka-console-consumer --bootstrap-server localhost:9092 --topic mytopic --from-beginning
 ```
 
-
-## linux安装（集群）
+## linux 安装（集群）
 
 ::: tip
+
 1. `kafka`集群必须要有`zookeeper`
-2. 每一个kafka节点都需要修改`broker.id` (每个节点的标识，不能重复)
+2. 每一个 kafka 节点都需要修改`broker.id` (每个节点的标识，不能重复)
 3. 配置`log.dirs`数据存储目录
-:::
+   :::
 
+1) 下载解压
 
-1. 下载解压
-
-``` bash
+```bash
 wget https://downloads.apache.org/kafka/2.4.1/kafka_2.12-2.4.1.tgz
 tar -zxvf kafka_2.12-2.4.1.tgz -C /opt/module
 ```
 
 2. 修改 `server.properties` 文件
 
-``` bash
+```bash
 cd /opt/module/kafka_2.12-2.4.1/config
 vi server.properties
 ```
 
-``` bash
+```bash
 # 指定broker的id
 # 搭建集群每个id必须不一样
 # 从1开始是因为我安装的zookeeper从1开始，方便对照
@@ -84,17 +83,17 @@ zookeeper.connect=t1.herin.ai:2181,t2.herin.ai:2181,t3.herin.ai:2181
 
 3. 启动服务
 
-``` bash
+```bash
 bin/kafka-server-start.sh config/server.properties
 ```
 
 后台运行加上 `-daemon` 参数即可
-``` bash
+
+```bash
 bin/kafka-server-start.sh -daemon config/server.properties
 ```
 
 ::: warning 可能遇到的问题
-
 
 [/opt/module/kafka_2.12-2.4.1] # bin/kafka-server-start.sh config/server.properties
 Java HotSpot(TM) 64-Bit Server VM warning: INFO: os::commit_memory(0x00000000c0000000, 1073741824, 0) failed; error='Cannot allocate memory' (errno=12)
@@ -107,10 +106,11 @@ Java HotSpot(TM) 64-Bit Server VM warning: INFO: os::commit_memory(0x00000000c00
 
 :::
 
-
 4. 设置开机自启动
 
+```bash
 vi /etc/systemd/system/kafka.service
+```
 
 ```
 [Unit]
@@ -132,10 +132,9 @@ WantedBy=multi-user.target
 ```
 
 ::: warning 启动失败
-之前`Environment`这一项没有配置`/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:`导致启动不起来，查看 `systemctl status kafka ` 显示 `code=exited, status=127`，查看 `journalctl -xe`没有找到问题。
+之前`Environment`这一项没有配置`/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:`导致启动不起来，查看 `systemctl status kafka` 显示 `code=exited, status=127`，查看 `journalctl -xe`没有找到问题。
 
-应该关闭重启策略，可以看到更多的报错信息，注释掉 `TimeoutSec=30
-Restart=on-failure`；再次 执行 `systemctl start kafka`发现，
+应该关闭重启策略，可以看到更多的报错信息，注释掉 `TimeoutSec=30 Restart=on-failure`；再次 执行 `systemctl start kafka`发现，
 
 ```
 ● kafka.service - Kafka
@@ -157,33 +156,21 @@ Nov 20 11:18:45 t2 systemd[1]: kafka.service: Unit entered failed state.
 Nov 20 11:18:45 t2 systemd[1]: kafka.service: Failed with result 'exit-code'.
 ```
 
-
-
-看到 ` ps: not found`.. grep: not found.. awk: not found`，很关键有木有，需要指定路径，加上之后，启动成功。
-
+看到 `ps: not found`.. grep: not found.. awk: not found`，很关键有木有，需要指定路径，加上之后，启动成功。
 
 :::
-
-
-
-
-
-
-
-
-
 
 ## 基础操作
 
-1. 创建topic
+1. 创建 topic
 
-::: tip 创建topic
+::: tip 创建 topic
 
-创建一个topic（主题）。kafka中所有的消息都是保存在主题中，要生产消息到kafka，首先必须要有一个确定的主题。
+创建一个 topic（主题）。kafka 中所有的消息都是保存在主题中，要生产消息到 kafka，首先必须要有一个确定的主题。
 
 :::
 
-``` bash
+```bash
 # 创建名为yourTopicName的主题
 bin/kafka-topics.sh --create --bootstrap-server t2.herin.ai:9092 --topic yourTopicName
 
@@ -191,17 +178,17 @@ bin/kafka-topics.sh --create --bootstrap-server t2.herin.ai:9092 --topic yourTop
 bin/kafka-topics.sh --list --bootstrap-server t2.herin.ai:9092
 ```
 
-2. 生产消息到Kafka
+2. 生产消息到 Kafka
 
-使用Kafka内置测试程序，生产一些消息到Kafka的`yourTopicName`主题中
+使用 Kafka 内置测试程序，生产一些消息到 Kafka 的`yourTopicName`主题中
 
-``` bash
+```bash
 bin/kafka-console-producer.sh --broker-list t2.herin.ai:9092 --topic yourTopicName
 ```
 
-3. 从Kafka消费消息
+3. 从 Kafka 消费消息
 
-``` bash
+```bash
 bin/kafka-console-consumer.sh --bootstrap-server t2.herin.ai:9092 --topic yourTopicName --from-beginning
 ```
 
@@ -209,12 +196,9 @@ bin/kafka-console-consumer.sh --bootstrap-server t2.herin.ai:9092 --topic yourTo
 
 一个图形化工具
 
-- 浏览Kafka集群节点
-- 创建topic/删除topic
-- 浏览Zookeeper中的数据
-
-
-
+- 浏览 Kafka 集群节点
+- 创建 topic/删除 topic
+- 浏览 Zookeeper 中的数据
 
 ## 基准测试
 
@@ -224,17 +208,16 @@ bin/kafka-console-consumer.sh --bootstrap-server t2.herin.ai:9092 --topic yourTo
 
 :::
 
-
 1. 生产消息基准测试
 
-- 启动Kafka集群
+- 启动 Kafka 集群
 
-- 创建一个1个分区1个副本的topic：`benchmark`
+- 创建一个 1 个分区 1 个副本的 topic：`benchmark`
 
-``` bash
+```bash
 bin/kafka-topics.sh \
 --zookeeper t2.herin.ai:2181 \
---create \ 
+--create \
 --topic benchmark \
 --partitions 1 \
 --replication-factor 1
@@ -242,7 +225,7 @@ bin/kafka-topics.sh \
 
 - 同时运行生产者、消费者基准测试程序
 
-``` bash
+```bash
 bin/kafka-producer-perf-test.sh \
 --topic benchmark \
 --num-records 5000000 \
@@ -252,7 +235,7 @@ bin/kafka-producer-perf-test.sh \
 acks=1
 ```
 
-``` bash
+```bash
 # 参数说明
 --topic topic名字
 --num-records 总共指定生产数据量（默认5000w）
@@ -263,23 +246,21 @@ acks=1
 
 - 观察结果（仅供参考）
 
-``` bash
+```bash
 3329 records sent, 665.5 records/sec (0.63 MB/sec), 1787.6 ms avg latency, 4450.0 ms max latency.
 ```
 
-
 2. 消费消息基准测试
 
-
-``` bash
+```bash
 bin/kafka-consumer-perf-test.sh \
---broker-list t1.herin.ai:9092,t2.herin.ai:9092,t3.herin.ai:9092 \ 
---topic benchmark \ 
+--broker-list t1.herin.ai:9092,t2.herin.ai:9092,t3.herin.ai:9092 \
+--topic benchmark \
 --fetch-size 1048576 \
 --messages 5000000
 ```
 
-``` bash
+```bash
 # 参数说明
 --broker-list  指定kafka集群地址
 --topic 指定topic名称

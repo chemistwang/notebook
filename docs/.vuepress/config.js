@@ -178,7 +178,7 @@ module.exports = {
             '/video/ffmpeg/': ['basic', 'practice', 'case'],
             //其他
             '/other/zookeeper/': ['zookeeper', 'zookeeperInstall', 'zookeeperCode'],
-            '/other/kafka/': ['kafkaScene', 'kafkaIntro', 'kafkaInstall', 'kafkaCode', 'kafkaInterview'],
+            '/other/kafka/': ['scene', 'intro', 'install', 'code', 'interview'],
             '/other/gateway/': [],
             '/other/sso/': ['cas'],
             '/other/python/': ['jupyter'],

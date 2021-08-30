@@ -23,11 +23,19 @@
 
 作用：视频码流和音频码流按照一定的格式存储在一个文件中（MP4、RMVB、TS、FLV、AVI）
 
+![示意图](http://cdn.chemputer.top/notebook/live/formatdiagram.jpg)
+
 ![格式](http://cdn.chemputer.top/notebook/live/format.jpg)
+
+![比较](http://cdn.chemputer.top/notebook/live/formatdiff.jpg)
 
 ## 三、视频编码数据
 
-作用：将视频像素数据（rgb，yuv 等）压缩成为视频码流，从而降低视频等数据量 (h.264 mpeg2 vc-1)
+作用：将视频像素数据（RGB，YUV 等）压缩成为视频码流，从而降低视频等数据量 (H.264 MPEG2 VC-1)
+
+![视频编码](http://cdn.chemputer.top/notebook/live/vencode.jpg)
+
+![H.264](http://cdn.chemputer.top/notebook/live/H264.jpg)
 
 - H264 简介
 
@@ -40,7 +48,11 @@
 
 ## 四、音频编码数据
 
-作用：将音频采样数据（pcm 等）压缩成为音频码流，从而降低音频等数据量 ( aac mp3 ac-3)
+作用：将音频采样数据（PCM 等）压缩成为音频码流，从而降低音频等数据量 ( AAC MP3 AC-3)
+
+![音频编码](http://cdn.chemputer.top/notebook/live/aencode.jpg)
+
+![AAC](http://cdn.chemputer.top/notebook/live/AAC.jpg)
 
 - AAC 格式简介
 
@@ -51,14 +63,16 @@
 
 ## 五、视频像素数据
 
-作用：保存屏幕上每个像素点的像素值 ( yuv420p rgb)
+作用：保存屏幕上每个像素点的像素值 ( YUV420p RGB)
 
 - eg：保存屏幕每个像素点的像素值
   > 3600 x 25 x 1920 x 1080 x 3（rgb） = 559.9G
 
+![IPB](http://cdn.chemputer.top/notebook/live/IPB.jpg)
+
 ## 六、音频采样数据
 
-密集的采样点 (pcm)
+密集的采样点 (PCM)
 
 - eg.保存音频中每个采样点的值
   > 4min x 60 x 44100（采样率 44100Hz）x 2（左右声道）x 2（个字节）= 42.3M
