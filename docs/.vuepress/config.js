@@ -153,7 +153,7 @@ module.exports = {
             '/backend/mybatis/': ['problem'],
             '/backend/nginx/': ['install', 'https', 'conf', 'tengine'],
             '/backend/openresty/': [],
-            '/backend/rust/': ['install'],
+            '/backend/rust/': ['rocket'],
             //数据库
             '/db/mongo/': ['install', 'mongo', 'problem'],
             '/db/redis/': ['intro', 'install', 'redis', 'code', 'problem'],

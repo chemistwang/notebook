@@ -73,7 +73,17 @@ docker 是一种容器技术，解决软件跨环境迁移的问题
 
 根据官网操作文档配置即可
 
-## 5. 常用命令
+## 5. 镜像
+
+```bash
+docker commit //提交容器副本，使之成为一个新的容器
+docker commit -m test -a wyl 23587838141b wyl/tomcat:0.1
+
+docker run -p 8888:8080 tomcat //docker对外暴露8888端口
+docker run -P -it tomcat //docker随机分配端口
+```
+
+## 6. 常用命令
 
 - 启动 docker 服务(linux)
 
@@ -170,33 +180,69 @@ docker rm $(docker ps -qa) # 删除全部容器（方法1）
 docker ps -qa | xargs docker rm # 删除全部容器（方法2）
 ```
 
-## 6. 容器数据卷
+## 7. 容器数据卷
 
-```bash
-docker run -it -v /hostpath:/containerpath ubuntu
-docker run -it -v /hostpath:/ontainerpath:ro ubuntu # ro =》readonly
-```
-
-数据卷概念
+1. 数据卷概念
 
 - 数据卷是宿主机中的一个目录或文件
 - 当容器目录和数据卷目录绑定后，对方的修改会立即同步
 - 一个数据卷可以被多个容器同时挂载
 - 一个容器也可以挂载多个数据卷
 
-作用
+2. 作用
 
 - docker 容器删除后，容器中产生的数据也会随之销毁，数据卷提供容器数据持久化
 - docker 容器不能直接与外部机器交换文件，通过数据卷间接通信
 - 容器之间进行数据交互，通过数据卷
 
-注意事项
+- 为了能保存数据，在 docker 中我们使用卷 //类似 redis 的 rdb aof
+
+3. 注意事项
 
 - 目录必须是绝对路径
 - 若目录不存在，则会自动创建
 - 可以挂载多个数据卷
 
-## 7. docker 网络通讯
+4. 实现方式
+
+两种方式
+
+- 使用命令
+
+```bash
+docker run -it -v /宿主机:/容器内的目录 镜像名 （类似于U盘的挂载对接，产生联系）
+docker inspect id //查看binds volums字段查看是否绑定
+//可以实现宿主机和容器之间的同步
+
+docker run -it -v /宿主机:/容器内目录:ro 镜像名（ro read only 只读不可写，容器内只能查看不能修改，宿主机单向）
+```
+
+```bash
+docker run -it --name xxx --volumes-from xxx containerId
+```
+
+```bash
+docker run -it -v /hostpath:/containerpath ubuntu
+docker run -it -v /hostpath:/ontainerpath:ro ubuntu # ro =》readonly
+```
+
+- 用 dockerfile 添加
+
+```bash
+# dockefile
+FROM centos
+VOLUME ["/container1", "/container2"]
+CMD echo "finish---"
+CMD /bin/bash
+```
+
+```bash
+docker build -f /host/dockerfile -t yourname . //构建
+```
+
+> 若挂载目录时出现 `permission denied`，在挂载目录后多加一个 `--privileged=true` 即可
+
+## 8. docker 网络通讯
 
 通讯的三种方式
 
@@ -235,8 +281,8 @@ docker port <containerId/containerName> # 查看指定容器的端口映射
 ```bash
 docker run -it \
 --name xxx \
---network yournetworkname
---network-alias aliasname
+--network yournetworkname \
+--network-alias aliasname \
 ubuntu
 ```
 
@@ -252,9 +298,80 @@ docker run -it --name vvv --network hahaha --network-alias xxx1 ubuntu/ping
 
 > 访问容器中的服务可以用<网络别名>：<服务端口>，网络别名，不用顾虑 ip 的变动
 
-## 8. Dockerfile
+## 9. Dockerfile
 
-## 9. 搭建私有 docker 仓库
+1. 是什么
+
+用来构建 docker 镜像的构建文件，是由一系列命令和参数构成的脚本
+
+2. 如何构建
+
+- vi Dockerfile
+- docker build
+- docker run
+
+3. 基础知识
+
+- 每条保留字指令都必须为大写，且后面至少跟随一个参数
+- 指令从上到下，顺序执行
+- #表示注释
+- 每条指令都会创建一个新的镜像层，并对镜像进行提交
+
+4. docker 执行 dockerfile 的大致流程
+
+- docker 从基础镜像运行一个容器
+- 执行一条指令并对容器作出修改
+- 执行类似 docker commit 操作提交一个新的镜像层
+- docker 再基于刚提交的镜像运行一个新容器
+- 执行 dockerfile 下一条指令直到所有指令都完成
+
+5. 总结
+
+dockerfile，docker image， docker container 代表软件的三个不同阶段
+
+- dockerfile 是软件的原材料 =》面向开发
+- docker image 是软件的交付品 =》成为交付标准
+- docker container 是软件的运行态 =》涉及部署与运维
+
+6. 保留字
+
+- `FROM` =》基础镜像，当前新镜像是基于哪个镜像的
+- `MAINTAINER` =》镜像维护者的姓名和邮箱地址
+- `RUN` =》容器构建时需要运行的命令
+- `EXPOSE` =》当前容器对外暴露出的端口
+- `WORKDIR` =》指定在创建容器后，终端默认登陆进来的工作目录，一个落脚点
+- `ENV` =》用来在构建镜像过程中设置环境变量
+- `ADD` =》将宿主机目录下的文件拷贝进镜像且 ADD 命令会自动处理 URL 和解压 tar 压缩包
+- `COPY` =》拷贝文件和目录到镜像中
+  - COPY src dest
+  - COPY ["src", "dest"]
+- `VOLUME` =》容器数据卷，用于数据保存和持久化工作
+- `CMD` =》 指定一个容器启动时要运行的命令
+  - dockerfile 中可以有多个 CMD 指令，但是只有最后一个生效
+  - CMD 会被 docker run 之后的参数替换
+- `ENTRYPOINT` =》会追加，不会被覆盖
+- `ONBUILD` =》当构建一个被继承的 dockerfile 时运行命令，父镜像在被子继承后，父镜像的 onbuild 会被触发
+
+7. 编写 dockerFile
+
+`scratch` Base 镜像
+
+> docker hub 中 99%镜像都是通过在 base 镜像中安装和配置需要的软件构建
+
+8. 查看历史
+
+```bash
+docker history imagesName
+```
+
+9. 本地镜像发布到阿里云
+
+- 创建仓库镜像 命名空间 + 仓库名称
+- docker login --username=664176327@qq.com registry.cn-hangzhou.aliyuncs.com
+- docker tag [ImageId] registry.cn-hangzhou.aliyuncs.com/chemputer/mytomcat:[镜像版本号]
+- docker push registry.cn-hangzhou.aliyuncs.com/chemputer/mytomcat:[镜像版本号]
+
+## 10. 搭建私有 docker 仓库
 
 - 1. 拉取镜像并创建
 
