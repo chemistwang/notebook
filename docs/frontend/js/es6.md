@@ -1,5 +1,9 @@
 # ES6
 
+::: tip 参考资料
+[阮一峰 ECMAScript 6 入门教程](https://es6.ruanyifeng.com/)
+:::
+
 ## 一、变量
 
 变量与内存之间的关系由三个部分组成：
