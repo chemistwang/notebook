@@ -1,6 +1,6 @@
 module.exports = {
     title: '后知的笔记本',
-    description: 'Just coding around',
+    description: 'Just Coding Around',
     dest: "dist",
     themeConfig: {
         lastUpdated: 'Last Updated', // string | boolean
@@ -50,6 +50,8 @@ module.exports = {
                     { text: 'Spring Boot', link: '/backend/springboot/' },
                     { text: 'Spring Security', link: '/backend/springsecurity/' },
                     { text: 'Spring Cloud', link: '/backend/springcloud/' },
+                    { text: 'Zookeeper', link: '/backend/zookeeper/' },
+                    { text: 'Kafka', link: '/backend/kafka/' },
                     { text: 'Nginx', link: '/backend/nginx/' },
                     { text: 'OpenResty', link: '/backend/openresty/' },
                     { text: 'Rust', link: '/backend/rust/' },
@@ -94,6 +96,7 @@ module.exports = {
                     { text: 'Vscode', link: '/tool/vscode/' },
                     { text: 'Chrome', link: '/tool/chrome/' },
                     { text: 'Git', link: '/tool/git/' },
+                    { text: 'minIO', link: '/tool/minIO/' },
                     { text: 'Docker', link: '/tool/docker/' },
                     { text: 'Docker Compose', link: '/tool/dockercompose/' },
                     { text: 'Kubernetes', link: '/tool/kubernetes/' },
@@ -117,13 +120,9 @@ module.exports = {
                 text: '其他',
                 ariaLabel: 'Other Menu',
                 items: [
-                    { text: 'Zookeeper', link: '/other/zookeeper/' },
-                    { text: 'Kafka', link: '/other/kafka/' },
                     { text: 'Gateway', link: '/other/gateway/' },
                     { text: 'SSO', link: '/other/sso/' },
                     { text: '知识点', link: '/other/point/' },
-                    { text: 'Python', link: '/other/python/' },
-                    { text: 'minIO', link: '/other/minIO/' },
                 ]
             },
             {
@@ -160,6 +159,9 @@ module.exports = {
             '/backend/nginx/': ['install', 'https', 'conf', 'tengine'],
             '/backend/openresty/': [],
             '/backend/rust/': ['rocket'],
+            '/backend/python/': ['jupyter'],
+            '/backend/zookeeper/': ['intro', 'install', 'code'],
+            '/backend/kafka/': ['scene', 'intro', 'install', 'code', 'interview'],
             //数据库
             '/db/mongo/': ['install', 'mongo', 'problem'],
             '/db/redis/': ['intro', 'install', 'redis', 'code', 'problem'],
@@ -184,11 +186,8 @@ module.exports = {
             '/video/live/': ['basic', 'protocol', 'tool', 'analysis', 'push', 'pull', 'server', 'testaddr', 'extra'],
             '/video/ffmpeg/': ['basic', 'practice', 'case'],
             //其他
-            '/other/zookeeper/': ['zookeeper', 'zookeeperInstall', 'zookeeperCode'],
-            '/other/kafka/': ['scene', 'intro', 'install', 'code', 'interview'],
             '/other/gateway/': [],
             '/other/sso/': ['cas'],
-            '/other/python/': ['jupyter'],
             //课堂学习笔记
             '/class/tencentcloud/': ['class1', 'class2'],
             //编码
