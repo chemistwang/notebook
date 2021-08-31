@@ -1,4 +1,7 @@
-# VIM操作
+# VIM 操作
+
+- 参考资料
+  [what are the most used vim commands-keypresses](https://stackoverflow.com/questions/5400806/what-are-the-most-used-vim-commands-keypresses)
 
 有规律的记忆，看每个命令背后的含义
 
@@ -32,7 +35,7 @@ diw delete in word
 caw change all word
 da[/di[/di(
 
-yi) yank all text inside parentheses 
+yi) yank all text inside parentheses
 
 dt空格 delete untill the space
 
@@ -62,8 +65,7 @@ vs => --------右-----
 
 ctrl-j/k/h/l =》 切换分割窗口
 
-
-:wq/:ZZ/:x  =》 保存并退出
+:wq/:ZZ/:x =》 保存并退出
 
 gg => 文件头部
 G => 文件底部
@@ -72,9 +74,8 @@ G => 文件底部
 n => 向后
 N =》向前
 
-
 ~ => 转换当前字母大小写
 
 ## 删除
-d$ => 删除游标所在处，至当前行的最后一个字符
 
+d\$ => 删除游标所在处，至当前行的最后一个字符

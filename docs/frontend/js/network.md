@@ -1,14 +1,62 @@
 # 网络和并发
 
+### 罗列常用的 http 状态码并简述其含义
+
+1xx infomational(信息性状态码) 接收的请求正在处理
+2xx success（成功状态码） 请求正常处理完毕
+3xx redirection（重定向状态码）需要进行附加操作以完成请求
+4xx client Error （客户端错误状态码）服务器无法处理请求
+5xx server Error (服务器错误状态码) 服务器处理请求出错
+
+### 列出 http 所有请求方法
+
+GET | HEAD | POST | PUT | DELETE | CONNECT | OPTIONS | TRACE | PATCH
+
+### http 的设置 keep-alive 的作用是什么
+
+使客户端到服务器端的连接持续有效，当出现对服务器的后继请求时，Keep-Alive 功能避免了建立或者重新建立连接(Web 服务器，基本上都支持 HTTP Keep-Alive)
+
+缺点：对于提供静态内容的网站来说，这个功能通常很有用。但是，对于负担较重的网站来说，虽然为客户保留打开的连接有一定的好处，但它同样影响了性能，因为在处理暂停期间，本来可以释放的资源仍旧被占用。当 Web 服务器和应用服务器在同一台机器上运行时，Keep-Alive 功能对资源利用的影响尤其突出。
+
+解决：Keep-Alive: timeout=5, max=100
+(timeout：过期时间 5 秒（对应 httpd.conf 里的参数是：KeepAliveTimeout），max 是最多一百次请求，强制断掉连接。就是在 timeout 时间内又有新的连接过来，同时 max 会自动减 1，直到为 0，强制断掉。)
+
+### 常见的 web 攻击方式有哪些
+
+- XSS(Cross Site Scripting)
+
+跨站脚本攻击
+
+> 用户的输入变成代码，需要对用户输入数据进行 HTML 转义
+
+- CSRF
+- SQL 注入
+- 文件上传漏洞
+- DDos 攻击
+- 其他
+
+## API 安全措施（请求凭证措施）
+
+- 静态权限凭证
+- OAuth 权限凭证
+- 自签名权限凭证
+
 ### 点击网站，浏览器都经历了什么
 
 DNS 缓存
+
+### GET | POST 请求区别
+
+get url 有大小限制；post 无限制
+get
 
 ### JWT
 
 https://jwt.io/
 
 token 一般放在 Authorization 自定义头，而不是放在 Cookie。目的是解决跨域不能共享 Cookie 的问题
+
+### 使用 ajax 都有哪些优劣
 
 ## AJAX
 
@@ -28,6 +76,18 @@ $.ajax({
   error: function() {},
 });
 ```
+
+::: details 封装 ajax
+
+```javascript
+1. 创建实例 new XMLHttpRequest
+2. 设置监听，onreadystatechange
+3. 建立连接 open
+4. 设置头信息
+5. 发送请求 send
+```
+
+:::
 
 ### 3. fetch
 
@@ -83,6 +143,27 @@ axios.interceptors.request.use();
 
 axios.interceptors.response.use();
 ```
+
+### 前端缓存
+
+[资料](https://zhuanlan.zhihu.com/p/44789005)
+
+基本网络请求三步骤：`请求`+`处理`+`响应`
+
+- 后端：`处理`
+- 前端：`请求`（B） + `响应`（B+S）
+
+按缓存位置（ 优先级：由上到下，找到即返回；否则继续）
+
+- Service Worker
+- Memory Cache （内存缓存）
+- Disk Cache (硬盘缓存)
+- 网络请求
+
+按失效策略
+
+- Cache-Control
+- ETag
 
 ## WebSocket
 

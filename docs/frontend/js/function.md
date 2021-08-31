@@ -1,136 +1,212 @@
 # 函数
 
-## IIFE
+## 原生函数
 
-### 1. 定义
+- String()
+- Number()
+- Boolean()
+- Function()
+- Date()
+- Error()
+- Symbol()
+- RegExp()
+- Array()
+- Object()
+- BigInt()
 
-IIFE: Immediately Invoked Function Expression，意为立即调用的函数表达式
+## 闭包
 
-### 2. 为什么需要 IIFE
+可以理解用闭包来保存状态
 
-只有全局作用域（global scope）、函数作用域（function scope），从 ES6 开始才有块级作用域（block scope）。
+### 闭包（必须深入理解）
 
-在 JS 中，只有 function，只有 function，只有 function 才能实现作用域隔离，因此如果要将一段代码中的变量、函数等的定义隔离出来，只能将这段代码封装到一个函数中。
+理解闭包，一定一定理解作用域链
 
-### 3. IIFE 的常见形式
+> 当前作用域语句被执行完毕后，引擎会检查该作用域中被定义的变量（或常量）的被引用情况，若引用被全部解除，引擎便会认为其应该被清除
+
+利用高阶函数产生能够穿透作用域的引用
+
+### 实现防抖（debounce）和节流 (throttle)
+
+- 防抖 (控制次数)
+
+事件持续触发，但只有当事件停止触发后 n 秒才执行函数。
 
 ```js
-(function foo() {
-  console.log("IIFE");
-})(); //较常见
-// or
-(function foo() {
-  console.log("IIFE");
-})();
+debounce = function(func, delay) {
+  let timer = null;
+  return function() {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func();
+    }, delay);
+  };
+};
+
+let btn = document.getElementById("btn");
+btn.onclick = debounce(function() {
+  console.log("防抖发送数据");
+}, 1000);
 ```
 
-### 4. IIFE 的函数名和参数
+- 节流（控制频率）
+
+事件持续触发时，每 n 秒执行一次函数
 
 ```js
-var a = 2;
-(function IIFE(global) {
-  var a = 3;
-  console.log(a); // 3
-  console.log(global.a); // 2
-})(window);
-
-console.log(a); // 2
+function throttle(func, delay) {
+  let prev = 0; //将初始时间戳设置为0，保证第一次触发就一定执行函数
+  return function() {
+    // const context = this;
+    // const args = arguments;
+    const now = +new Date();
+    if (now - prev > delay) {
+      func.apply(this);
+      prev = now;
+    }
+  };
+}
+let btn = document.getElementById("btn");
+btn.onclick = throttle(function() {
+  console.log("截流发送数据");
+}, 1000);
 ```
 
-> [宿宝臣的博客](http://softlab.sdut.edu.cn/blog/subaochen/2016/02/%E8%AF%B4%E4%B8%80%E8%AF%B4js%E7%9A%84iife/)
+## this 指向
 
-## 模块化
+this 对象是在运行时基于函数的运行环境绑定的
 
-### 1. IIFE
-
-在刀耕火种的年代，作为脚本语言的 Javascript 为了避免全局变量污染，只能使用闭包来实现模块化。
+:::details bind | call | apply 区别
+三者都是绑定 this
 
 ```js
-(functino(window){
-	window.jQuery = window.$ = JQuery
-})(window)
+//this: 只是负责绑定this并返回新的方法，并不执行
+//绑定之后不再改变
+
+let o = { name: "o" };
+let p = { name: "p" };
+
+function show(city) {
+  this.name + city;
+}
+
+show.bind(o).bind(p)(); //o
+
+//call: 立即执行,参数以字符串形式
+show.call(o, "lucus");
+
+//apply: 立即执行,参数以数组形式
+show.apply(o, ["lucus"]);
 ```
 
-- 优点：有效解决命名冲突的问题
-- 缺点：是对于依赖管理，还是束手无策。由于浏览器是从上至下执行脚本，因此为了维持脚本间的依赖关系，就必须手动维护好 script 标签的相对顺序。
+:::
 
-### 2. AMD
-
-`AMD(Asynchronous Module Definition)`是`RequireJS`在推广过程中对模块定义的规范化产出 (一个规范)
-
-- AMD (可能更适合浏览器端)
-
-对于依赖的模块，提前执行
+### 代码输出
 
 ```js
-define(['./a', './b'], function(a, b){
-	//依赖提前声明好
-	...
-	a.doSomething();
-	b.doSomething();
-})
+var length = 10;
+function fn() {
+  console.log(this.length);
+}
+var obj = {
+  length: 5,
+  method: function(fn) {
+    fn();
+    arguments[0]();
+  },
+};
+obj.method(fn); //10 1
 ```
 
-> 无需遍历就能找到，性能有所提升，缺点需要
-
-### 3. CMD
-
-`CMD(Common Module Definition)`是`SeaJS`在推广过程中对模块定义的规范化产出 （一个规范）
-
-- CMD （可能更适合服务器端）
-
-对于依赖的模块，延迟执行， 推崇 as lazy as possible
+### 代码输出
 
 ```js
-define(function(require,exports,module){
-	var a = require('./a');
-	a.doSomething();
-	...
-	var b = require('./b');
-	b.doSomething();
-	...
-})
+foo();
+function foo() {
+  console.log("foo");
+}
+
+bar();
+var bar = function() {
+  console.log("bar");
+};
+
+//foo Error
 ```
 
-> 代码在运行时，不知道依赖，需要遍历所有的 require 关键字，找到后面的依赖，具体将 function toString()后，用正则匹配出 require 关键字后面的依赖，牺牲性能获取更多开发便利
-
-### 4. CommonJS
-
-`CommonJS Modules/2.0`是`BravoJS`在推广过程中对模块定义的规范化产出 （一个规范）
-
-- CommonJS
-
-前三者一般用于浏览器，Nodejs 使用 CommonJS 规范
-
-规定 `module` 代表 当前模块, 是一个对象
-它的 `exports` 属性, 是对外的接口，加载某个模块，其实是加载该模块的 `module.exports` 属性
-
-若在命令行调用某个模块，eg: `node something.js`，则 `module.parent`为`null`，为入口脚本
-
-内置 `require` 用于加载模块文件, 后缀名默认为 `.js`
-
-### 5. UMD
-
-### 6. ES6 Modules
-
-- ES6
-
-export/import 对模块进行导入导出
-
-### 7.
-
-### export 和 export default 的区别
-
-ES5 中，用 `module.exports` 和 `exports` 导出模块，用 `require` 引入模块
-ES6 中，新增 `export` 和 `export default` 导出模块，用 `import` 导入模块
+### 下面代码输出
 
 ```js
-const a = {};
-export default a;
-import a from "...";
+const Greeters = [];
+for (var i = 0; i < 10; i++) {
+  Greeters.push(function() {
+    return console.log(i);
+  });
+}
 
-export const b = function() {};
-import { b } from "...";
+Greeters[0](); //10
+Greeters[1](); //10
+Greeters[2](); //10
+```
+
+> 只是 push 数组，并没有执行方法
+
+```js
+// var length = 10;
+// function fn(){
+// 	console.log(this.length);
+// }
+// var obj = {
+// 	length: 5,
+// 	method: function(fn) {
+//     fn();
+// 		arguments[0]();
+// 	}
+// }
+// obj.method(fn); //10 1
+
+function Foo() {
+  var i = 0;
+  return function() {
+    console.log(i++);
+  };
+}
+
+var f1 = Foo();
+
+f2 = Foo();
+
+f1();
+f1();
+f2();
+f1();
+
+//0
+//1
+//0
+
+// this是运行时绑定的，不是编写时绑定，它的上下文取决于函数调用时的各种条件
+// this的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式
+
+//调用栈（重要）: 为了达到当前执行位置所调用的所有函数
+//调用位置:
+
+//函数调用会被this绑定到当前上下文对象中,只有最顶层或者最后一层会影响调用位置
+
+//箭头函数this，根据外层（函数或者全局）作用域决定this,箭头函数的绑定无法被修改
+```
+
+### 代码输出
+
+```js
+function change() {
+  alert(typeof fn);
+  function fn() {
+    alert("hello");
+  }
+  var fn;
+}
+change(); //function
 ```
 
 ## 函数式编程
@@ -166,3 +242,22 @@ js 对象系统中，并没有提供直接隐藏数据的方式，因此使用�
 - 确定抽象，并为其构建函数
 - 利用已有的函数来构建更为复杂的抽象
 - 通过将现有的函数传给其他的函数来构建更加复杂的抽象
+
+## 函数柯里化
+
+> 高阶函数的特殊用法
+> Currying，是把接受多个参数的函数变换成接受一个单一参数（最初函数的第一个参数）的函数，并且返回接受余下的参数而且返回结果的新函数的技术。
+
+好处:
+
+- 参数复用
+- 提前确认
+- 延迟运行
+-
+
+```js
+// 实现一个add方法，结果满足以下预期
+add(1)(2)(3) = 6;
+add(1, 2, 3)(4) = 10;
+add(1)(2)(3)(4)(5) = 15;
+```

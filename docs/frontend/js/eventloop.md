@@ -7,115 +7,104 @@
 
 [事件循环 + 任务队列](https://www.bilibili.com/video/BV1XQ4y1P7L7?from=search&seid=4063426400438383115)
 
+任何时候 js 执行完毕，js 调用栈从满到空之后 ,就执行微任务
+所以：理论上，任务队列中的一个任务完毕，一个 js 栈空了，会执行微任务；一次样式计算完成了，一个 js 栈空了，执行微任务
 
-任何时候js执行完毕，js调用栈从满到空之后,就执行微任务
-所以：理论上，任务队列中的一个任务完毕，一个js栈空了，会执行微任务；一次样式计算完成了，一个js栈空了，执行微任务
-
-`promise`也运用了微任务，这保证了，Promise的回调被执行的时候，不会有半途中的js需要被执行
+`promise`也运用了微任务，这保证了，Promise 的回调被执行的时候，不会有半途中的 js 需要被执行
 
 微任务：运行到当前任务队列清空
-
 
 任务队列
 
 - 宏任务 (macro-task)
-    - XHR回调
-    - 事件回调（鼠标键盘事件）
-    - setImmediate
-    - setTimeout
-    - setInterval
-    - indexedDB数据库操作等I/O
-    
+  - XHR 回调
+  - 事件回调（鼠标键盘事件）
+  - setImmediate
+  - setTimeout
+  - setInterval
+  - indexedDB 数据库操作等 I/O
 
-- 微任务 (micro-task)
-    - process.nextTick
-    - promise.then
-    - MutationObserver
+* 微任务 (micro-task)
 
-    进入到任务队列的是具体的执行任务函数
-    不同类型的任务会分别进入到他们所属类型的任务队列
-    
-    
+  - process.nextTick
+  - promise.then
+  - MutationObserver
 
+  进入到任务队列的是具体的执行任务函数
+  不同类型的任务会分别进入到他们所属类型的任务队列
 
+```js
+console.log("global");
 
+setTimeout(function() {
+  console.log("timeout1");
+  new Promise(function(resolve) {
+    console.log("timeout1_promise");
+    resolve();
+  }).then(function() {
+    console.log("timeout1_then");
+  });
+}, 2000);
 
-``` js
-console.log('global')
-
-setTimeout(function () {
-    console.log('timeout1')
-    new Promise(function (resolve) {
-        console.log('timeout1_promise')
-        resolve()
-    }).then(function () {
-        console.log('timeout1_then')
-    })
-},2000)
-
-for (var i = 1;i <= 5;i ++) {
-    setTimeout(function() {
-        console.log(i)
-    },i*1000)
-        console.log(i)
+for (var i = 1; i <= 5; i++) {
+  setTimeout(function() {
+    console.log(i);
+  }, i * 1000);
+  console.log(i);
 }
 
-new Promise(function (resolve) {
-    console.log('promise1')
-    resolve()
-}).then(function () {
-    console.log('then1')
-})
+new Promise(function(resolve) {
+  console.log("promise1");
+  resolve();
+}).then(function() {
+  console.log("then1");
+});
 
-setTimeout(function () {
-    console.log('timeout2')
-    new Promise(function (resolve) {
-        console.log('timeout2_promise')
-        resolve()
-    }).then(function () {
-        console.log('timeout2_then')
-    })
-}, 1000)
+setTimeout(function() {
+  console.log("timeout2");
+  new Promise(function(resolve) {
+    console.log("timeout2_promise");
+    resolve();
+  }).then(function() {
+    console.log("timeout2_then");
+  });
+}, 1000);
 
-new Promise(function (resolve) {
-    console.log('promise2')
-    resolve()
-}).then(function () {
-    console.log('then2')
-})
+new Promise(function(resolve) {
+  console.log("promise2");
+  resolve();
+}).then(function() {
+  console.log("then2");
+});
 ```
 
 > 同步代码执行完之后才会检查是否有异步任务完成，并执行对应的回调
-微任务在宏任务之前执行
+> 微任务在宏任务之前执行
 
 > 在当前的微任务没有执行完成时，是不会执行下一个宏任务的
 
-> setTimeout()的延时参数始终相对于主程序执行完毕的时间，并且多个setTimeout执行的先后顺序也是由这个延迟时间决定
+> setTimeout()的延时参数始终相对于主程序执行完毕的时间，并且多个 setTimeout 执行的先后顺序也是由这个延迟时间决定
 
-
-
-``` js
-
-async function async1(){
-	console.log("async1 start");
-	await async2();
-	console.log("async1 end");
+```js
+async function async1() {
+  console.log("async1 start");
+  await async2();
+  console.log("async1 end");
 }
 
-async function async2(){
-	console.log("async2");
+async function async2() {
+  console.log("async2");
 }
 
-console.log('script start');
+console.log("script start");
 
-setTimeout(function(){
-	console.log('setTimeout');
-}, 0)
+setTimeout(function() {
+  console.log("setTimeout");
+}, 0);
 
 async1();
 
-console.log('script end');
-
+console.log("script end");
 
 //script start
 //async1 start
@@ -123,31 +112,29 @@ console.log('script end');
 //script end
 //async1 end
 //setTimeout
-
 ```
 
-``` js
-
+```js
 async function async1() {
-   console.log('async1 start')
-   await async2()
-   console.log('async1 end')
+  console.log("async1 start");
+  await async2();
+  console.log("async1 end");
 }
 async function async2() {
-   console.log('async2')
+  console.log("async2");
 }
-console.log('script start')
+console.log("script start");
 setTimeout(() => {
-	console.log('setTimeout')
-},0)
-async1()
+  console.log("setTimeout");
+}, 0);
+async1();
 new Promise((resolve) => {
-	console.log('promise1')
-	resolve()
+  console.log("promise1");
+  resolve();
 }).then(() => {
-	console.log('promise2')
-})
-console.log('script end')
+  console.log("promise2");
+});
+console.log("script end");
 
 //script start
 //async1 start
@@ -159,40 +146,40 @@ console.log('script end')
 //setTimeout
 ```
 
-``` js
+```js
 setTimeout(() => {
-	console.log('setTimeout')
-}, 0)
-console.log('t1')
-fetch('http://localhost:8888')
- .then(function(response) {
-   return response.json();
- })
- .then(function(myJson) {
-   console.log('myJson');
- })
- .catch(function(err) {
- 	console.log(err)
- })
-console.log('fetch zhi hou')
+  console.log("setTimeout");
+}, 0);
+console.log("t1");
+fetch("http://localhost:8888")
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(myJson) {
+    console.log("myJson");
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
+console.log("fetch zhi hou");
 async function async1() {
-	console.log('async1 start')
-	await async2()
-	console.log('async1 end')
+  console.log("async1 start");
+  await async2();
+  console.log("async1 end");
 }
-async1()
-console.log('t2')
+async1();
+console.log("t2");
 new Promise((resolve) => {
-	console.log('promise')
-	resolve()
+  console.log("promise");
+  resolve();
 }).then(() => {
-	console.log('promise.then')
-})
-console.log('t3')
+  console.log("promise.then");
+});
+console.log("t3");
 async function async2() {
-	console.log('async2')
+  console.log("async2");
 }
-console.log('t4')
+console.log("t4");
 
 //t1
 //fetch zhi hou
@@ -210,17 +197,16 @@ console.log('t4')
 //error
 ```
 
-
-``` js
+```js
 const promise = new Promise((resolve, reject) => {
-	console.log(1)
-	resolve()
-	console.log(2)
+  console.log(1);
+  resolve();
+  console.log(2);
 });
 promise.then(() => {
-	console.log(3)
+  console.log(3);
 });
-console.log(4)
+console.log(4);
 
 //1
 //2
@@ -228,43 +214,45 @@ console.log(4)
 //3
 ```
 
-``` js
-console.log('script start');
+```js
+console.log("script start");
 
 setTimeout(() => {
-  console.log('setTimeout...')
+  console.log("setTimeout...");
 }, 1 * 2000);
 
-Promise.resolve().then(function(){
-  console.log('promise1')
-}).then(function(){
-  console.log('promise2')
-})
+Promise.resolve()
+  .then(function() {
+    console.log("promise1");
+  })
+  .then(function() {
+    console.log("promise2");
+  });
 
-async function foo(){
+async function foo() {
   await bar();
-  console.log('async1 end')
+  console.log("async1 end");
 }
 
 foo();
 
-async function errorFunc(){
+async function errorFunc() {
   try {
-    await Promise.reject('error!!!');
+    await Promise.reject("error!!!");
   } catch (e) {
-    console.log(e)
+    console.log(e);
   }
-  console.log('async1')
-  return Promise.resolve('async1 success')
+  console.log("async1");
+  return Promise.resolve("async1 success");
 }
 
-errorFunc().then(res => console.log(res))
+errorFunc().then((res) => console.log(res));
 
-function bar(){
-  console.log('async2 end')
+function bar() {
+  console.log("async2 end");
 }
 
-console.log('script end');
+console.log("script end");
 
 //script start
 //async2 end
@@ -278,80 +266,135 @@ console.log('script end');
 //setTimeout...
 ```
 
-``` js
-console.log(1)
+```js
+console.log(1);
 
 setTimeout(() => {
-  console.log(2)
+  console.log(2);
   Promise.resolve().then(() => {
-    console.log(3)
-  })
+    console.log(3);
+  });
   new Promise((resolve) => {
-    console.log(4)
+    console.log(4);
     resolve();
   }).then(() => {
-    console.log(5)
-  })
-})
+    console.log(5);
+  });
+});
 
-
-Promise.reject().then(() => {
-  console.log(131);
-}, () => {
-  console.log(12)
-})
+Promise.reject().then(
+  () => {
+    console.log(131);
+  },
+  () => {
+    console.log(12);
+  }
+);
 
 new Promise((resolve) => {
-  console.log(7)
+  console.log(7);
   resolve();
 }).then(() => {
-  console.log(8)
-})
+  console.log(8);
+});
 
 setTimeout(() => {
-  console.log(9)
+  console.log(9);
   Promise.resolve().then(() => {
-    console.log(10)
-  })
+    console.log(10);
+  });
   new Promise((resolve) => {
-    console.log(11)
+    console.log(11);
     resolve();
   }).then(() => {
-    console.log(121)
-  })
-})
+    console.log(121);
+  });
+});
 
 //1 7 12 8 2 4 3 5 9 11 10 121
 ```
 
-
-``` js
+```js
 new Promise((resolve, reject) => {
-  console.log(1)
+  console.log(1);
   resolve();
-}).then(() => {
-  console.log(2)
-  new Promise((resolve, reject) => {
-    console.log(3)
-    setTimeout(() => {
-      reject();
-    }, 3 * 1000);
-    resolve();
-  }).then(() => {
-    console.log(4)
-    new Promise((resolve,reject) => {
-      console.log(5)
+})
+  .then(() => {
+    console.log(2);
+    new Promise((resolve, reject) => {
+      console.log(3);
+      setTimeout(() => {
+        reject();
+      }, 3 * 1000);
       resolve();
-    }).then(() => {
-      console.log(7)
-    }).then(() => {
-      console.log(9)
     })
-  }).then(() => {
-    console.log(8)
+      .then(() => {
+        console.log(4);
+        new Promise((resolve, reject) => {
+          console.log(5);
+          resolve();
+        })
+          .then(() => {
+            console.log(7);
+          })
+          .then(() => {
+            console.log(9);
+          });
+      })
+      .then(() => {
+        console.log(8);
+      });
   })
-}).then(() => {
-  console.log(6)
-}) 
+  .then(() => {
+    console.log(6);
+  });
 // 1 2 3 4 5 6 7 8 9
+```
+
+### 代码输出
+
+```js
+var age = 16;
+var person = {
+  age: 18,
+  getAge: function() {
+    var age = 22;
+    setTimeout(function() {
+      alert(this.age);
+    }, 1000);
+  },
+};
+
+person.getAge(); //16; 若setTimeout的回调为箭头函数。则为18
+```
+
+### webworker
+
+[资料](http://www.ruanyifeng.com/blog/2018/07/web-worker.html)
+
+- 作用：为 JS 创造多线程环境
+- 优点：计算密集型或高延迟任务，被 Worker 线程负担，主线程（通常负责 UI 交互）就会很流畅不会被阻塞或拖慢
+- 限制：
+  > 同源：
+- 使用：
+
+### 下面代码输出
+
+```js
+setTimeout(function() {
+  console.log(1);
+}, 0);
+new Promise(function(a, b) {
+  console.log(2);
+  for (var i = 0; i < 1000; i++) {
+    i == 999 && a();
+  }
+  console.log(3);
+}).then(function() {
+  console.log(4);
+});
+
+console.log(5);
+
+//2 3 5 4 1
 ```
