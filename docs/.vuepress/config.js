@@ -17,7 +17,7 @@ module.exports = {
                     { text: 'CSS', link: '/frontend/css/' },
                     { text: 'Javascript', link: '/frontend/js/' },
                     { text: 'Typescript', link: '/frontend/ts/' },
-                    { text: 'Echarts', link: '/frontend/echarts/' },
+                    { text: 'Chart', link: '/frontend/chart/' },
                     { text: 'Vue', link: '/frontend/vue/' },
                     { text: 'Angular', link: '/frontend/angular/' },
                     { text: 'React', link: '/frontend/react/' },
@@ -25,6 +25,15 @@ module.exports = {
                     { text: 'Webpack', link: '/frontend/webpack/' },
                     { text: 'Infrastructure', link: '/frontend/infrastructure/' },
                     { text: '面试题', link: '/frontend/interview/' },
+                ]
+            },
+            {
+                text: '编码',
+                ariaLabel: 'Code Menu',
+                items: [
+                    { text: 'Leetcode', link: '/code/leetcode/' },
+                    { text: 'CodeWar', link: '/code/codewar/' },
+                    { text: '算法', link: '/code/algorithm/' },
                 ]
             },
             {
@@ -124,14 +133,6 @@ module.exports = {
                     { text: '腾讯云学堂', link: '/class/tencentcloud/' },
                 ]
             }, 
-            {
-                text: '编码',
-                ariaLabel: 'Code Menu',
-                items: [
-                    { text: 'Leetcode', link: '/code/leetcode/' },
-                    { text: 'CodeWar', link: '/code/codewar/' },
-                ]
-            },
             { text: '资源列表', link: '/link/' },
             // { text: '个人博客', link: 'https://chemistwang.github.io' },
             { text: '介绍', link: '/introduce/' },
@@ -142,8 +143,8 @@ module.exports = {
             //前端开发
             '/frontend/html/': ['html'],
             '/frontend/css/': ['basic', 'animation', 'module', 'case', 'interview'],
-            '/frontend/js/': ['basic', 'function', 'module', 'async', 'network', 'event', 'loop', 'animation', 'canvas', 'es6', 'eventloop', 'test', 'algorithm', 'case'],
-            '/frontend/echarts/': ['echarts'],
+            '/frontend/js/': ['basic', 'function', 'memory', 'module', 'async', 'network', 'event', 'loop', 'animation', 'canvas', 'es6', 'eventloop', 'test', 'case'],
+            '/frontend/chart/': ['echarts'],
             '/frontend/vue/': ['problem', 'interview'],
             '/frontend/flutter/': ['install', 'ios', 'case'],
             //后端开发

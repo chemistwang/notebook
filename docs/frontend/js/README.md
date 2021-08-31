@@ -6,5 +6,5 @@
 
 ## 编程风格
 
-> Programs must communicate clearly to people.
-> Good use of style can help reduce the occurrence of errors.
+- Programs must communicate clearly to people.
+- Good use of style can help reduce the occurrence of errors.

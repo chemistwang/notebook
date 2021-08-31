@@ -13,18 +13,9 @@
 
 ### Blob 对象
 
----
-
 - 写 React/Vue 项目时为什么要在列表组件中写 key，其作用是什么？
 
-::: details 解析
-
-:::
-
-- ['1', '2', '3'].map(parseInt) what & why
-
-::: details
-:::
+* ['1', '2', '3'].map(parseInt) what & why
 
 - 什么是防抖和节流？有什么区别 ？如何实现？
 

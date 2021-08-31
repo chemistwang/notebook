@@ -18,15 +18,17 @@
 
 可以理解用闭包来保存状态
 
-### 闭包（必须深入理解）
-
 理解闭包，一定一定理解作用域链
 
 > 当前作用域语句被执行完毕后，引擎会检查该作用域中被定义的变量（或常量）的被引用情况，若引用被全部解除，引擎便会认为其应该被清除
 
 利用高阶函数产生能够穿透作用域的引用
 
-### 实现防抖（debounce）和节流 (throttle)
+```js
+// 实现防抖（debounce）和节流 (throttle)
+```
+
+::: details Result
 
 - 防抖 (控制次数)
 
@@ -72,6 +74,8 @@ btn.onclick = throttle(function() {
 }, 1000);
 ```
 
+:::
+
 ## this 指向
 
 this 对象是在运行时基于函数的运行环境绑定的
@@ -101,9 +105,8 @@ show.apply(o, ["lucus"]);
 
 :::
 
-### 代码输出
-
 ```js
+// 代码输出
 var length = 10;
 function fn() {
   console.log(this.length);
@@ -116,22 +119,6 @@ var obj = {
   },
 };
 obj.method(fn); //10 1
-```
-
-### 代码输出
-
-```js
-foo();
-function foo() {
-  console.log("foo");
-}
-
-bar();
-var bar = function() {
-  console.log("bar");
-};
-
-//foo Error
 ```
 
 ### 下面代码输出
@@ -214,7 +201,7 @@ change(); //function
 ### 多种 js 编程方式
 
 - 命令式编程：通过详细描述行为的编程方式
-- 基于原型的面向对象编程
+- 面向对象编程: 基于原型的
 - 元编程：对 js 执行模型数据进行编写和操作的编程方式
 
 区别于 `命令式编程`

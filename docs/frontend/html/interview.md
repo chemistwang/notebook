@@ -38,8 +38,6 @@ Safari: Webkit
 eg: <img> <hr> <input> <link> ... 通常在一个空元素上使用一个闭标签是无效的
 ```
 
-### border: 0 与 border：none 的区别
-
 ### 页面加载顺序
 
 eg: onload 事件会在页面或图像加载完成后立即发生

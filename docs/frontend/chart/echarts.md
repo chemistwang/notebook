@@ -1,10 +1,10 @@
-# echar吐血整理
+# Echarts
 
-1. 场景：接口请求到的数据相同时，echarts图表不刷新
+1. 场景：接口请求到的数据相同时，echarts 图表不刷新
 
 > 参考链接[点击](https://blog.csdn.net/Ting_hao/article/details/91580207)
 
-``` js
+```js
 //清空当前实例，会移出实例中所有组件和图表
 instance.clear();
 ```
@@ -12,8 +12,8 @@ instance.clear();
 2. 饼图：饼图按时间高亮，鼠标移入取消定时器，鼠标移出重新启动定时器
 
 > 参考链接[点击](https://bbs.csdn.net/topics/392217212)
- 
-``` js
+
+```js
 let option = {
     ...
 }
@@ -56,7 +56,7 @@ chartInstance.on('mouseout', function (e) {
         type: 'highlight',
         seriesIndex: 0,
         dataIndex: lastMouseOverIndex
-    })  
+    })
     timer = setInterval(function () {
         // 取消之前高亮的图形
         chartInstance.dispatchAction({
@@ -75,20 +75,16 @@ chartInstance.on('mouseout', function (e) {
 });
 ```
 
-
-``` js
+```js
 //用过echarts的API
-animationDuration //初始动画的时长，支持回调函数
+animationDuration; //初始动画的时长，支持回调函数
 series: [
-    {
-        animationEasing: 'bounceOut', //初始动画的缓动效果
-        itemStyle: {
-            borderColor: 'xxx', //图形的描边颜色。支持的颜色格式同 color，不支持回调函数。
-            borderWidth: '' //描边线宽。为 0 时无描边。
-        }
-    }
-]
-
+  {
+    animationEasing: "bounceOut", //初始动画的缓动效果
+    itemStyle: {
+      borderColor: "xxx", //图形的描边颜色。支持的颜色格式同 color，不支持回调函数。
+      borderWidth: "", //描边线宽。为 0 时无描边。
+    },
+  },
+];
 ```
-
-

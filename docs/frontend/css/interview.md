@@ -36,8 +36,6 @@
 
 ### 一个满屏品字布局如何设计
 
-### 常见的兼容性问题
-
 ### 为什么要初始化 css 样式
 
 ### absolute 的 containing block 计算方式跟正常流有什么不同
@@ -106,3 +104,5 @@ static relative
 ### css3 中，@media 支持哪些类型
 
 all print screen speech
+
+### border: 0 与 border：none 的区别

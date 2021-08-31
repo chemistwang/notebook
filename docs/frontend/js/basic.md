@@ -10,7 +10,13 @@
 [ecmascript-language-types](https://tc39.es/ecma262/#sec-ecmascript-language-types)
 :::
 
-:::details typeof 返回值
+---
+
+```js
+// typeof 有哪些返回值 ?
+```
+
+:::details Result
 
 ```js
 typeof undefined; //undefined
@@ -25,16 +31,29 @@ typeof object; //object
 
 :::
 
-### 下面代码输出
+---
+
+```js
+// 代码输出
+typeof [1, 2, 3]; //?
+typeof NaN; //?
+```
+
+::: details Result
 
 ```js
 typeof [1, 2, 3]; //Object
-typeof NaN; //number 属于number类型，只不过用number类型无法表示 ECMAScript标准中明确定义了NaN属于Number类型。
+typeof NaN; //number
+//属于 number 类型，只不过用 number 类型无法表示
+//ECMAScript 标准中明确定义了 NaN 属于 Number 类型。
 ```
 
-### 代码输出
+:::
+
+---
 
 ```js
+// 代码输出
 function showCase(value) {
   switch (value) {
     case "A":
@@ -50,9 +69,20 @@ function showCase(value) {
       console.log("Do not know!");
   }
 }
-showCase(new String("A")); //Case A  typeof new String('') object
-showCase(String("A")); //undefined typeof String() string
+showCase(new String("A")); //?
+showCase(String("A")); //?
 ```
+
+::: details Result
+
+```js
+showCase(new String("A")); //Do not know!
+// typeof new String('') object
+showCase(String("A")); //Case A
+// typeof String('') string
+```
+
+:::
 
 ## 数字
 
@@ -62,9 +92,7 @@ showCase(String("A")); //undefined typeof String() string
 - 八进制: 0 开头
 - 十六进制: 0x 开头
 
-- 位运算符
-  & | ^ ~ << >> >>>
-- 进制转换
+### 进制转换
 
 ```js
 (10).toString(2); //"1010"
@@ -77,7 +105,7 @@ parseInt(1001, 2); //9
 
 ## 运算符
 
-### 代码输出
+### 赋值
 
 ```js
 var a = 1;
@@ -89,38 +117,50 @@ func();
 //b = 2
 ```
 
-::: tip 下面代码输出
+### 算术
+
+### 复合赋值
+
+### 递增/递减
 
 ```js
+// 代码输出
 var i = 0;
-console.log(i++);
+console.log(i++); //?
 ```
 
 ::: details result
-0
-:::
-
-### 下面代码输出
 
 ```js
-'abc'=== 'abc'; //true
-1 === 1 //true
-{a: 1} === {a: 1} //false
-{} === {} //false
-
-
-true + 1; //2
-"3" + 0; //30
-5 + "12"; //512
-undefined + 11; //NaN
-
+// 0
 ```
 
-> 考察 ===
+:::
 
-### 下面输出
+### 对象访问
 
 ```js
+// 代码输出
+3.toString() //?
+3..toString() //?
+3...toString() //?
+```
+
+:::details Result
+
+```js
+//Error
+//3
+//Error
+// '.'运算优先级
+```
+
+:::
+
+### 相等
+
+```js
+// 代码输出
 let a = { x: 1 };
 let b = { x: 2 };
 
@@ -139,20 +179,39 @@ console.log(a == b); //false
 console.log(a === b); //false
 console.log(a > c); //false
 console.log(a < c); //true
+
+// --------------------------------------
+
+var a = [1, 2, 3];
+var b = [1, 2, 3];
+var c = "1,2,3";
+
+console.log(a == c); //true
+console.log(b == c); //true
+console.log(a == b); //false
 ```
-
-### 下面代码的输出
-
-```js
-3.toString() //Error
-3..toString() //3
-3...toString() //Error
-```
-
-> '.'运算优先级
 
 > 只有数字和字符串可以进行比较，不是的都将转换
 > 比较运算符的转化规则:
+
+### 比较
+
+### 逻辑
+
+```js
+// 代码输出
+'abc'=== 'abc'; //true
+1 === 1 //true
+{a: 1} === {a: 1} //false
+{} === {} //false
+
+
+true + 1; //2
+"3" + 0; //30
+5 + "12"; //512
+undefined + 11; //NaN
+
+```
 
 ### == === 区别
 
@@ -161,66 +220,104 @@ console.log(a < c); //true
 
 ### 位运算符
 
-## 作用域
+& | ^ ~ << >> >>>
 
-### 代码输出
+## 提升
 
 ```js
-console.log(x === undefined);
+// 代码输出
+console.log(x === undefined); //?
 var x = 3;
 var myVar = "global Value";
 (function() {
-  console.log(myVar);
+  console.log(myVar); //?
   var myVar = "local Value";
 })();
-//true undefined
 ```
 
-### 代码输出
+::: details Result
 
 ```js
+//true
+//undefined
+```
+
+:::
+
+---
+
+```js
+// 代码输出
 var uname = "jack";
 function change() {
-  alert(uname);
+  alert(uname); //?
   var uname = "lily";
-  alert(uname);
+  alert(uname); //?
 }
-change(); //undefined lily
+change(); //?
 ```
 
-### a,b,c 哪个是全局变量
+::: details Result
 
 ```js
-var a = 1;
-function foo() {
-  if (a == 1) {
-    var b = 2;
-    if (b == 2) {
-      c = 3;
-    }
-  }
-}
+//undefined
+//lily
+```
+
+:::
+
+---
+
+```js
+// 代码输出
 foo();
-//a,c
+function foo() {
+  console.log("foo"); //?
+}
+
+bar();
+var bar = function() {
+  console.log("bar"); //?
+};
 ```
 
-### 下面代码输出
+::: details Result
 
 ```js
+//foo
+//Uncaught TypeError: bar is not a function
+```
+
+:::
+
+---
+
+```js
+// 代码输出
 var name = "World"!
 (function() {
 	if (typeof name === 'undefined') {
 		var name = 'Jack';
-		console.log('Goodbye' + name);
+		console.log('Goodbye' + name); //?
 	} else {
-		console.log('Hello' + name);
+		console.log('Hello' + name); //?
 	}
-})(); //GoodbyeJack
+})();
 ```
 
-> js 不是真正从上到下依次执行，在执行前要进行一个预解析，将 name 变量提升至当前函数作用域的最顶层，即
+::: details Result
 
 ```js
+// GoodbyeJack
+```
+
+```js {9,11}
+/**
+ * js 不是真正从上到下依次执行
+ * 在执行前要进行一个预解析，
+ * 将 name 变量提升至当前函数作用域的最顶层，即
+ */
+
 var name = "World"!
 (function() {
 	var name;
@@ -232,6 +329,34 @@ var name = "World"!
 	}
 })();
 ```
+
+:::
+
+---
+
+```js
+// a,b,c 哪个是全局变量 ?
+var a = 1;
+function foo() {
+  if (a == 1) {
+    var b = 2;
+    if (b == 2) {
+      c = 3;
+    }
+  }
+}
+foo();
+```
+
+::: details Result
+
+```js
+//a,c
+```
+
+:::
+
+## 作用域
 
 ## 数组
 
