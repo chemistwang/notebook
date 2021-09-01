@@ -101,6 +101,11 @@ show.call(o, "lucus");
 
 //apply: 立即执行,参数以数组形式
 show.apply(o, ["lucus"]);
+
+
+// call 和 apply 的区别是什么，哪个性能更好一些
+apply 转化的是内置的 call，并非 Function.prototype.call
+apply 最后还是转化成 call 来执行的，call 要更快毫无疑问
 ```
 
 :::
@@ -109,7 +114,7 @@ show.apply(o, ["lucus"]);
 // 代码输出
 var length = 10;
 function fn() {
-  console.log(this.length);
+  console.log(this.length); //?
 }
 var obj = {
   length: 5,
@@ -118,8 +123,16 @@ var obj = {
     arguments[0]();
   },
 };
-obj.method(fn); //10 1
+obj.method(fn);
 ```
+
+::: details Result
+
+```js
+//10 1
+```
+
+:::
 
 ### 下面代码输出
 

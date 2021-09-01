@@ -2,6 +2,10 @@
 
 ## 贪心算法
 
+## 实现发牌
+
+用 `splice` 算法复杂度比较高
+
 ## 实现排列组合
 
 https://www.jb51.net/article/78734.htm

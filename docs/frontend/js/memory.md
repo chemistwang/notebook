@@ -1,10 +1,11 @@
 # 内存
 
-```js
-// 平时有关注过前端的内存处理吗
+::: tip Question
 
-// 你了解 js 中的内存管理吗？什么情况下会导致内存泄漏呢
-```
+- 平时是否关注过前端的内存处理？
+- 是否了解 js 中的内存管理？什么情况下会导致内存泄漏？
+
+:::
 
 ## 内存的生命周期
 
@@ -30,7 +31,7 @@ console.log(a); //使用
 
 垃圾回收的算法主要依赖于引用的概念
 
-4.1 引用计数法
+### 1. 引用计数法
 
 看一个对象是否有指向它的引用，若没有其他对象指向它，说明当前对象不在被需要
 
@@ -38,7 +39,7 @@ console.log(a); //使用
 
 若两个对象互相引用，尽管不再被使用，但引用计数法无法识别，导致内存泄漏
 
-4.2 标记清除法
+### 2. 标记清除法
 
 将“不再使用的对象”定义为“无法到达的对象”
 
@@ -51,7 +52,7 @@ console.log(a); //使用
 
 ## 常见的内存泄漏
 
-5.1 全局变量
+### 1. 全局变量
 
 ```js
 function foo() {
@@ -61,17 +62,14 @@ function foo() {
 foo();
 ```
 
-5.2 未被清理的定时器和回调函数
+### 2. 未被清理的定时器和回调函数
 
-setInterval
-setTimeout
+- setInterval `clearInterval`
+- setTimeout `clearTimeout`
 
-clearInterval
-clearTimeout
+### 3. 闭包
 
-5.3 闭包
-
-5.4 DOM 引用
+### 4. DOM 引用
 
 ```js
 var element = {
@@ -92,7 +90,7 @@ element.images = null;
 
 知识点：
 
-1. （js 分配内存大小有何不同）
+1. js 分配内存大小有何不同
 2. What's the difference between ES6 Set and WeakSet?
 
 ::: details Result

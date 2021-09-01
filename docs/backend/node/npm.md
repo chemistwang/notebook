@@ -1,11 +1,22 @@
-# npm
+# NPM
 
-## 如何发布npm包
+## 是什么
+
+nodejs 包管理工具
+
+npm 著名大神：
+
+- TJ Holowaychunk
+- Mafintosh
+- Dominic Tarr
+
+https://www.zhihu.com/question/303815270
+
+## 如何发布 npm 包
 
 [官方链接](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry)
 
-
-``` bash
+```bash
 ➜  npm tree
 .
 ├── README.md
@@ -17,29 +28,29 @@
 
 执行`npm publish`
 
-``` bash
+```bash
 ➜  npm npm publish
-npm notice 
+npm notice
 npm notice 📦  chemputer-test-package@1.0.0
-npm notice === Tarball Contents === 
-npm notice 175B index.js    
+npm notice === Tarball Contents ===
+npm notice 175B index.js
 npm notice 242B package.json
-npm notice 77B  README.md   
-npm notice === Tarball Details === 
-npm notice name:          chemputer-test-package                  
-npm notice version:       1.0.0                                   
-npm notice package size:  443 B                                   
-npm notice unpacked size: 494 B                                   
+npm notice 77B  README.md
+npm notice === Tarball Details ===
+npm notice name:          chemputer-test-package
+npm notice version:       1.0.0
+npm notice package size:  443 B
+npm notice unpacked size: 494 B
 npm notice shasum:        4728ea3dee1d35cec82c4374139df5f441dfc598
 npm notice integrity:     sha512-vO87R/CmCDRzL[...]me9m13LBs4mhA==
-npm notice total files:   3                                       
-npm notice 
+npm notice total files:   3
+npm notice
 npm ERR! code E404
 npm ERR! 404 Not Found - PUT https://registry.npmjs.org/chemputer-test-package - Not found
-npm ERR! 404 
+npm ERR! 404
 npm ERR! 404  'chemputer-test-package@1.0.0' is not in the npm registry.
 npm ERR! 404 You should bug the author to publish it (or use the name yourself!)
-npm ERR! 404 
+npm ERR! 404
 npm ERR! 404 Note that you can also install from a
 npm ERR! 404 tarball, folder, http url, or git url.
 
@@ -47,13 +58,12 @@ npm ERR! A complete log of this run can be found in:
 npm ERR!     /Users/wyl/.npm/_logs/2021-06-09T10_12_41_375Z-debug.log
 ```
 
-
 解决方案：
 
-1. 确保npm地址是 `https://registry.npmjs.org/`
+1. 确保 npm 地址是 `https://registry.npmjs.org/`
 
 ```
-➜  npm npm config list   
+➜  npm npm config list
 ; cli configs
 metrics-registry = "https://registry.npmjs.org/"
 scope = ""
@@ -67,10 +77,10 @@ user-agent = "npm/6.13.4 node/v12.14.1 darwin x64"
 
 2. 执行 `npm login`
 
-``` bash
+```bash
 ➜  npm npm login
 Username: chemputer
-Password: 
+Password:
 Email: (this IS public) chemputer_dev@163.com
 Logged in as chemputer on https://registry.npmjs.org/.
 ```
@@ -79,40 +89,34 @@ Logged in as chemputer on https://registry.npmjs.org/.
 
 ```bash
 ➜  npm npm publish
-npm notice 
+npm notice
 npm notice 📦  chemputer-test-package@1.0.0
-npm notice === Tarball Contents === 
-npm notice 175B index.js    
+npm notice === Tarball Contents ===
+npm notice 175B index.js
 npm notice 242B package.json
-npm notice 77B  README.md   
-npm notice === Tarball Details === 
-npm notice name:          chemputer-test-package                  
-npm notice version:       1.0.0                                   
-npm notice package size:  443 B                                   
-npm notice unpacked size: 494 B                                   
+npm notice 77B  README.md
+npm notice === Tarball Details ===
+npm notice name:          chemputer-test-package
+npm notice version:       1.0.0
+npm notice package size:  443 B
+npm notice unpacked size: 494 B
 npm notice shasum:        4728ea3dee1d35cec82c4374139df5f441dfc598
 npm notice integrity:     sha512-vO87R/CmCDRzL[...]me9m13LBs4mhA==
-npm notice total files:   3                                       
-npm notice 
+npm notice total files:   3
+npm notice
 + chemputer-test-package@1.0.0
 ```
 
-然后会收到一份发布成功的邮件📧
+然后会收到一份发布成功的邮件 📧
 
+## 分享几个有趣的 NPM 包
 
-## 分享几个有趣的NPM包
+- [boxen](https://www.npmjs.com/package/boxen)
 
-1. [boxen](https://www.npmjs.com/package/boxen)
-
-2. [chalk](https://www.npmjs.com/package/chalk)
-
+- [chalk](https://www.npmjs.com/package/chalk)
 
 ## 常用工具
 
-代码热更新工具
+- [supervisor](https://www.npmjs.com/package/supervisor) 代码热更新工具
 
-[supervisor](https://www.npmjs.com/package/supervisor) 
-
-代理
-
-[superagent](https://www.npmjs.com/package/superagent)
+- [superagent](https://www.npmjs.com/package/superagent) 代理

@@ -148,7 +148,7 @@ module.exports = {
             '/frontend/flutter/': ['install', 'ios', 'case'],
             //后端开发
             '/backend/linux/': ['intro', 'centos', 'command', 'network', 'shortcut'],
-            '/backend/node/': ['install', 'npm', 'express', 'nest'],
+            '/backend/node/': ['basic', 'install', 'npm', 'express', 'koa', 'nest', 'rpc', 'performance', 'engineering'],
             '/backend/java/': ['base', 'jdbc', 'interview'],
             '/backend/maven/': ['mavenIntro', 'mavenProblem'],
             '/backend/spring/': ['spring'],
