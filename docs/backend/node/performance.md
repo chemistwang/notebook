@@ -96,7 +96,62 @@ npm i bindings # 帮助加载不同环境下的 .node 文件
 
 - 使用子进程或线程利用更多 CPU 资源
 
+```js
+// master.js
+const cp = require("child_process");
+
+const child_process = cp.fork(__dirname + "/child.js");
+
+child_process.send("haha");
+
+child_process.on("message", function(str) {
+  console.log("master: " + str);
+});
+```
+
+```js
+// child.js
+process.on("message", (str) => {
+  console.log("child: " + str);
+
+  process.send("hi");
+});
+```
+
 ### 2.Node.js cluster 模块实战与源码解读
+
+```js
+// cluster.js
+const cluster = require("cluster");
+const os = require("os");
+
+if (cluster.isMaster) {
+  for (let i = 0; i < os.cpus().length / 2; i++) {
+    cluster.fork();
+  }
+
+  cluster.on("exit", () => {
+    setTimeout(() => {
+      cluster.fork();
+    }, 5000);
+  });
+} else {
+  require("./app");
+
+  process.on("uncaughtException", (err) => {
+    console.error(err);
+
+    process.exit(1);
+  });
+
+  setInterval(() => {
+    if (process.memoryUsage().rss < 734003200) {
+      console.log("oom");
+      process.exit(1);
+    }
+  }, 5000);
+}
+```
 
 ### 3. 进程守护与管理
 

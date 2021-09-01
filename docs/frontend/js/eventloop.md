@@ -85,6 +85,8 @@ new Promise(function(resolve) {
 
 > setTimeout()的延时参数始终相对于主程序执行完毕的时间，并且多个 setTimeout 执行的先后顺序也是由这个延迟时间决定
 
+---
+
 ```js
 async function async1() {
   console.log("async1 start");
@@ -105,7 +107,11 @@ setTimeout(function() {
 async1();
 
 console.log("script end");
+```
 
+:::details Result
+
+```js
 //script start
 //async1 start
 //async2
@@ -113,6 +119,10 @@ console.log("script end");
 //async1 end
 //setTimeout
 ```
+
+:::
+
+---
 
 ```js
 async function async1() {
