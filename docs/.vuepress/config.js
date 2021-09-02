@@ -55,6 +55,7 @@ module.exports = {
                     { text: 'Nginx', link: '/backend/nginx/' },
                     { text: 'OpenResty', link: '/backend/openresty/' },
                     { text: 'Rust', link: '/backend/rust/' },
+                    { text: 'Python', link: '/backend/python/' },
                 ]
             },
             {
