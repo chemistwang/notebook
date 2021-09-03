@@ -52,7 +52,7 @@ console.log(a); // 2
 
 > [宿宝臣的博客](http://softlab.sdut.edu.cn/blog/subaochen/2016/02/%E8%AF%B4%E4%B8%80%E8%AF%B4js%E7%9A%84iife/)
 
-在刀耕火种的年代，作为脚本语言的 Javascript 为了避免全局变量污染，只能使用闭包来实现模块化。
+在刀耕火种的年代，作为脚本语言的 Javascript 为了避免全局变量污染，只能使用 `闭包` 来实现模块化。
 
 ```js
 (functino(window){

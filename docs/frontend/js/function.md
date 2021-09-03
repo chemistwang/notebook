@@ -5,6 +5,7 @@
 - `String()` | `Number()`| `Boolean()` | `Symbol()` | `Array()` | `BigInt()`
 - `Object()` | `Function()` | `Date()` | `Error()` | `RegExp()`
 
+
 ## 闭包
 
 ### 名词解读
@@ -130,7 +131,7 @@ btn.onclick = throttle(function() {
 
 - 默认绑定 (优先级最低)
 
-1. 全局对象默认绑定window
+1. 全局对象默认绑定 `window`
 
 ``` js
 function foo(){
@@ -142,13 +143,15 @@ foo(); //2 -> 调用位置：直接调用，只能使用默认绑定
 
 2. `'use strict'` 全局对象无法默认绑定
 
-``` js {1}
+``` js {3,4,6}
 'use strict'
 function foo(){
-  console.log(this.a)
+  console.log(this) //undefined 函数内部undefined
+  console.log(this.a) //Uncaught TypeError: Cannot read property 'a' of undefined
 }
+console.log(this) //window
 var a = 2;
-foo(); //Uncaught TypeError: Cannot read property 'a' of undefined
+foo(); 
 ```
 
 
@@ -260,17 +263,15 @@ list.forEach(foo, obj); //1 awesome 2 awesome 3 awesome
 
 ### 箭头函数
 
-箭头函数在涉及 this 绑定时的行为和普通函数的行为完全不一致。
+- 箭头函数不使用上述 `4` 种规则
 
-它不使用上述4种规则。
+- 根据外层（函数或者全局）`作用域` 决定 this
 
-取而代之的是用当前的词法作用域覆盖了 this 本来的值。
+- 箭头函数的绑定无法被修改
 
-根据外层（函数或者全局）作用域决定this。
-
-箭头函数的绑定无法被修改
-
-//函数调用会被this绑定到当前上下文对象中,只有最顶层或者最后一层会影响调用位置
+:::tip 参考资料
+[再来40道this面试题酸爽继续(1.2w字用手整理)](https://juejin.cn/post/6844904083707396109)
+:::
 
 
 ## 函数式编程
