@@ -274,6 +274,44 @@ list.forEach(foo, obj); //1 awesome 2 awesome 3 awesome
 :::
 
 
+
+### 手写 `new` `call` `apply` `bind` 的实现
+
+- 实现 `new`
+
+
+::: details Answer
+``` js
+
+```
+:::
+
+- 实现 `call`
+
+::: details Answer
+``` js
+
+```
+:::
+
+- 实现 `apply`
+
+::: details Answer
+``` js
+
+```
+:::
+
+- 实现 `bind`
+
+::: details Answer
+``` js
+
+```
+:::
+
+
+
 ## 函数式编程
 
 ### 多种 js 编程方式
