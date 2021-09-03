@@ -26,7 +26,7 @@ typeof "1"; //string
 typeof Symbol(); //symbol
 typeof 1; //number
 typeof 1n; //bigint
-typeof object; //object
+typeof {}; //object
 ```
 
 :::
@@ -42,7 +42,7 @@ typeof NaN; //?
 ::: details Result
 
 ```js
-typeof [1, 2, 3]; //Object
+typeof [1, 2, 3]; //object
 typeof NaN; //number
 //属于 number 类型，只不过用 number 类型无法表示
 //ECMAScript 标准中明确定义了 NaN 属于 Number 类型。
@@ -224,8 +224,116 @@ undefined + 11; //NaN
 
 ## 提升
 
+
 ```js
-// 代码输出
+// Q: 代码输出
+foo() //?
+function foo(){
+  console.log(a);
+  var a = 2;
+}
+
+bar() //?
+var bar = function(){
+
+}
+```
+
+:::details Answer
+``` js
+// undefined
+// Uncaught TypeError: foo is not a function
+// 函数声明式会被提升，但是函数表达式不会
+```
+:::
+
+---
+
+``` js
+// Q: 代码输出
+foo(); //?
+var foo;
+function foo() { 
+  console.log(1);
+}
+foo = function() { 
+  console.log(2); 
+};
+```
+
+:::details Answer
+
+``` js
+// 1
+// 函数声明和变量声明都会被提升
+// 但是函数会被优先提升，然后才是变量
+// 会被解析为
+function foo(){
+  console.log(1);
+}
+foo();
+foo = function(){
+  console.log(2);
+}
+// var foo 是重复的声明，会被忽略
+```
+
+:::
+
+
+---
+
+```js
+// Q: 代码输出
+function change() {
+  alert(typeof fn); //?
+  function fn() {
+    alert("hello");
+  }
+  var fn;
+}
+change();
+```
+
+:::details Answer
+``` js
+//function
+```
+:::
+
+
+
+---
+
+``` js
+// Q: 代码输出
+foo(); //?
+function foo(){
+  console.log(1)
+}
+var foo = function(){
+  console.log(2);
+}
+function foo(){
+  console.log(3);
+}
+```
+
+:::details Answer
+
+``` js
+// 3
+// 后面的函数声明可以覆盖前面
+```
+
+:::
+
+
+---
+
+
+```js
+// Q: 代码输出
 console.log(x === undefined); //?
 var x = 3;
 var myVar = "global Value";
@@ -235,7 +343,7 @@ var myVar = "global Value";
 })();
 ```
 
-::: details Result
+::: details Answer
 
 ```js
 //true
@@ -247,7 +355,7 @@ var myVar = "global Value";
 ---
 
 ```js
-// 代码输出
+// Q: 代码输出
 var uname = "jack";
 function change() {
   alert(uname); //?
@@ -257,7 +365,7 @@ function change() {
 change(); //?
 ```
 
-::: details Result
+::: details Answer
 
 ```js
 //undefined
@@ -269,7 +377,7 @@ change(); //?
 ---
 
 ```js
-// 代码输出
+// Q: 代码输出
 foo();
 function foo() {
   console.log("foo"); //?
@@ -281,7 +389,7 @@ var bar = function() {
 };
 ```
 
-::: details Result
+::: details Answer
 
 ```js
 //foo
@@ -293,7 +401,7 @@ var bar = function() {
 ---
 
 ```js
-// 代码输出
+// Q: 代码输出
 var name = "World"!
 (function() {
 	if (typeof name === 'undefined') {
@@ -305,7 +413,7 @@ var name = "World"!
 })();
 ```
 
-::: details Result
+::: details Answer
 
 ```js
 // GoodbyeJack
@@ -335,7 +443,7 @@ var name = "World"!
 ---
 
 ```js
-// a,b,c 哪个是全局变量 ?
+// Q: a,b,c 哪个是全局变量 ?
 var a = 1;
 function foo() {
   if (a == 1) {
@@ -348,7 +456,7 @@ function foo() {
 foo();
 ```
 
-::: details Result
+::: details Answer
 
 ```js
 //a,c
@@ -356,7 +464,47 @@ foo();
 
 :::
 
+
+--- 
+
+```js
+// Q: 代码输出
+const Greeters = [];
+for (var i = 0; i < 10; i++) {
+  Greeters.push(function() {
+    return console.log(i);
+  });
+}
+
+Greeters[0]();
+Greeters[1]();
+Greeters[2]();
+```
+
+:::details Answer
+
+``` js
+// 10
+// 10
+// 10
+// 解析：只是 push 数组，并没有执行方法
+```
+
+:::
+
+
+
+
+
+
+
+
 ## 作用域
+
+
+
+
+
 
 ## 数组
 

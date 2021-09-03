@@ -2,6 +2,80 @@
 
 ## 贪心算法
 
+
+贪心选择性质 - 每一步都会做出一个局部最优选择，最终的结果就是全局最优
+
+
+### 区间调度问题
+
+经典贪心算法 Interval Scheduling 区间调度
+
+有许多 [start, end] 闭区间，设计一个算法，算出这些区间中，最多有几个互不相交的区间
+
+
+``` js
+function intervalSchedule(intvs: number[][]) {}
+
+
+// 比如 intvs = [[1,3], [2,4], [3,6]];
+// 这些区间最多有两个区间互不相交，即[1,3], [3,6], intervalSchedule函数此时应该返回2
+```
+
+### 贪心求解
+
+1. 可以每次都选择可选区间中开始最早的那个？
+
+不行。有的区间可能开始很早，结束很晚 eg: [0,10] [1,2][2,3]
+
+2. 可以每次选择可选区间里时间最短的那个？
+
+不行。[1,3][2,4][3,6] [1,3][2,4]相交
+
+### 正确思路
+
+1. 从可选区间intvs里，选择一个end最小的区间x
+2. 把所有与x相交的区间从intvs中剔除
+3. 重复1，2，直到把intvs剔除空
+
+``` js
+// 我的做法
+function foo(intvs){
+    // 边界条件
+    if (intvs.length === 0) return 0;
+    // 排序
+    let sortIntvs = intvs.sort((a, b) => a[1] - b[1])
+    
+    for(let i = 0; i<sortIntvs.length - 1; i++) {
+        let [curStart, curEnd] = sortIntvs[i];
+        let [itemStart, itemEnd] = sortIntvs[i+1];
+
+        if (itemStart < curEnd) {
+            sortIntvs.splice(i+1, 1)
+        }
+    }
+
+    return sortIntvs.length;
+}
+```
+
+``` js
+// 大佬做法
+function foo(intvs) {
+    if (intvs.length === 0) return 0;
+    const sortArray = intvs.sort((a,b) => a[1] - b[1]);
+    let count = 1; //有几个区间互不相交
+    let xEnd = sortArray[0][1];
+    for(let item of intvs) {
+        const start = item[0];
+        if (start >= xEnd) {
+            count++;
+            xEnd = item[1];
+        }
+    }
+    return count;
+}
+```
+
 ## 实现发牌
 
 用 `splice` 算法复杂度比较高

@@ -2,33 +2,75 @@
 
 ## 原生函数
 
-- String()
-- Number()
-- Boolean()
-- Function()
-- Date()
-- Error()
-- Symbol()
-- RegExp()
-- Array()
-- Object()
-- BigInt()
+- `String()` | `Number()`| `Boolean()` | `Symbol()` | `Array()` | `BigInt()`
+- `Object()` | `Function()` | `Date()` | `Error()` | `RegExp()`
 
 ## 闭包
 
-可以理解用闭包来保存状态
+### 名词解读
 
-理解闭包，一定一定理解作用域链
+- `当函数可以记住并访问所在的词法作用域时，就产生了闭包，即使函数是在当前词法作用域之外执行。` 出自: `《你不知道的Javascript(上卷)》`
+- 个人的理解: 闭包就就是一种 `现象`, 这种现象在其他语言普遍存在，比如另一个我非常喜欢的语言 `Rust`
 
-> 当前作用域语句被执行完毕后，引擎会检查该作用域中被定义的变量（或常量）的被引用情况，若引用被全部解除，引擎便会认为其应该被清除
+### 如何实现
 
-利用高阶函数产生能够穿透作用域的引用
+就是一个普普通通的函数，只不过其他函数的状态会被 `GC` 回收，而该函数可以保存状态。
 
-```js
-// 实现防抖（debounce）和节流 (throttle)
+<!-- 利用高阶函数产生能够穿透作用域的引用 -->
+
+### 如何理解
+
+从两个方面： 
+
+- `垃圾回收机制`
+
+当前作用域语句被执行完毕后，引擎会检查该作用域中被定义的变量（或常量）的被引用情况，若引用被全部解除，引擎便会认为其应该被清除
+
+- `作用域链`
+
+保存该作用域的引用
+
+
+---
+
+``` js
+// Q: 代码输出
+function Foo() {
+  var i = 0;
+  return function() {
+    console.log(i++);
+  };
+}
+  
+var f1 = Foo();
+
+f2 = Foo();
+
+f1();
+f1();
+f2();
+f1();
 ```
 
-::: details Result
+::: details Answer
+
+```js
+// 0
+// 1
+// 0
+// 2
+```
+
+:::
+
+
+---
+
+```js
+// Q: 实现防抖（debounce）和节流 (throttle)
+```
+
+::: details Answer
 
 - 防抖 (控制次数)
 
@@ -78,14 +120,89 @@ btn.onclick = throttle(function() {
 
 ## this 指向
 
-this 对象是在运行时基于函数的运行环境绑定的
+### 为什么用 this
 
-:::details bind | call | apply 区别
-三者都是绑定 this
+更 `优雅` 传递上下文
+
+### this 绑定规则
+
+`this 的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式`
+
+- 默认绑定 (优先级最低)
+
+1. 全局对象默认绑定window
+
+``` js
+function foo(){
+  console.log(this.a)
+}
+var a = 2;
+foo(); //2 -> 调用位置：直接调用，只能使用默认绑定
+```
+
+2. `'use strict'` 全局对象无法默认绑定
+
+``` js {1}
+'use strict'
+function foo(){
+  console.log(this.a)
+}
+var a = 2;
+foo(); //Uncaught TypeError: Cannot read property 'a' of undefined
+```
+
+
+- 隐式绑定
+
+是否有上下文
+
+缺点：容易造成 `this` 丢失绑定对象
+
+---
 
 ```js
-//this: 只是负责绑定this并返回新的方法，并不执行
-//绑定之后不再改变
+// Q: 代码输出
+var length = 10;
+function fn() {
+  console.log(this.length); //?
+}
+var obj = {
+  length: 5,
+  method: function(fn) {
+    fn();
+    arguments[0]();
+  },
+};
+obj.method(fn);
+```
+
+::: details Answer
+
+```js
+//10
+//1
+```
+
+:::
+
+---
+
+
+- 显式绑定
+
+
+1. 硬绑定
+
+绑定方法：`call`, `apply`, `bind`
+
+``` js
+// Q: bind , call , apply 区别
+```
+:::details Answer
+
+```js
+// 相同点：三者都是绑定 this
+// 不同点：bind 只是负责绑定 this 并返回新的方法，并不执行, 绑定之后不再改变
 
 let o = { name: "o" };
 let p = { name: "p" };
@@ -101,113 +218,60 @@ show.call(o, "lucus");
 
 //apply: 立即执行,参数以数组形式
 show.apply(o, ["lucus"]);
-
-
-// call 和 apply 的区别是什么，哪个性能更好一些
-apply 转化的是内置的 call，并非 Function.prototype.call
-apply 最后还是转化成 call 来执行的，call 要更快毫无疑问
 ```
 
 :::
 
-```js
-// 代码输出
-var length = 10;
-function fn() {
-  console.log(this.length); //?
+---
+
+``` js
+// Q: call 和 apply 的区别是什么，哪个性能更好一些
+```
+
+:::details Answer
+- apply 转化的是内置的 call，并非 `Function.prototype.call`
+- apply 最后还是转化成 call 来执行的，call 要更快毫无疑问
+:::
+
+2. API 调用的上下文 
+
+``` js
+function foo(el) {
+  console.log(el, this.id)
 }
 var obj = {
-  length: 5,
-  method: function(fn) {
-    fn();
-    arguments[0]();
-  },
-};
-obj.method(fn);
-```
-
-::: details Result
-
-```js
-//10 1
-```
-
-:::
-
-### 下面代码输出
-
-```js
-const Greeters = [];
-for (var i = 0; i < 10; i++) {
-  Greeters.push(function() {
-    return console.log(i);
-  });
+  id: 'awesome'
 }
-
-Greeters[0](); //10
-Greeters[1](); //10
-Greeters[2](); //10
+let list = [1,2,3]
+list.forEach(foo, obj); //1 awesome 2 awesome 3 awesome
 ```
 
-> 只是 push 数组，并没有执行方法
 
-```js
-// var length = 10;
-// function fn(){
-// 	console.log(this.length);
-// }
-// var obj = {
-// 	length: 5,
-// 	method: function(fn) {
-//     fn();
-// 		arguments[0]();
-// 	}
-// }
-// obj.method(fn); //10 1
+- `new` 绑定
 
-function Foo() {
-  var i = 0;
-  return function() {
-    console.log(i++);
-  };
-}
+第一步： 创建（或者说构造）一个全新的对象。 
 
-var f1 = Foo();
+第二步：这个新对象会被执行 [[ 原型 ]] 连接。 
 
-f2 = Foo();
+第三步：这个新对象会绑定到函数调用的 this。 
 
-f1();
-f1();
-f2();
-f1();
+第四步：如果函数没有返回其他对象，那么 new 表达式中的函数调用会自动返回这个新对象。
 
-//0
-//1
-//0
 
-// this是运行时绑定的，不是编写时绑定，它的上下文取决于函数调用时的各种条件
-// this的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式
+### 箭头函数
 
-//调用栈（重要）: 为了达到当前执行位置所调用的所有函数
-//调用位置:
+箭头函数在涉及 this 绑定时的行为和普通函数的行为完全不一致。
+
+它不使用上述4种规则。
+
+取而代之的是用当前的词法作用域覆盖了 this 本来的值。
+
+根据外层（函数或者全局）作用域决定this。
+
+箭头函数的绑定无法被修改
 
 //函数调用会被this绑定到当前上下文对象中,只有最顶层或者最后一层会影响调用位置
 
-//箭头函数this，根据外层（函数或者全局）作用域决定this,箭头函数的绑定无法被修改
-```
-
-### 代码输出
-
-```js
-function change() {
-  alert(typeof fn);
-  function fn() {
-    alert("hello");
-  }
-  var fn;
-}
-change(); //function
-```
 
 ## 函数式编程
 
