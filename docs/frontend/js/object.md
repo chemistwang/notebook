@@ -149,14 +149,21 @@ Person.prototype.sayName = function() {
 
 ## 原型
 
-### 代码输出
+
 
 ```js
+// 代码输出
 console.log(typeof null); //object
 console.log(null instanceOf Object); //false
 ```
 
 ### 原型链的基本原理
+
+
+:::tips 参考资料
+https://github.com/mqyqingfeng/Blog/issues/2
+:::
+
 
 ---
 
@@ -179,9 +186,10 @@ F.prototype.constructor === F;
 //读取属性或方法时，会先在实例上读取，若有则返回，不再搜索原型。若没有，则根据内部指针（即 __proto__）继续在原型对象中查找，若有则返回。
 ```
 
-### 下面代码输出
+---
 
 ```js
+// 代码输出
 function Foo() {
   getName = function() {
     console.log(1);
@@ -210,6 +218,19 @@ new Foo.getName(); //2
 new Foo().getName(); //3
 new new Foo().getName(); //3
 ```
+
+:::details Answer
+``` js
+// 2
+// 4
+// 1
+// 1
+// 2
+// 3
+// 3
+```
+:::
+
 
 ### js 如何实现继承
 

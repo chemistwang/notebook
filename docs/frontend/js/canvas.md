@@ -1,5 +1,6 @@
 # Canvas
-## canvas元素
+
+## 元素
 ``` html
 <!--规定元素id,宽度,高度-->
 <canvas id="myCanvas" width="x" height="y">Your browser is not support canvas...</canvas>
@@ -10,7 +11,7 @@
 > 设置canvas的宽高必须在标签内，在style中则不生效
 
 
-## 1. 2D上下文对象
+## 2D上下文对象
 坐标: 左上角,原点坐标为(0,0)
 
 ``` js
@@ -62,6 +63,6 @@ ctx.arc(x, y , radius, startAngle, endAngle, anticlockwise);
 > arc = (Math.PI/180)*角度
 
 
-## 2. 3D上下文对象
+## 3D上下文对象
 
 

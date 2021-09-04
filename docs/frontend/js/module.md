@@ -65,7 +65,7 @@ console.log(a); // 2
 
 ## AMD
 
-`AMD(Asynchronous Module Definition)`是`RequireJS`在推广过程中对模块定义的规范化产出 (一个规范)
+`AMD(Asynchronous Module Definition)` 是 `RequireJS` 在推广过程中对模块定义的规范化产出 (一个规范)
 
 - AMD (可能更适合浏览器端)
 
@@ -87,7 +87,7 @@ define(['./a', './b'], function(a, b){
 
 ## CMD
 
-`CMD(Common Module Definition)`是`SeaJS`在推广过程中对模块定义的规范化产出 （一个规范）
+`CMD(Common Module Definition)` 是 `SeaJS` 在推广过程中对模块定义的规范化产出 （一个规范）
 
 - CMD （可能更适合服务器端）
 
@@ -106,26 +106,31 @@ define(function(require,exports,module){
 
 > 代码在运行时，不知道依赖，需要遍历所有的 require 关键字，找到后面的依赖，具体将 function toString()后，用正则匹配出 require 关键字后面的依赖，牺牲性能获取更多开发便利
 
+## UMD
+
+`UMD(Universal Module Definition)`
+
 ## CommonJS
 
-`CommonJS Modules/2.0`是`BravoJS`在推广过程中对模块定义的规范化产出 （一个规范）
-
-- CommonJS
+`CommonJS Modules/2.0` 是 `BravoJS` 在推广过程中对模块定义的规范化产出 （一个规范）
 
 前三者一般用于浏览器，Nodejs 使用 CommonJS 规范
 
+- `require`
+
+用于加载模块文件, 后缀名默认为 `.js`
+
+- `module`
+
 规定 `module` 代表 当前模块, 是一个对象
-它的 `exports` 属性, 是对外的接口，加载某个模块，其实是加载该模块的 `module.exports` 属性
 
-若在命令行调用某个模块，eg: `node something.js`，则 `module.parent`为`null`，为入口脚本
+- `exports`
 
-内置 `require` 用于加载模块文件, 后缀名默认为 `.js`
+对外接口，加载某个模块，其实是加载该模块的 `module.exports` 属性
 
-## UMD
+> CommonJS 加载模块是同步的，所以只有加载完成才能执行后面的操作
 
 ## ES6 Modules
-
-- ES6
 
 export/import 对模块进行导入导出
 

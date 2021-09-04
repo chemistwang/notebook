@@ -282,7 +282,12 @@ list.forEach(foo, obj); //1 awesome 2 awesome 3 awesome
 
 ::: details Answer
 ``` js
-
+function create () {
+  var Con = [].shift.call(arguments);
+  var obj = Object.create(Con.prototype);
+  var ret = Con.apply(obj, arguments);
+  return ret instanceof Object ? ret : obj;
+}
 ```
 :::
 
@@ -290,6 +295,17 @@ list.forEach(foo, obj); //1 awesome 2 awesome 3 awesome
 
 ::: details Answer
 ``` js
+Function.prototype.call3 = function(context) {
+  context = (context !== null && context !== undefined) ? Object(context) : window;
+  var fn = Symbol();
+  context[fn] = this;
+
+  let args = [...arguments].slice(1);
+  let result = context[fn](...args);
+
+  delete context[fn];
+  return result;
+};
 
 ```
 :::
@@ -298,6 +314,15 @@ list.forEach(foo, obj); //1 awesome 2 awesome 3 awesome
 
 ::: details Answer
 ``` js
+Function.prototype.apply3 = function(context, arr) {
+  context = context ? Object(context) : window;
+  let fn = Symbol();
+  context[fn] = this;
+
+  let result = arr ? context[fn](...arr) : context[fn]();
+  delete context[fn];
+  return result;
+};
 
 ```
 :::
@@ -306,7 +331,28 @@ list.forEach(foo, obj); //1 awesome 2 awesome 3 awesome
 
 ::: details Answer
 ``` js
+Function.prototype.bind2 = function(context) {
+  if (typeof this !== "function") {
+    throw new Error(
+      "Function.prototype.bind - what is trying to be bound is not callable"
+    );
+  }
+  var self = this;
+  var args = Array.prototype.slice.call(arguments, 1);
 
+  var fBound = function() {
+    var innerArgs = Array.prototype.slice.call(arguments);
+    return self.apply(
+      this instanceof fNOP ? this : context,
+      args.concat(innerArgs)
+    );
+  };
+
+  var fNOP = function() {};
+  fNOP.prototype = this.prototype;
+  fBound.prototype = new fNOP();
+  return fBound;
+};
 ```
 :::
 
