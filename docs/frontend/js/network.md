@@ -1,5 +1,8 @@
 # 网络和并发
 
+
+
+
 ## 罗列常用的 http 状态码并简述其含义
 
 - `1xx` `infomational`(信息性状态码) 接收的请求正在处理
@@ -268,6 +271,8 @@ requestAnimationFrame
 MutationObserver
 
 ### 1. 原生 XHR
+
+
 
 ### 2. \$.ajax
 

@@ -80,6 +80,11 @@ process.stdin.on("data", (e) => {
 });
 ```
 
+## 架构图
+
+![node架构图](http://cdn.chemputer.top/notebook/node/architecture.png)
+
+
 ## 可以做什么
 
 ### 1.web 服务

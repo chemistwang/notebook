@@ -143,7 +143,7 @@ module.exports = {
             //前端开发
             '/frontend/html/': ['html'],
             '/frontend/css/': ['basic', 'animation', 'module', 'case', 'interview'],
-            '/frontend/js/': ['basic', 'function', 'memory', 'module', 'async', 'network', 'event', 'loop', 'animation', 'canvas', 'es6', 'eventloop', 'test', 'case'],
+            '/frontend/js/': ['basic', 'function', 'object', 'memory', 'module', 'async', 'network', 'event', 'loop', 'animation', 'canvas', 'es6', 'eventloop', 'test', 'case'],
             '/frontend/react/': ['init', 'basic', 'redux', 'hooks', 'sourcecode', 'interview'], 
             '/frontend/vue/': ['problem', 'interview'],
             '/frontend/flutter/': ['install', 'ios', 'case'],
