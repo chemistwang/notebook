@@ -72,13 +72,13 @@ vi server.properties
 broker.id=1 # 其他两台修改为2、3
 
 # 端口
-advertised.listeners=PLAINTEXT://t1.herin.ai:9092
+advertised.listeners=PLAINTEXT://t1.chemputer.ai:9092
 
 # 指定Kafka的数据位置
 log.dirs=/opt/module/kafka_2.12-2.4.1/log
 
 # zookeeper集群
-zookeeper.connect=t1.herin.ai:2181,t2.herin.ai:2181,t3.herin.ai:2181
+zookeeper.connect=t1.chemputer.ai:2181,t2.chemputer.ai:2181,t3.chemputer.ai:2181
 ```
 
 3. 启动服务
@@ -172,10 +172,10 @@ Nov 20 11:18:45 t2 systemd[1]: kafka.service: Failed with result 'exit-code'.
 
 ```bash
 # 创建名为yourTopicName的主题
-bin/kafka-topics.sh --create --bootstrap-server t2.herin.ai:9092 --topic yourTopicName
+bin/kafka-topics.sh --create --bootstrap-server t2.chemputer.ai:9092 --topic yourTopicName
 
 # 查看目前Kafka中的主题
-bin/kafka-topics.sh --list --bootstrap-server t2.herin.ai:9092
+bin/kafka-topics.sh --list --bootstrap-server t2.chemputer.ai:9092
 ```
 
 2. 生产消息到 Kafka
@@ -183,13 +183,13 @@ bin/kafka-topics.sh --list --bootstrap-server t2.herin.ai:9092
 使用 Kafka 内置测试程序，生产一些消息到 Kafka 的`yourTopicName`主题中
 
 ```bash
-bin/kafka-console-producer.sh --broker-list t2.herin.ai:9092 --topic yourTopicName
+bin/kafka-console-producer.sh --broker-list t2.chemputer.ai:9092 --topic yourTopicName
 ```
 
 3. 从 Kafka 消费消息
 
 ```bash
-bin/kafka-console-consumer.sh --bootstrap-server t2.herin.ai:9092 --topic yourTopicName --from-beginning
+bin/kafka-console-consumer.sh --bootstrap-server t2.chemputer.ai:9092 --topic yourTopicName --from-beginning
 ```
 
 ## kafkaTool
@@ -216,7 +216,7 @@ bin/kafka-console-consumer.sh --bootstrap-server t2.herin.ai:9092 --topic yourTo
 
 ```bash
 bin/kafka-topics.sh \
---zookeeper t2.herin.ai:2181 \
+--zookeeper t2.chemputer.ai:2181 \
 --create \
 --topic benchmark \
 --partitions 1 \
@@ -231,7 +231,7 @@ bin/kafka-producer-perf-test.sh \
 --num-records 5000000 \
 --throughput -1 \
 --record-size 1000 \
---producer-props bootstrap.servers=t1.herin.ai:9092,t2.herin.ai:9092,t3.herin.ai:9092 \
+--producer-props bootstrap.servers=t1.chemputer.ai:9092,t2.chemputer.ai:9092,t3.chemputer.ai:9092 \
 acks=1
 ```
 
@@ -254,7 +254,7 @@ acks=1
 
 ```bash
 bin/kafka-consumer-perf-test.sh \
---broker-list t1.herin.ai:9092,t2.herin.ai:9092,t3.herin.ai:9092 \
+--broker-list t1.chemputer.ai:9092,t2.chemputer.ai:9092,t3.chemputer.ai:9092 \
 --topic benchmark \
 --fetch-size 1048576 \
 --messages 5000000

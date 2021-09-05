@@ -12,7 +12,7 @@ docker 是一种容器技术，解决软件跨环境迁移的问题
 
 ![docker架构](http://cdn.chemputer.top/notebook/docker/architecture.jpg)
 
-## 3. 安装 docker
+## 3. 安装
 
 - MacOS
 
@@ -20,37 +20,37 @@ docker 是一种容器技术，解决软件跨环境迁移的问题
 
 - Ubuntu
 
-```
-1. apt-get update
-2. apt-get install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg-agent \
-    software-properties-common
-3. curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-4. add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable" //x86
-5. apt-get update
-6. apt-get install docker-ce docker-ce-cli containerd.io
-7. docker run hello-world //测试是否成功
-8. docker -v 查看docker版本
-9. docker info
+``` bash
+apt-get update
+apt-get install \
+  apt-transport-https \
+  ca-certificates \
+  curl \
+  gnupg-agent \
+  software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+add-apt-repository \
+  "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) \
+  stable" # x86
+apt-get update
+apt-get install docker-ce docker-ce-cli containerd.io
+docker run hello-world # 测试是否成功
+docker -v # 查看docker版本
+docker info
 ```
 
 - CentOS
 
-```
-1. sudo yum install -y yum-utils
-2. sudo yum-config-manager \
-    --add-repo \
-    https://download.docker.com/linux/centos/docker-ce.repo
-3. sudo yum install docker-ce docker-ce-cli containerd.io
-4. yum list docker-ce --showduplicates | sort -r # 可选，查看docker版本
-5. sudo yum install docker-ce-<VERSION_STRING> docker-ce-cli-<VERSION_STRING> containerd.io # 可选，安装指定版本
-6. docker run hello-world //测试是否成功
+``` bash
+sudo yum install -y yum-utils
+sudo yum-config-manager \
+  --add-repo \
+  https://download.docker.com/linux/centos/docker-ce.repo
+sudo yum install docker-ce docker-ce-cli containerd.io
+yum list docker-ce --showduplicates | sort -r # 可选，查看docker版本
+sudo yum install docker-ce-<VERSION_STRING> docker-ce-cli-<VERSION_STRING> containerd.io # 可选，安装指定版本
+docker run hello-world # 测试是否成功
 ```
 
 > [官方安装参考链接](https://docs.docker.com/)
@@ -67,7 +67,8 @@ docker 是一种容器技术，解决软件跨环境迁移的问题
 
 - mac
 
-![mac添加镜像](https://cdn.herinapp.com/tower/docker/registry-mirror.jpg)
+![mac添加镜像](http://cdn.chemputer.top/notebook/docker/registry-mirror.jpeg)
+
 
 - linux
 

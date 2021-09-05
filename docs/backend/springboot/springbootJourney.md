@@ -33,7 +33,7 @@ public class CrosConfig implements WebMvcConfigurer {
 
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:8080")
-//                .allowedOrigins("https://test-dev.herinapp.com")
+//                .allowedOrigins("https://test-dev.chemputer.com")
                 .allowedMethods("GET","HEAD","POST","PUT","DELETE","OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true)

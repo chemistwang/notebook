@@ -25,7 +25,7 @@ import java.util.concurrent.CountDownLatch;
 
 public class ZooKeeperDemo {
 
-    private static final String CONNECTION_STRING = "t1.herin.ai:2181,t2.herin.ai:2181,t3.herin.ai:2181";
+    private static final String CONNECTION_STRING = "t1.chemputer.ai:2181,t2.chemputer.ai:2181,t3.chemputer.ai:2181";
     private static final int SESSION_TIMEOUT = 5000;
 
     private static CountDownLatch latch = new CountDownLatch(1);
@@ -66,7 +66,7 @@ npm install node-zookeeper-client
 ``` js
 const zookeeper = require('node-zookeeper-client');
 
-const CONNECTION_STRING = 't1.herin.ai:2181,t2.herin.ai:2182,t3.herin.ai:2181';
+const CONNECTION_STRING = 't1.chemputer.ai:2181,t2.chemputer.ai:2182,t3.chemputer.ai:2181';
 const OPTIONS = {
     sessionTimeout: 5000
 };

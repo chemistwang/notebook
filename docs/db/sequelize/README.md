@@ -19,8 +19,8 @@ const sequelize = new Sequelize({
   host: "127.0.0.1", //主机地址
   port: 5432, //端口
   username: "postgres", //用户名
-  password: "herin123", //密码
-  database: "herindemo", //数据库
+  password: "chemputer123", //密码
+  database: "chemputerdemo", //数据库
 });
 
 module.exports = sequelize;
@@ -117,11 +117,11 @@ const Community = require("../model/community");
 
 async function update() {
   await Community.update(
-    { moduleName: "herin123" },
+    { moduleName: "chemputer" },
     {
       where: {
         id: 22222,
-        moduleName: "herin",
+        moduleName: "chemputer",
       },
     }
   );

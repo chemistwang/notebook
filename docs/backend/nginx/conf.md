@@ -5,12 +5,12 @@
 ``` YAML
 server{
     listen 80;
-    server_name test-dev.herinapp.com;
+    server_name test-dev.chemputer.com;
     return 301 https://$server_name$request_uri;
 }
 server {
     listen 443 ssl;
-    server_name test-dev.herinapp.com;
+    server_name test-dev.chemputer.com;
     root /root/dev-web/dist/;
     index index.html index.htm;
     location / {
@@ -18,8 +18,8 @@ server {
             # root /root/dev-web/dist;
             # index index.html index.htm;
     }
-    ssl_certificate /etc/nginx/cert/herinapp.com.pem;
-    ssl_certificate_key /etc/nginx/cert/herinapp.com.key;
+    ssl_certificate /etc/nginx/cert/chemputer.com.pem;
+    ssl_certificate_key /etc/nginx/cert/chemputer.com.key;
 }
 
 ```

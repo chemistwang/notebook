@@ -187,9 +187,9 @@ $ shutdown -r now
 
 | hostname | ip | 安装组件 |
 | --- | --- | --- |
-| t1.herin.ai(master) | 62.234.154.80 | kube-apiserver,kube-controller-manager,kube-scheduler,etcd |
-| t2.herin.ai(node)  | 49.232.150.22 | kubelet,kube-proxy,docker,flannel,etcd |
-| t3.herin.ai(node)  | 49.232.138.134 | kubelet,kube-proxy,docker,flannel,etcd |
+| t1.chemputer.ai(master) | 62.234.154.80 | kube-apiserver,kube-controller-manager,kube-scheduler,etcd |
+| t2.chemputer.ai(node)  | 49.232.150.22 | kubelet,kube-proxy,docker,flannel,etcd |
+| t3.chemputer.ai(node)  | 49.232.138.134 | kubelet,kube-proxy,docker,flannel,etcd |
 
 
 

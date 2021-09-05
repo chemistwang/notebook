@@ -18,7 +18,7 @@ CREATE EXTENSION pgagent;
 3. 执行
 
 ``` bash
-/usr/bin/pgagent hostaddr=127.0.0.1 dbname=demo user=postgres password=herin123
+/usr/bin/pgagent hostaddr=127.0.0.1 dbname=demo user=postgres password=chemputer123
 ```
 
 4. 

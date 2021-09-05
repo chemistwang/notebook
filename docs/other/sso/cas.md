@@ -151,7 +151,7 @@ git clone -b 5.3 https://github.com/apereo/cas-overlay-template.git
 CAS Service需要使用Https的方式，就需要证书，可以买也可以自己生成（访问使用http，cas会给出警告）
 
 声明：
-> 秘钥库口令 `herin123`
+> 秘钥库口令 `chemputer123`
 > 姓名姓氏：cas.chemputer.top
 
 三步：
@@ -168,12 +168,12 @@ keytool -genkey -alias casserver -keyalg RSA -keystore ~/Desktop/caskeystore
 
 > 注意：当问到 您的名字与姓氏是什么? 此时需要填写域名，作为之后的访问地址，其他随意。
 
-会在指定目录下生成一个 `sslherin.keystore`文件
+会在指定目录下生成一个 `sslchemputer.keystore`文件
 
 2. 生成证书
 
 ``` bash
-keytool -export -alias casserver -storepass herin123 -file ~/Desktop/cas.cer -keystore ~/Desktop/caskeystore
+keytool -export -alias casserver -storepass chemputer123 -file ~/Desktop/cas.cer -keystore ~/Desktop/caskeystore
 ```
 
 参数说明：
@@ -181,14 +181,14 @@ keytool -export -alias casserver -storepass herin123 -file ~/Desktop/cas.cer -ke
 `-file` 指定导出证书的文件名
 `-keystore` 指定之前生成的秘钥文件的文件名
 
-会在指定目录下生成`sslherin.cer`文件
+会在指定目录下生成`sslchemputer.cer`文件
 
 3. 导入证书（导入到JDK的证书库才能使用）
 
 找到自己环境java安装目录
 
 ```
-sudo keytool -import -alias casserver -keystore /Library/Java/JavaVirtualMachines/jdk-13.0.1.jdk/Contents/Home/lib/security/cacerts -file Desktop/sslherin.cer -trustcacerts
+sudo keytool -import -alias casserver -keystore /Library/Java/JavaVirtualMachines/jdk-13.0.1.jdk/Contents/Home/lib/security/cacerts -file Desktop/sslchemputer.cer -trustcacerts
 
 
 # 1.8_211
@@ -366,14 +366,14 @@ server{
 
 
 
-2. 在` cas-overlay-template` 项目中，新建 `src/main/resources` 目录，并将 `overlays/org.apereo.cas.cas-server-webapp-tomcat-5.3.16/WEB-INF/classes/application.properties` 文件和刚刚生成的 `sslherin.keystore` 文件拷贝进来
+2. 在` cas-overlay-template` 项目中，新建 `src/main/resources` 目录，并将 `overlays/org.apereo.cas.cas-server-webapp-tomcat-5.3.16/WEB-INF/classes/application.properties` 文件和刚刚生成的 `sslchemputer.keystore` 文件拷贝进来
 
 3. 修改 `application.properties`
 
 ```
 server.ssl.key-store=classpath:keystore
-server.ssl.key-store-password=herin123
-server.ssl.key-password=herin123
+server.ssl.key-store-password=chemputer123
+server.ssl.key-password=chemputer123
 ```
 
 4. 执行 `nohup ./build.sh run &` 后台启动
@@ -396,18 +396,18 @@ cd /etc/nginx/cert
 2.  将pem文件（包括证书和私钥）转换成pk12格式文件：
 
 ``` bash
-openssl pkcs12 -export -in herinapp.com.pem -inkey herinapp.com.key -out lsl_herinapp.pk12 -name tomcat_herinapp
+openssl pkcs12 -export -in chemputer.com.pem -inkey chemputer.com.key -out lsl_chemputer.pk12 -name tomcat_chemputer
 ```
-> 回车之后需要输入密码： herin123
+> 回车之后需要输入密码： chemputer123
 
 3. 生成keystore(再将证书由.p12格式转换成.jks格式)
 
 ``` bash
-keytool -importkeystore -srckeystore lsl_herinapp.pk12 -srcstoretype PKCS12 -deststoretype JKS -destkeystore lsl_herinapp.jks
+keytool -importkeystore -srckeystore lsl_chemputer.pk12 -srcstoretype PKCS12 -deststoretype JKS -destkeystore lsl_chemputer.jks
 ```
 或
 ``` bash
- keytool -importkeystore -srckeystore lsl_herinapp.jks -destkeystore lsl_herinapp.jks -deststoretype pkcs12
+ keytool -importkeystore -srckeystore lsl_chemputer.jks -destkeystore lsl_chemputer.jks -deststoretype pkcs12
 ```
 
 

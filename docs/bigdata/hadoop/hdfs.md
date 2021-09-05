@@ -406,7 +406,7 @@ public void getFileSystem4() throws URISyntaxException, IOException {
     @Test
     public void downLoad2() throws URISyntaxException, IOException, InterruptedException {
         FileSystem fileSystem = FileSystem.get(new URI("hdfs://192.168.0.242:8020/"), new Configuration(), "root");
-        fileSystem.copyToLocalFile(new Path("/herin/out.txt"), new Path("/Users/yagao/Desktop/xxx.txt"));
+        fileSystem.copyToLocalFile(new Path("/chemputer/out.txt"), new Path("/Users/yagao/Desktop/xxx.txt"));
     }
 
 ```
@@ -418,7 +418,7 @@ public void getFileSystem4() throws URISyntaxException, IOException {
     @Test
     public void upload() throws URISyntaxException, IOException, InterruptedException {
         FileSystem fileSystem = FileSystem.get(new URI("hdfs://192.168.0.242:8020/"), new Configuration(), "root");
-        fileSystem.copyFromLocalFile(new Path("/Users/yagao/Desktop/xxx.txt"), new Path("/herin/out.txt"));
+        fileSystem.copyFromLocalFile(new Path("/Users/yagao/Desktop/xxx.txt"), new Path("/chemputer/out.txt"));
         fileSystem.close();
     }
 ```

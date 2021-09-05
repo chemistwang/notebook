@@ -52,7 +52,7 @@ console.log(process.env.NODE_ENV, "process.env.NODE_ENV=========");
 if (process.env.NODE_ENV === "development") {
   BASE_URL = "http://localhost:10002/DEVBE";
 } else {
-  BASE_URL = "https://test-devbe.herinapp.com/DEVBE";
+  BASE_URL = "https://test-devbe.chemputer.com/DEVBE";
 }
 
 const instance = axios.create({

@@ -21,22 +21,25 @@
 - 没有容器生命周期的管理工具
 - 没有图形化运维管理工具
 
-## 二. docker集群化解决方案 （资源管理器对比）
+## 二. docker集群化解决方案
 
-- `apache mesos` => 分布式资源管理框架，2019-5 Twitter使用k8s
-- `docker swarm` => 轻量级，针对docker，2019-7 阿里云剔除
-- `google kubernetes` => 10年容器化基础架构 `Borg`，用 `Go` 语言翻写
-
-
+| 公司 | 解决方案 | 简介 | 大事件 |
+| --- | --- | --- | --- |
+| `apache ` | `mesos` | 分布式资源管理框架 | `2019-5` `Twitter` 使用 `k8s` |
+| `docker` | `swarm`  | 轻量级，针对docker | `2019-7` 阿里云剔除 |
+| `google` | `kubernetes` | 10年容器化基础架构 `Borg`，用 `Go` 语言翻写 | 现流行 |
 
 
 
 ## 三. k8s是什么
 
-- 用于容器化应用程序的部署，扩展和管理
-- Google在2014年发布的一个开源项目，使用go语言开发
-- 在其之前，Google使用Borg系统来调度庞大数量容器（据说Google数据中心运行20多亿个容器）和工作负载。
-- 目标：让部署容器化应用简单高效
+`作用`：用于容器化应用程序的部署，扩展和管理
+
+`时间`：`Google` 在 `2014` 年发布的一个开源项目，使用 `Go` 语言开发
+
+`背景`：在其之前，`Google` 使用 `Borg` 系统来调度庞大数量容器（据说Google数据中心运行20多亿个容器）和工作负载。
+
+`目标`：让部署容器化应用简单高效
 
 ## 四. k8s优点
 
@@ -53,47 +56,46 @@
 
 ## 五. k8s架构原理
 
-![k8s逻辑架构图](https://cdn.herinapp.com/tower/k8s/k8s%E9%80%BB%E8%BE%91%E6%9E%B6%E6%9E%84%E5%9B%BE.jpg)
+![k8s逻辑架构图](http://cdn.chemputer.top/notebook/k8s/architecture.jpg)
+
 
 ## 六. 四组基本概念
 
-### 1. Pod/Pod控制器
+### 1. Pod / Pod控制器
 
-```
-(1) Pod
 
-- Pod是k8s里能够被运行的最小的逻辑单元（原子单元）
-- 一个Pod里面可以运行多个容器，又叫：边车（SideCar）模式，它们共享`UTS+NEET+IPC`名称空间
+#### 1.1 `Pod`
+
+- `Pod` 是 `k8s` 里能够被运行的 `最小的逻辑单元（原子单元）`
+- 一个Pod里面可以运行多个容器，又叫：边车（SideCar）模式，它们共享 `UTS+NEET+IPC` 名称空间
 - 实现服务集群：只需要复制多个Pod副本即可，这也是k8s管理的先进之处，k8s如果继续扩容，缩容，只需要控制pod的数量即可
 - pod内部容器创建之前，必须先创建pause容器，该容器共享网络、共享存储
-- 服务容器之间访问使用localhost访问，相当于访问本地服务一样，性能非常高
+- 服务容器之间访问使用 `localhost` 访问，相当于访问本地服务一样，性能非常高
 
-(2) Pod控制器
+#### 1.2 `Pod控制器`
 
-- Pod控制器是Pod启动的一种模板，用来保证k8s里启动的Pod始终按照预期运行（副本数，生命周期，健康状态检查...）
-- k8s常用控制器: Deployment/DaemonSet/ReplicaSet/StatefulSet/Job/CronJob
-```
+- Pod控制器是Pod启动的一种 `模板`，用来保证k8s里启动的Pod始终按照预期运行（副本数，生命周期，健康状态检查...）
+- k8s常用控制器: `Deployment`/`DaemonSet`/`ReplicaSet`/`StatefulSet`/`Job`/`CronJob`
 
-### 2. Name/Namespace
+### 2. Name / Namespace
 
-```
-(1) Name
+
+#### 2.1 `Name`
 
 - "资源"有`apiVersion`, `kind`, `metadata`, `spec`, `status`等配置信息
 
-(2) Namespace
+#### 2.2 `Namespace`
 
 - 随着项目增多，人员增加，集群规模的扩大，需要一种能够隔离k8s内各种“资源”的方法，即名称空间
 - 名称空间可以理解为k8s内部的虚拟集群组
 - 合理使用k8s名称空间，使得集群管理员能够更好的对交付到k8s里的服务进行分类管理和浏览
 - k8s默认存在的名称空间: `default`, `kube-system`, `kube-public`
 - 查询k8s特定“资源”需要带上相应名称空间，默认查询 `default`
-```
 
-### 3. Label/Label选择器
+### 3. Label / Label选择器
 
-```
-(1) Label
+
+#### 3.1 `Label`
 
 - 标签是k8s特色的管理方式，便于分类管理资源对象
 - 一个标签可以对应多个资源，一个资源可以有多个标签，多对多关系
@@ -101,33 +103,33 @@
 - 标签组成: key=value
 - 与标签类似，还有一种“注解” （annotations）
 
-(2) Label选择器
+#### 3.2 `Label选择器`
 
 - 给资源打上标签后，可以使用标签选择器过滤指定标签
 - 标签选择器目前有两个: 基于等值关系（等于，不等于）和基于集合关系（属于，不属于，存在）
 - 许多资源支持内嵌标签选择器字段（matchLabels/matchExpressions）
-```
+
 
 ### 4. Servie/Ingress
 
-```
-(1) Service
+
+#### 4.1 `Service`
 
 - 在k8s的世界里，虽然每个Pod都会被分配一个单独的IP地址，但这个IP地址会随着Pod的销毁而消失
 - Service就是用来解决这个问题的核心概念
 - 一个Service可以看做一组提供相同服务的Pod的对外访问接口
 - Service作用于哪些Pod是通过标签选择器来定义的
 
-(2) Ingress
+#### 4.2 `Ingress`
 
 - Ingress是k8s集群里工作在OSI网络参考模型下，第7层的应用，对外暴露的接口
 - Service只能进行L4流量调度，表现形式是 ip+port
 - Ingress则可以调度不同业务域，不同URL访问路径的业务流量
-```
+
 
 ## 七. 部署核心组件及插件
 
-1. 核心服务
+### 1. 核心服务
 
 - etcd
 
@@ -303,19 +305,6 @@ Pod IP：Pod的ip地址。Pod IP是每个Pod的IP地址，它是Docker Engine根
 Cluster IP：Service的ip地址。Cluster IP仅仅作用于Kubernetes Service这个对象，并由Kubernetes管理和分配IP地址；Cluster IP无法被Ping，因为没有一个“实体网络对象”来响应；Cluster IP只能结合Service Port组成一个具体的通信端口，单独的Cluster IP不具备TCP/IP通信的基础，并且它们属于Kubernetes集群这样一个封闭的空间，集群外的节点如果要访问这个通信端口，则需要做一些额外的工作。
 
 
-## 十. 官方三种部署方式
- 
-### minikube 
-
-本地快速运行单点k8s，仅用于尝试和学习
-
-### kubeadm工具 
-
-kubeadm init + kubeadm join 用于快速部署k8s集群（缺点：不清楚配置）
-
-### 二进制 
-
-手动部署每个组件，组成k8s集群
 
 
 

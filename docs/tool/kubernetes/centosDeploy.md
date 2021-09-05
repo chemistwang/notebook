@@ -5,35 +5,53 @@
 
 ## 一. 部署方式
 
-单master集群
+### 单master集群
 
-![单master集群](https://cdn.herinapp.com/tower/k8s/%E5%8D%95master%E9%9B%86%E7%BE%A4.png)
+![单master集群](http://cdn.chemputer.top/notebook/k8s/singletonArch.png)
 
-多master集群
 
-![多master集群](https://cdn.herinapp.com/tower/k8s/%E5%A4%9Amaster%E9%9B%86%E7%BE%A4.png)
+### 多master集群
+
+![单master集群](http://cdn.chemputer.top/notebook/k8s/clusterArch.png)
 
 ## 二. 生产环境k8s平台规划
 
 OS: `centOS 7.7`
-Kubernetes: `1.16`
-Docker: `18.09`
+
+Kubernetes: `v1.16`
+
+Docker: `v18.09`
 
 ## 三. 服务器硬件配置推荐
 
-根据实际情况自行调配，一般来说，node节点配置要优于master节点
+根据实际情况自行调配，一般来说，`node` 节点配置要优于 `master` 节点
 
 ## 四. 官方提供三种部署方式
+ 
+### 1. minikube 
 
-- minikube: 本地快速运行单点k8s， 仅用于尝试和学习
-- kubeadm: 用于快速部署k8s集群，kubeadm init + kubeadm join（熟练之后推荐）
-- 二进制: 手动部署每个组件，组成k8s集群（新手必经之路）
+本地快速运行单点k8s，仅用于尝试和学习
+
+### 2. kubeadm工具 
+
+`kubeadm init` + `kubeadm join` 用于快速部署k8s集群（缺点：不清楚配置 熟练之后推荐）
+
+### 3. 二进制 👍
+
+手动部署每个组件，组成k8s集群
+
+::: tip 优点
+新手必经之路，对于了解 `k8s` 架构有极大帮助
+:::
+
 
 ## 五. 服务器准备工作
 
-- 修改配置文件（虚拟机）
+### 1. 修改配置文件（虚拟机）
 
-`vi /etc/sysconfig/network-scripts/ifcfg-ens33`
+``` bash
+vi /etc/sysconfig/network-scripts/ifcfg-ens33
+```
 
 ```
 TYPE=Ethernet
@@ -53,27 +71,27 @@ DEVICE=ens33
 ONBOOT=yes    #将no改为yes
 ```
 
-- 1. 初始化服务器
+### 2. 初始化服务器
 
 | hostname | ip | 安装组件 |
 | --- | --- | --- |
-| k8s-master01 | 172.16.199.136 | kube-apiserver,kube-controller-manager,kube-scheduler,etcd |
-| k8s-node01  | 172.16.199.137 | kubelet,kube-proxy,docker,flannel,etcd |
-| k8s-node02  | 172.16.199.138 | kubelet,kube-proxy,docker,flannel,etcd |
+| k8s-master01 | 172.16.199.136 | `kube-apiserver`, `kube-controller-manager`, `kube-scheduler`, `etcd` |
+| k8s-node01  | 172.16.199.137 | `kubelet`, `kube-proxy`, `docker`, `flannel`, `etcd` |
+| k8s-node02  | 172.16.199.138 | `kubelet`, `kube-proxy`, `docker`, `flannel`, `etcd` |
 
-- 2. 关闭防火墙
+### 3. 关闭防火墙
 
-```
+``` bash
 systemctl stop firewalld
 systemctl disable firewalld
 ```
 
-- 3. 关闭交换分区（若不关闭，则有可能导致k8s服务起不来）
+### 4. 关闭交换分区（若不关闭，则有可能导致k8s服务起不来）
 
-```
+``` bash
 swapoff -a # 临时关闭
 vi /etc/fstab # 永久关闭（注释掉 #/dev/mapper/centos-swap swap 这一行）
-free -m //查看swap分区状态
+free -m # 查看swap分区状态
 ```
 
 ```
@@ -89,7 +107,7 @@ UUID=0fc5f6fe-5e33-4f7a-af20-802dc698f8cc /boot                   xfs     defaul
 #/dev/mapper/centos-swap swap                    swap    defaults        0 0     
 ```
 
-- 4. 配置主机名
+### 5. 配置主机名
 
 ```
 hostnamectl set-hostname k8s-master01
@@ -97,22 +115,24 @@ hostnamectl set-hostname k8s-node01
 hostnamectl set-hostname k8s-node02
 ```
 
-- 5. 配置名称解析
+### 6. 配置名称解析
 
-`vi /etc/hosts`
+``` bash
+vi /etc/hosts
+```
 
 ```
-#三个节点添加 如下内容
+# 三个节点添加 如下内容
 172.16.199.136 k8s-master01
 172.16.199.137 k8s-node01
 172.16.199.138 k8s-node02
 ```
 
-- 6. 关闭selinux
+### 7. 关闭selinux
 
-```
+``` bash
 setenforce 0 # 临时关闭
-vi /etc/selinux/config #将SELINUX=enforcing 修改为 SELINUX=disabled
+vi /etc/selinux/config # 将SELINUX=enforcing 修改为 SELINUX=disabled
 ```
 
 ```
@@ -130,15 +150,18 @@ SELINUXTYPE=targeted
 ```
 
 
-- 7. 配置时间同步 
+### 8. 配置时间同步 
 
-> 选择一个节点作为服务器，剩下的作为客户端（此处选择master01为时间服务器的服务端
+:::tip 说明
+1. 选择一个节点作为服务器，剩下的作为客户端（此处选择master01为时间服务器的服务端
 其他的为时间服务器的客户端）
-> 必须保证所有服务器时间同步，若不同步，可到导致例如证书的不同步
+2. 必须保证所有服务器时间同步，若不同步，可到导致例如证书的不同步
+:::
 
-1）配置k8s-master01
 
-```
+1. 配置 `k8s-master01`
+
+``` bash
 yum install chrony -y
 vi /etc/chrony.conf
 ```
@@ -154,14 +177,15 @@ allow 172.16.199.0/24     #修改为自己的网段
 local stratum 10          #去掉注释
 ```
     
-```
+``` bash
 systemctl start chronyd
 systemctl enable chronyd
 ss -unl | grep 123 # 查看
 ```
-2) 配置k8s-node01/node02
 
-```
+2. 配置 `k8s-node01`/ `node02`
+
+``` bash
 yum install chrony -y
 vi /etc/chrony.conf
 ```
@@ -173,14 +197,14 @@ vi /etc/chrony.conf
      server 172.16.199.136 iburst #指定上游服务器，修改为k8s-master01节点ip  
 ```
      
-```
+``` bash
 systemctl start chronyd
 systemctl enable chronyd
 ```
 
-3) 验证是否成功
+3. 验证是否成功
 
-```
+``` bash
 chronyc sources # 查看
 # 若是^? 表明没有设置成功
 # 若是^* 表明同步成功
@@ -197,20 +221,22 @@ chronyc sources # 查看
 ssl证书来源
 * 网络第三方机构购买，通常这种证书用于让外部用户访问使用
 * 自签证书（自己给自己发证书），通常用于内部环境
+
 ssl一些概念
 * 端实体（申请者）
 * 注册机构（RC）
 * 签证机构（CA）
 * 证书撤销列表（CRL）
 * 证书存取库
+
 自建CA
 * openssl
 * cfssl (本次搭建使用方法)
 ```
 
-- 1. 下载cfssl工具
+1. 下载cfssl工具
 
-```
+``` bash
 wget https://pkg.cfssl.org/R1.2/cfssl_linux-amd64
 wget https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64
 wget https://pkg.cfssl.org/R1.2/cfssl-certinfo_linux-amd64
@@ -220,9 +246,9 @@ mv cfssljson_linux-amd64 /usr/local/bin/cfssljson
 mv cfssl-certinfo_linux-amd64 /usr/bin/cfssl-certinfo
 ```
 
-- 2. 编写三个json文件
+2. 编写三个json文件
 
-```
+``` bash
 # vi /root/TLS/etcd/ca-config.json
 {
   "signing": {
@@ -284,23 +310,23 @@ mv cfssl-certinfo_linux-amd64 /usr/bin/cfssl-certinfo
 }
 ```
 
-- 3. 创建证书颁发机构
+3. 创建证书颁发机构
 
-```
+``` bash
 cfssl gencert -initca ca-csr.json | cfssljson -bare ca -
 ```
 
-![创建证书颁发机构](https://cdn.herinapp.com/tower/k8s/centos/centos1.jpg)
+![创建证书颁发机构](http://cdn.chemputer.top/notebook/k8s/cfssl.jpg)
 
-```
+``` bash
 # 会生成一对ca的秘钥
 ls *pem
 ca-key.pem ca.pem  
 ```
 
-- 4. 向证书颁发机构申请证书
+4. 向证书颁发机构申请证书
 
-```
+``` bash
 cfssl gencert \
 -ca=ca.pem \
 -ca-key=ca-key.pem \
@@ -309,7 +335,7 @@ cfssl gencert \
 server-csr.json | cfssljson -bare server
 ```
 
-```
+``` bash
 # 会有4个pem文件
 [root@k8s-master01 etcd]# ll *pem  
 ca-key.pem #ca证书
@@ -320,11 +346,13 @@ server.pem #etcd证书
 
 ## 七. etcd数据库集群部署
 
-- 1. github下载3.2.28版本的etcd
+1. `github` 下载 `3.2.28` 版本的 `etcd`
 
+::: tip 说明
 有etcd的node上都要部署，注意文件夹的名字和位置，不是随便命名和放置的
+:::
 
-```
+``` bash
 wget https://github.com/etcd-io/etcd/releases/download/v3.2.28/etcd-v3.2.28-linux-amd64.tar.gz
 tar -zxvf etcd-v3.2.28-linux-amd64.tar.gz
 
@@ -332,13 +360,17 @@ mkdir /opt/etcd/{cfg,bin,ssl} -p. #创建配置文件，命令文件，证书
 mv etcd-v3.2.28-linux-amd64/{etcd,etcdctl} /opt/etcd/bin #将文件移动至指定目录
 ```
 
-> centos6: systemV风格服务管理脚本目录 /etc/rc.d/rcN.d   N表示 0 1 2 3 4 5 6 服务运行级别
-> centos7: systemd 服务管理脚本目录 /usr/lib/systemd/system
+::: tip 知识点
+`centos6`: `systemV` 风格服务管理脚本目录 `/etc/rc.d/rcN.d`  
 
+`N` 表示 `0 1 2 3 4 5 6` 服务运行级别
 
-- 2. 创建etcd.conf文件 
+`centos7`: `systemd` 服务管理脚本目录 `/usr/lib/systemd/system`
+:::
 
-```
+2. 创建 `etcd.conf` 文件 
+
+``` bash
 # vi /opt/etcd/cfg/etcd.conf 
 
 #k8s-master01
@@ -369,9 +401,9 @@ ETCD_INITIAL_CLUSTER_STATE="new"
 ```
 
 
-- 3. 创建etcd.service文件
+3. 创建 `etcd.service` 文件
 
-```
+``` bash
 vi /usr/lib/systemd/system/etcd.service
 ```
 
@@ -408,22 +440,22 @@ LimitNOFILE=65536
 WantedBy=multi-user.target
 ```
 
-- 4. 将之前生成的证书拷贝到固定的目录
+4. 将之前生成的证书拷贝到固定的目录
 
-```
+``` bash
 cp /root/TLS/etcd/{ca,server,server-key}.pem /opt/etcd/ssl #拷贝生成的证书
 ```
 
-- 5. 启动并设置开机启动
+5. 启动并设置开机启动
 
-```
+``` bash
 systemctl start etcd
 systemctl enable etcd
 ```
 
 > 启动的时候先启动子节点的etcd
 
-```
+``` bash
 #不使用别名
 cp #相当于 cp -i 
 alias #查看系统中的别名
@@ -432,9 +464,9 @@ unalias cp  #不使用别名
 ```
 
 
-- 6. 检查集群中的etcd是否正常工作（在主从节点上都测试一下）
+6. 检查集群中的 `etcd` 是否正常工作（在主从节点上都测试一下）
 
-```
+``` bash
 /opt/etcd/bin/etcdctl \
 --ca-file=/opt/etcd/ssl/ca.pem \
 --cert-file=/opt/etcd/ssl/server.pem \
@@ -443,7 +475,7 @@ unalias cp  #不使用别名
 cluster-health
 ```
 
-```
+``` bash
 # 三个节点均正常
 member 6dae76cecb4bcc84 is healthy: got healthy result from https://172.16.199.138:2379
 member 9c12fda2a7536f4e is healthy: got healthy result from https://172.16.199.136:2379
@@ -453,9 +485,9 @@ member df2477b7bface443 is healthy: got healthy result from https://172.16.199.1
 
 ## 八. 部署master组件
 
-- 1. 生成证书,编写4个json文件 
+1. 生成证书,编写 `4` 个 `json` 文件 
 
-```
+``` bash
 # vi /root/TLS/k8s/ca-config.json
 {
   "signing": {
@@ -545,7 +577,7 @@ member df2477b7bface443 is healthy: got healthy result from https://172.16.199.1
 
 ```
 
-```
+``` bash
 cfssl gencert -initca ca-csr.json | cfssljson -bare ca -
 
 # 生成apiserver证书
@@ -557,18 +589,18 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=kube
 cp /root/TLS/k8s/{ca*pem,server.pem,server-key.pem} /opt/kubernetes/ssl/
 ```
 
-- 2. 安装kubernetes包
+2. 安装 `kubernetes` 包
 
-```
+``` bash
 mkdir /opt/kubernetes/{bin,cfg,ssl,logs} -p
 tar -zxvf kubernetes-server-linux-amd64.tar.gz ./
 cd kubernetes/server/bin
 cp kube-apiserver kube-scheduler kube-controller-manager kubectl /opt/kubernetes/bin
 ```
 
-- 3. 创建 `token.csv` 文件
+3. 创建 `token.csv` 文件
 
-```
+``` bash
 vi /opt/kubernetes/cfg/token.csv
 
 674c457d4dcf2eefe4920d7dbb6b0ddc,kubelet-bootstrap,10001,"system:node-bootstrapper"
@@ -579,9 +611,9 @@ vi /opt/kubernetes/cfg/token.csv
 # 第四列: 用户组
 ```
 
-- 4. 创建 `kube-apiserver.conf` 文件
+4. 创建 `kube-apiserver.conf` 文件
 
-```
+``` bash
 vi /opt/kubernetes/cfg/kube-apiserver.conf
 
 
@@ -629,9 +661,9 @@ KUBE_APISERVER_OPTS="--logtostderr=false \
 # –service-node-port-range Service Node类型默认分配端口范围
 ```
 
-- 5. 创建 `kube-controller-manager.conf` 文件
+5. 创建 `kube-controller-manager.conf` 文件
 
-```
+``` bash
 vi /opt/kubernetes/cfg/kube-controller-manager.conf
 
 KUBE_CONTROLLER_MANAGER_OPTS="--logtostderr=false \
@@ -650,9 +682,9 @@ KUBE_CONTROLLER_MANAGER_OPTS="--logtostderr=false \
 --experimental-cluster-signing-duration=87600h0m0s"
 ```
 
-- 6. 创建 `kube-scheduler.conf` 文件
+6. 创建 `kube-scheduler.conf` 文件
 
-```
+``` bash
 vi /opt/kubernetes/cfg/kube-scheduler.conf
 
 KUBE_SCHEDULER_OPTS="--logtostderr=false \
@@ -669,9 +701,9 @@ KUBE_SCHEDULER_OPTS="--logtostderr=false \
 ```
 
 
-- 4. 创建 `kube-apiserver.service` 启动文件
+7. 创建 `kube-apiserver.service` 启动文件
 
-```
+``` bash
 # vi /usr/lib/systemd/system/kube-apiserver.service 
 
 [Unit]
@@ -687,9 +719,9 @@ Restart=on-failure
 WantedBy=multi-user.target
 ```
 
-- 5. 创建 `kube-scheduler.service` 启动文件
+8. 创建 `kube-scheduler.service` 启动文件
 
-```
+``` bash
 # vi /usr/lib/systemd/system/kube-scheduler.service 
 
 [Unit]
@@ -706,9 +738,9 @@ WantedBy=multi-user.target
 ```
 
 
-- 6. 创建 `kube-controller-manager.service` 启动文件
+9. 创建 `kube-controller-manager.service` 启动文件
 
-```
+``` bash
 # vi /usr/lib/systemd/system/kube-controller-manager.service 
 
 [Unit]
@@ -724,9 +756,9 @@ Restart=on-failure
 WantedBy=multi-user.target
 ```
 
-- 7. 分别启动 `kube-apiserver`, `kube-scheduler`, `kube-controller-manager`
+10. 分别启动 `kube-apiserver`, `kube-scheduler`, `kube-controller-manager`
 
-```
+``` bash
 systemctl start kube-apiserver
 systemctl enable kube-apiserver
 
@@ -737,30 +769,36 @@ systemctl start kube-controller-manager
 systemctl enable kube-controller-manager
 ```
 
-- 8. 验证是否成功
+11. 验证是否成功
 
-```
+``` bash
 /opt/kubernetes/bin/kubectl get cs
 ps aux | grep kube | wc -l #结果为4 
 
 cp /opt/kubernetes/bin/kubectl /bin/    #方便
-
 
 tail -f /opt/kubernetes/logs/kube-apiserver.INFO # 查看日志，没有明显的错误提示
 tail -f /opt/kubernetes/logs/kube-controller-manager.INFO
 tail -f /opt/kubernetes/logs/kube-scheduler.INFO
 ```
 
-- 9. 配置TLS，基于bootstrap自动颁发证书
+12. 配置TLS，基于bootstrap自动颁发证书
 
-> Master apiserver启用TLS认证后，Node节点kubelet组件想要加入集群，必须使用CA签发的有效证书才能与apiserver通信，当Node节点很多时，签署证书是一件很繁琐的事情，因此有了TLS Bootstrapping机制，kubelet会以一个低权限用户自动向apiserver申请证书，kubelet的证书由apiserver动态签署。
+:::tip 说明
+`Master apiserver` 启用 `TLS` 认证后，`Node` 节点 `kubelet` 组件想要加入集群，必须使用 `CA` 签发的有效证书才能与 `apiserver` 通信
+ 
+当Node节点很多时，签署证书是一件很繁琐的事情，因此有了 `TLS Bootstrapping` 机制，`kubelet` 会以一个低权限用户自动向 `apiserver` 申请证书，`kubelet` 的证书由 `apiserver` 动态签署。
+:::
 
-> 两个要求 (`kube-apiserver.conf`配置文件中)
-> 1. `--enable-bootstrap-token-auth=true` 配置项要为 `true`
-> 2. `--token-auth-file=/opt/kubernetes/cfg/token.csv` 记录授权
+:::tip 两个要求
+
+`kube-apiserver.conf` 配置文件中
+1. `--enable-bootstrap-token-auth=true` 配置项要为 `true`
+2. `--token-auth-file=/opt/kubernetes/cfg/token.csv` 记录授权
+:::
 
 
-```
+``` bash
 # 启用授权
 kubectl create clusterrolebinding kubelet-bootstrap \
   --clusterrole=system:node-bootstrapper \
@@ -770,11 +808,11 @@ kubectl create clusterrolebinding kubelet-bootstrap \
 
 ## 九. 部署node组件
 
-- 1. 安装docker： 启动容器 (根据k8s版本选择适合的docker版本,此处选择docker18.09)
+1. 安装docker： 启动容器 (根据k8s版本选择适合的docker版本,此处选择docker18.09)
 
-- 2. 在master上执行 `kubernetes.sh` 文件
+2. 在master上执行 `kubernetes.sh` 文件
 
-```
+``` bash
 # vi /root/TLS/k8s/kubernetes.sh
 
 # 创建kubelet bootstrapping kubeconfig 
@@ -827,7 +865,7 @@ kubectl config set-context default \
 kubectl config use-context default --kubeconfig=kube-proxy.kubeconfig
 ```
  
-```
+``` bash
 chmod 777 kubernetes.sh # 修改执行权限
 ./kubernetes.sh # 执行脚本
 ```
@@ -1542,7 +1580,7 @@ spec:
 
 - 执行
 
-```
+``` bash
 kubectl apply -f coredns.yaml  #安装
 kubectl get pods -n kube-system | grep coredns #查看
 ```
@@ -1551,7 +1589,7 @@ kubectl get pods -n kube-system | grep coredns #查看
 
 默认情况下，k8s仅仅可以在master节点进行管理
 
-```
+``` bash
 # 在node节点运行 
 kubectl  #kubectl: 未找到命令
 # 即使有命令
@@ -1560,7 +1598,7 @@ The connection to the server localhost:8080 was refused - did you specify the ri
 
 1）生成管理员证书
 
-```
+``` bash
 # 在master执行
 vi admin-csr.json
 ```
@@ -1568,7 +1606,7 @@ vi admin-csr.json
 
 2) 颁发admin证书
 
-```
+``` bash
 cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=kubernetes admin-csr.json | cfssljson -bare admin
 ```
 

@@ -77,8 +77,8 @@ SysUserEntity(userId=null, username=null, password=null, description=, createTim
 
 ``` yml
 mybatis:
-  mapper-locations: classpath:com/herin/devbe/mapper/*.xml # mapper配置文件位置（中间需要用/分割）
-  type-aliases-package: com.herin.devbe.entity # 存放数据库对应表的对象（实体对象）
+  mapper-locations: classpath:com/chemputer/devbe/mapper/*.xml # mapper配置文件位置（中间需要用/分割）
+  type-aliases-package: com.chemputer.devbe.entity # 存放数据库对应表的对象（实体对象）
   configuration:
     map-underscore-to-camel-case: true
 ```

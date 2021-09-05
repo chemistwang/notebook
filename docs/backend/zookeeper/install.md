@@ -45,9 +45,9 @@ quit # 退出客户端
 ``` bash
 ########## cluster ##########
 quorumListenOnAllIPs=true
-server.1=t1.herin.ai:2182:2183
-server.2=t2.herin.ai:2182:2183
-server.3=t3.herin.ai:2182:2183
+server.1=t1.chemputer.ai:2182:2183
+server.2=t2.chemputer.ai:2182:2183
+server.3=t3.chemputer.ai:2182:2183
 
 # server.1=62.234.154.80:2182:2183
 # server.2=49.232.150.22:2182:2183

@@ -43,7 +43,7 @@ bin/sqoop help
 4. 测试Sqoop是否能够成功连接数据库
 
 ``` bash
-bin/sqoop list-databases --connect jdbc:postgresql://192.168.0.35:5432/postgres --username postgres --password herin123
+bin/sqoop list-databases --connect jdbc:postgresql://192.168.0.35:5432/postgres --username postgres --password chemputer123
 ```
 
 出现如下输出
@@ -56,7 +56,7 @@ template0
 gisdb
 devbe
 sso
-herindemo
+chemputerdemo
 kettle
 ```
 
@@ -75,7 +75,7 @@ kettle
 bin/sqoop import \
 --connect jdbc:postgresql://192.168.0.35:5432/postgres \
 --username postgres \
---password herin123 \
+--password chemputer123 \
 --table access_car_flow \
 --target-dir /wyl/gaoling \
 --delete-target-dir \
@@ -89,7 +89,7 @@ bin/sqoop import \
 bin/sqoop import \
 --connect jdbc:postgresql://192.168.0.35:5432/postgres \
 --username postgres \
---password herin123 \
+--password chemputer123 \
 --target-dir /wyl/gaoling \
 --delete-target-dir \
 --num-mappers 1 \
@@ -110,7 +110,7 @@ bin/sqoop import \
 bin/sqoop import \
 --connect jdbc:postgresql://192.168.0.35:5432/postgres \
 --username postgres \
---password herin123 \
+--password chemputer123 \
 --target-dir /wyl/gaoling \
 --delete-target-dir \
 --num-mappers 1 \
@@ -130,7 +130,7 @@ columns若涉及到多列，用逗号分隔，分隔时不要添加空格
 bin/sqoop import \
 --connect jdbc:postgresql://192.168.0.35:5432/postgres \
 --username postgres \
---password herin123 \
+--password chemputer123 \
 --target-dir /wyl/gaoling \
 --delete-target-dir \
 --num-mappers 1 \

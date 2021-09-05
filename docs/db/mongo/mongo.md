@@ -8,7 +8,7 @@
 ```
 use admin
 db.auth('yourName','yourPwd')
-use HERIN_MILK_OPPO
+use YOUR_DB
 
 
 db.createUser({

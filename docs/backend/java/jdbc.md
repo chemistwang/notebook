@@ -41,7 +41,7 @@ public void testConnection1() throws SQLException{
 	
 	Properties info = new Properties();
 	info.setProperty("user", "root");
-	info.setProperty("password", "herin123");
+	info.setProperty("password", "chemputer123");
 	
 	Connection conn = driver.connect(url, info);
 	
