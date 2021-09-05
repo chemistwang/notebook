@@ -19,6 +19,7 @@ module.exports = {
                     { text: 'Typescript', link: '/frontend/ts/' },
                     { text: 'Chart', link: '/frontend/chart/' },
                     { text: 'Vue', link: '/frontend/vue/' },
+                    { text: 'Vue3', link: '/frontend/vue3/' },
                     { text: 'Angular', link: '/frontend/angular/' },
                     { text: 'React', link: '/frontend/react/' },
                     { text: 'Flutter', link: '/frontend/flutter/' },
@@ -145,6 +146,7 @@ module.exports = {
             '/frontend/js/': ['basic', 'function', 'object', 'memory', 'es6', 'module', 'async', 'network', 'domevent', 'loop', 'animation', 'canvas', 'eventloop', 'test', 'case'],
             '/frontend/react/': ['init', 'basic', 'redux', 'hooks', 'sourcecode', 'interview'], 
             '/frontend/vue/': ['problem', 'interview'],
+            '/frontend/vue3/': ['sourcecode'],
             '/frontend/flutter/': ['install', 'ios', 'case'],
             '/frontend/chart/': ['echarts'],
             //后端开发

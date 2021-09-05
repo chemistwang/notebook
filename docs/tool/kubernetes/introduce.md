@@ -1,11 +1,17 @@
 # Kubernetes感性认识
 
+::: tip 参考资料
+
 [Kubernetes官方文档](https://kubernetes.io/)
+
 [Kubernetes中文文档](https://kubernetes.io/zh/)
-[GitHub地址](https://github.com/kubernetes/kubernetes)
+
+[Kubernetes GitHub地址](https://github.com/kubernetes/kubernetes)
+
+:::
 
 
-### 一. 使用Docker容器化封装应用程序的痛点
+## 一. 使用Docker容器化封装应用程序的痛点
 
 - 单机使用，无法有效管理集群
 - 随着容器数量上升，管理成本攀升
@@ -15,20 +21,24 @@
 - 没有容器生命周期的管理工具
 - 没有图形化运维管理工具
 
-### 二. docker集群化解决方案 （资源管理器对比）
+## 二. docker集群化解决方案 （资源管理器对比）
 
 - `apache mesos` => 分布式资源管理框架，2019-5 Twitter使用k8s
 - `docker swarm` => 轻量级，针对docker，2019-7 阿里云剔除
 - `google kubernetes` => 10年容器化基础架构 `Borg`，用 `Go` 语言翻写
 
-### 三. k8s是什么
+
+
+
+
+## 三. k8s是什么
 
 - 用于容器化应用程序的部署，扩展和管理
 - Google在2014年发布的一个开源项目，使用go语言开发
 - 在其之前，Google使用Borg系统来调度庞大数量容器（据说Google数据中心运行20多亿个容器）和工作负载。
 - 目标：让部署容器化应用简单高效
 
-### 四. k8s优点
+## 四. k8s优点
 
 - 轻量级：消耗资源小
 - 开源
@@ -41,13 +51,13 @@
 - 存储编排
 - 任务批处理运行
 
-### 五. k8s架构原理
+## 五. k8s架构原理
 
 ![k8s逻辑架构图](https://cdn.herinapp.com/tower/k8s/k8s%E9%80%BB%E8%BE%91%E6%9E%B6%E6%9E%84%E5%9B%BE.jpg)
 
-### 六. 四组基本概念
+## 六. 四组基本概念
 
-* Pod/Pod控制器
+### 1. Pod/Pod控制器
 
 ```
 (1) Pod
@@ -64,7 +74,7 @@
 - k8s常用控制器: Deployment/DaemonSet/ReplicaSet/StatefulSet/Job/CronJob
 ```
 
-* Name/Namespace
+### 2. Name/Namespace
 
 ```
 (1) Name
@@ -80,7 +90,7 @@
 - 查询k8s特定“资源”需要带上相应名称空间，默认查询 `default`
 ```
 
-* Label/Label选择器
+### 3. Label/Label选择器
 
 ```
 (1) Label
@@ -98,7 +108,7 @@
 - 许多资源支持内嵌标签选择器字段（matchLabels/matchExpressions）
 ```
 
-* Servie/Ingress
+### 4. Servie/Ingress
 
 ```
 (1) Service
@@ -115,7 +125,7 @@
 - Ingress则可以调度不同业务域，不同URL访问路径的业务流量
 ```
 
-### 七. 部署核心组件及插件
+## 七. 部署核心组件及插件
 
 1. 核心服务
 
@@ -178,7 +188,7 @@
 3. CLI客户端 （kubectl）
 
 
-### 八. 深入认识k8s核心组件原理（资源对象）
+## 八. 深入认识k8s核心组件原理（资源对象）
 
 1. ReplicaSet 副本控制器
 > - 控制pod副本（服务集群）的数量,永远与预期设定的数量保持一致
@@ -267,7 +277,7 @@ Job负责批处理任务，即仅执行一次的任务，它保证批处理任�
 ```
 
 
-### 九. 网络通讯模式
+## 九. 网络通讯模式
 
 k8s的网络模型嘉定所有Pod都在一个可以直接连通的扁平的网络空间中，这在GCE（Google Compute Engine）里面是现成的网络模型，K8s假定这个网络已经存在，
 而在私有云里搭建k8s集群，就不能假定这个网络已经存在，我们需要实现这个网络假设，将不同节点上的docker容器之间的互相访问先打通，然后运行k8s
@@ -293,11 +303,19 @@ Pod IP：Pod的ip地址。Pod IP是每个Pod的IP地址，它是Docker Engine根
 Cluster IP：Service的ip地址。Cluster IP仅仅作用于Kubernetes Service这个对象，并由Kubernetes管理和分配IP地址；Cluster IP无法被Ping，因为没有一个“实体网络对象”来响应；Cluster IP只能结合Service Port组成一个具体的通信端口，单独的Cluster IP不具备TCP/IP通信的基础，并且它们属于Kubernetes集群这样一个封闭的空间，集群外的节点如果要访问这个通信端口，则需要做一些额外的工作。
 
 
-### 十. 官方三种部署方式
+## 十. 官方三种部署方式
  
-- minikube 本地快速运行单点k8s，仅用于尝试和学习
-- kubeadm工具 kubeadm init + kubeadm join 用于快速部署k8s集群（缺点：不清楚配置）
-- 二进制 手动部署每个组件，组成k8s集群
+### minikube 
+
+本地快速运行单点k8s，仅用于尝试和学习
+
+### kubeadm工具 
+
+kubeadm init + kubeadm join 用于快速部署k8s集群（缺点：不清楚配置）
+
+### 二进制 
+
+手动部署每个组件，组成k8s集群
 
 
 

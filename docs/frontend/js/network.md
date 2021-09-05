@@ -1,7 +1,11 @@
 # 网络和并发
 
 
+## 点击网站，浏览器都经历了什么
 
+DNS 缓存
+
+（包括 html，css，js 下载）
 
 ## 罗列常用的 http 状态码并简述其含义
 
@@ -251,11 +255,7 @@ queue.add(formatTask(highPriorityTask));
 - OAuth 权限凭证
 - 自签名权限凭证
 
-## 点击网站，浏览器都经历了什么
 
-DNS 缓存
-
-（包括 html，css，js 下载）
 
 ## JWT
 
