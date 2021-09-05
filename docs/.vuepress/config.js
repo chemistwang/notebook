@@ -24,7 +24,6 @@ module.exports = {
                     { text: 'Flutter', link: '/frontend/flutter/' },
                     { text: 'Webpack', link: '/frontend/webpack/' },
                     { text: 'Infrastructure', link: '/frontend/infrastructure/' },
-                    { text: '面试题', link: '/frontend/interview/' },
                 ]
             },
             {
@@ -143,7 +142,7 @@ module.exports = {
             //前端开发
             '/frontend/html/': ['html'],
             '/frontend/css/': ['basic', 'animation', 'module', 'case', 'interview'],
-            '/frontend/js/': ['basic', 'function', 'object', 'memory', 'module', 'async', 'network', 'event', 'loop', 'animation', 'canvas', 'es6', 'eventloop', 'test', 'case'],
+            '/frontend/js/': ['basic', 'function', 'object', 'memory', 'es6', 'module', 'async', 'network', 'domevent', 'loop', 'animation', 'canvas', 'eventloop', 'test', 'case'],
             '/frontend/react/': ['init', 'basic', 'redux', 'hooks', 'sourcecode', 'interview'], 
             '/frontend/vue/': ['problem', 'interview'],
             '/frontend/flutter/': ['install', 'ios', 'case'],

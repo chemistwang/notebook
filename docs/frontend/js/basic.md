@@ -524,7 +524,11 @@ Greeters[2]();
 
 ## 数组
 
-::: details 哪些改变原数组，哪些不改变
+``` js
+Q: 哪些改变原数组，哪些不改变
+```
+
+::: details Answer
 
 ```
 toString()
@@ -557,7 +561,16 @@ reduceRight()
 
 :::
 
-### set 与 array 之间的相互转换
+
+
+---
+
+
+``` js
+Q: set 与 array 之间的相互转换
+```
+
+::: details Answer
 
 ```js
 //set => array
@@ -569,16 +582,33 @@ let arr = [1, 2, 3];
 let set = new Set(arr);
 ```
 
-### 下面代码输出
+:::
+
+---
+
 
 ```js
-[1, 2, 3].map(parseInt); //[1, NaN, NaN]
-"1 2 3".replace(/\d/g, parseInt); //"1 NaN 3"
+Q: 代码输出
+
+[1, 2, 3].map(parseInt); 
+"1 2 3".replace(/\d/g, parseInt); 
 ```
 
-### 通过 js 代码找出 class 为 first 的不重复的同学名称
+:::details Answer
 
 ```js
+//[1, NaN, NaN]
+// "1 NaN 3"
+```
+
+:::
+
+---
+
+
+```js
+Q: 通过 js 代码找出 class 为 first 的不重复的同学名称
+
 let metadatas = [
   { name: "zhangsan", class: "first" },
   { name: "lisi", class: "first_2" },
@@ -594,20 +624,45 @@ let set = new Set(arr);
 let res = Array.from(set);
 ```
 
-### 数组 [{a:8}, {a:7}, {a: 9}, {a: 6}] 根据 a 属性进行数组内排序
+--- 
 
 ```js
+Q: 数组 [{a:8}, {a:7}, {a: 9}, {a: 6}] 根据 a 属性进行数组内排序
+```
+
+:::details Answer
+
+``` js
 let arr = [{ a: 8 }, { a: 7 }, { a: 9 }, { a: 6 }];
 arr.sort((a, b) => a.a - b.a);
 ```
 
-### 数组与伪数组区别
+:::
+
+
+---
+
+```js
+Q: 数组与伪数组区别
+```
+
+:::details Answer
 
 伪数组：JavaScript 内置对象中常见的伪数组就是大名鼎鼎的 auguments
 
 伪数组作用：若 Array 添加原型方法，直接添加 Array.prototype 会污染全局变量，可以使用伪数组实现，没有污染
 
-### Array.isArry() && instanceof Array 有哪些区别
+:::
+
+---
+
+``` js
+Q: Array.isArry() && instanceof Array 有哪些区别
+```
+
+:::details Answer
+:::
+
 
 ### 深拷贝和浅拷贝
 

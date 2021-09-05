@@ -1,6 +1,6 @@
 # 对象
 
-## 创建
+## 简单创建
 
 - `new`
 
@@ -40,111 +40,45 @@ o.a; //2
 - `configurable`
 
 
-
-
-
 ## 不可变对象
 
 https://segmentfault.com/a/1190000017294051
 
-### 下面代码输出
+
 
 ```js
-//1
+// 代码输出
 var objA = { data: { a: "hello", b: 123 } };
 var objB = Object.assign({}, objA);
 objB.data.a = "changed";
-console.log(objA.data.a); //changed
+console.log(objA.data.a);
+```
 
-//2
+:::details Answer
+```js
+//changed
+```
+:::
+
+---
+
+```js
+// 代码输出
 var objA = { a: "hello", b: 123 };
 var objB = Object.assign({}, objA);
 objB.a = "changed";
-console.log(objA.a); //hello
+console.log(objA.a);
 ```
 
-> Object.assign()拷贝的是（可枚举）属性值，若源值是一个对象的引用，它会复制其引用，即拷贝其地址
-> 若要实现深拷贝，objB = JSON.parse(JSON.stringify(objA));
-
-### js 创建对象
-
-- 工厂模式
-
-> 函数封装特定的细节
-> 缺点: 没有解决对象识别问题
-
-```js
-function Person(name, age) {
-  let o = new Object();
-  o.name = name;
-  o.age = age;
-  o.sayName = function() {
-    alert(this.name);
-  };
-  return o;
-}
+:::details Answer
+``` js
+//hello
+// 解析:
+// Object.assign()拷贝的是（可枚举）属性值
+// 若源值是一个对象的引用，它会复制其引用，即拷贝其地址
+// 若要实现深拷贝，objB = JSON.parse(JSON.stringify(objA));
 ```
-
-- 构造函数模式
-
-> 没有显式创建对象
-> 直接将属性和方法赋值给了 this 对象
-> 没有 return 语句
-> 创建时需要 new 关键字
-> 可以将实例标示为特定类型，使用 instanceof 验证
-> 缺点：方法需要在每个实例创建一遍，没必要
-
-```js
-function Person(name, age) {
-  this.name = name;
-  this.age = age;
-  this.sayName = function() {
-    alert(this.name);
-  };
-}
-```
-
-- 原型模式
-
-> 优点：所有对象实例共享属性方法，减少内存消耗
-> 缺点：共享引发的问题，当有属性时引用类型时，就会出现不可避免的共享 ,还有省略传参
-
-```js
-function Person() {}
-Person.prototype.name = "";
-Person.prototype.age = 0;
-Person.prototype.sayName = function() {
-  alert(this.name);
-};
-```
-
-> 或者简写为下面这种形式，减少多余 prototype 的输入
-
-```js
-function Person(){}
-Person.prototype = {
-	constructor: Person, //若使用该简写方法，则constructor不再指向Person，需要手动添加为当前写法，但constructor的[[Enumable]]又会被设置为true（原先默认为false）
-	name: '',
-	age: 0;
-	sayName: function(){
-		alert(this.name)
-	}
-}
-```
-
-- 组合模式：构造函数（定义实例属性） + 原型（定义共享属性和方法）
-
-> 认可度最高
-
-```js
-function Person(name, age) {
-  this.name = name;
-  this.age = age;
-}
-Person.prototype.sayName = function() {
-  alert(this.name);
-};
-```
+:::
 
 
 ## 原型
@@ -160,8 +94,8 @@ console.log(null instanceOf Object); //false
 ### 原型链的基本原理
 
 
-:::tips 参考资料
-https://github.com/mqyqingfeng/Blog/issues/2
+:::tip 参考资料
+[JavaScript深入之从原型到原型链 #2](https://github.com/mqyqingfeng/Blog/issues/2)
 :::
 
 
@@ -232,14 +166,124 @@ new new Foo().getName(); //3
 :::
 
 
-### js 如何实现继承
+## 高级创建
 
-- 原型链继承: Sub.prototype = new Super()
+在遇到重复创建的情况时，使用 `简单创建` 的 `2` 种方法会造成大量冗余代码。
 
-> 缺点: 原先的实例属性称为现在的原型属性；在创建子类的时候，不能向超类的构造函数中传递参数
-> 实际中，很少单独使用
+### 1. 工厂模式
 
 ```js
+function Person(name, age) {
+  let o = new Object();
+  o.name = name;
+  o.age = age;
+  o.sayName = function() {
+    alert(this.name);
+  };
+  return o;
+}
+var p = Person('chemputer', 24)
+```
+
+::: tip 优点
+函数封装特定的细节，暂时解决创建多个对象问题
+:::
+
+::: warning 缺点
+没有解决对象识别问题，这样创建的多个均是 `Object` 的实例
+:::
+
+
+### 2. 构造函数模式
+
+```js
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.sayName = function() {
+    alert(this.name);
+  };
+}
+var p = new Person('chemputer', 24)
+```
+
+::: tip 优点
+- 没有显式创建对象
+- 直接将属性和方法赋值给了 `this` 对象
+- 没有 `return` 语句
+- 创建时需要 `new` 关键字
+- 可以将实例标示为特定类型，使用 `instanceof` 验证
+:::
+
+::: warning 缺点
+方法需要在每个实例创建一遍，没必要
+:::
+
+
+### 3. 原型模式
+
+```js
+function Person() {}
+Person.prototype.name = "";
+Person.prototype.age = 0;
+Person.prototype.sayName = function() {
+  alert(this.name);
+};
+// 或简写为，减少多余 prototype 的输入
+function Person(){}
+Person.prototype = {
+    /** 
+     * 若使用该简写方法
+     * 则constructor不再指向Person，需要手动添加为当前写法
+     * 但constructor的[[Enumable]]又会被设置为true（原先默认为false）
+    */
+	constructor: Person, 
+	name: '',
+	age: 0;
+	sayName: function(){
+		alert(this.name)
+	}
+}
+```
+
+::: tip 优点
+所有对象实例共享属性方法，减少内存消耗
+:::
+
+::: warning 缺点
+共享引发的问题，当有属性时引用类型时，就会出现不可避免的共享 ,还有省略传参
+:::
+
+
+### 4. 组合模式：构造函数（定义实例属性） + 原型（定义共享属性和方法）
+
+```js
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+Person.prototype.sayName = function() {
+  alert(this.name);
+};
+```
+
+::: tip 优点
+认可度最高
+:::
+
+
+
+## 继承
+
+ECMAScript实现继承主要是依靠原型链
+
+### 1. 原型链继承
+
+实现思路：`Sub.prototype = new Super()`
+
+本质：`重写原型对象`
+
+```js {6}
 function Super() {
   this.colors = ["red", "blue"];
 }
@@ -249,17 +293,24 @@ Sub.prototype = new Super();
 let instance1 = new Sub();
 let instance2 = new Sub();
 instance1.colors.push("green");
-instance1.colors; //['red','blue','green']
-instance2.colors; //['red','blue','green']
+console.log(instance1.colors); //['red','blue','green']
+console.log(instance2.colors); //['red','blue','green']
 ```
 
-- 借用构造函数继承(伪造对象 | 经典继承): 在子类构造函数中调用超类构造函数
+::: warning 缺点
+- 原先的 `实例属性` 变为现在的 `原型属性`，即 `引用类型属性` 被 `共享`
+- 在创建子类的时候，`不能` 向超类的构造函数中 `传递参数`
+- 实际中，很少单独使用
+:::
 
-> 每个实例都有自己的属性副本，可以传参
-> 缺点：构造函数固有问题，函数不可复用；若将方法添加到父类原型中，子类不可见
-> 很少单独使用
 
-```js
+### 2. 借用构造函数继承
+
+也称为：`伪造对象` 或 `经典继承`
+
+实现思路：`在子类构造函数中调用超类构造函数`
+
+```js {6}
 function Super(name) {
   this.name = name;
   this.colors = ["red", "blue"];
@@ -267,20 +318,34 @@ function Super(name) {
 function Sub(name) {
   Super.call(this, name);
 }
-Super.prototype.show = function() {}; //子类不可见
+Super.prototype.show = function() {console.log('show')}; //子类不可见
 
 let instance1 = new Sub();
 let instance2 = new Sub();
 instance1.colors.push("green");
-instance1.colors; //['red','blue','green']
-instance2.colors; //['red','blue']
+console.log(instance1.colors); //['red','blue','green']
+console.log(instance2.colors); //['red','blue']
+instance1.show(); //Uncaught TypeError: instance1.show is not a function
 ```
 
-- 组合继承(伪经典继承)：原型链（原型属性方法继承） + 借用构造函数(实例属性继承)
+:::tip 优点
+每个实例都有自己的属性副本，可以传参
+:::
 
-> 最常用
 
-```js
+::: warning 缺点
+- 构造函数固有问题，函数不可复用；若将方法添加到父类原型中，子类不可见
+- 很少单独使用
+:::
+
+
+### 3. 组合继承
+
+也称为：`伪经典继承`
+
+实现思路：`原型链（原型属性方法继承） + 借用构造函数(实例属性继承)`
+
+```js {10}
 function Super(name) {
   this.name = name;
   this.colors = ["red", "blue"];
@@ -288,9 +353,50 @@ function Super(name) {
 function Sub(name) {
   Super.call(this, name);
 }
-
-Super.prototype.show = function() {};
-
-Sub.prototype.constructor = Sub; //需要修复构造函数指向
+Super.prototype.show = function() {console.log('show')};
 Sub.prototype = new Super();
+Sub.prototype.constructor = Sub; //需要修复构造函数指向，否则指向的是Super
+```
+
+:::tip 优点
+最常用
+:::
+
+### 4. 原型式继承
+
+
+### 5. 寄生式继承
+
+### 6. 寄生组合式继承
+
+### 7. `Class` 继承
+
+`ES6` 新增，上述做法需要编写大量代码并且正确实现原型链
+
+
+``` js {11}
+class Person {
+    constructor(name){
+        this.name = name;
+    }
+    show(){
+        console.log(this.name)
+    }
+}
+class Man extends Person{
+    constructor(name, age){
+        super(name);
+        this.age = age;
+    }
+    manShow(){
+        console.log(this.age)
+    }
+}
+```
+
+### 原理
+
+
+``` js
+Q: ES5/ES6 的继承除了写法以外还有什么区别
 ```

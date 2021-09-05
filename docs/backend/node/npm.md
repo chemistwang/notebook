@@ -12,6 +12,11 @@ npm 著名大神：
 
 https://www.zhihu.com/question/303815270
 
+
+``` js
+Q: 介绍下 npm 模块安装机制，为什么输入 npm install 就可以自动安装对应的模块。npm 模块安装机制
+```
+
 ## 如何发布 npm 包
 
 [官方链接](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry)

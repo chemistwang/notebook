@@ -2,11 +2,13 @@
 
 ::: tip 参考资料
 [阮一峰 ECMAScript 6 入门教程](https://es6.ruanyifeng.com/)
+
+[Babel Docs](https://babel.dev/docs/en/)
 :::
 
 ## let & const
 
-let 
+### let 
 
 - 块级作用域
 - 没有变量提升
@@ -26,11 +28,28 @@ const 原理：变量名与内存地址之间建立不可变的绑定，当后�
 
 但用 const 定义的对象，属性可以被修改
 
-### 1. 变量的生命周期
+---
 
-由两种因素决定：作用域，对其的引用
+``` js
+Q: 全局作用域中，用 const 和 let 声明的变量不在 window 上，那到底在哪里？如何去获取？
+```
 
-延长生命周期，最常用的是闭包，原理：利用高阶函数来产生能够穿透作用域的引用
+:::details Answer
+```js
+let a = 1;
+const b = 2;
+console.log(window.a); // undefined
+console.log(window.b); // undefined
+
+console.log(a); // 1
+console.log(b); // 2
+```
+:::
+
+
+
+
+## 解构
 
 ### 2. for...of 代替 for...in 配合解构
 
@@ -359,19 +378,24 @@ map.clear();
 
 ### obj 与 map 之间的相互转换
 
-### 下面代码输出
+
+
+
+## ES6转ES5
+
+
+[Babel](https://babeljs.io/)
+[astexplorer](https://astexplorer.net/)
+
+[ES6 代码转成 ES5 代码的实现思路是什么](https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/112)
+
 
 ```js
-function demo1(x) {
-  return arguments.length ? x : "demo";
-}
-
-let demo2 = (x) => {
-  return arguments.length ? x : "demo";
-};
-
-demo1("a"); //1
-demo2("a"); //Uncaught ReferenceError: arguments is not defined
+Q: ES6 代码转成 ES5 代码的实现思路是什么
 ```
 
-> js 箭头函数是没有 this 和 arguments 变量的，如果这两个值可以打印，则一定来自父级作用域
+:::details Answer
+1. 解析：解析代码字符串，生成 AST (Abstract syntax tree);
+2. 转换：按一定的规则转换、修改 AST；
+3. 生成：将修改后的 AST 转换成普通代码
+:::
