@@ -1,8 +1,5 @@
 # 搭建kubernetes单master集群【centos离线部署】
 
-> 资源包位置: `NAS`
-
-
 ## 一. 部署方式
 
 ### 单master集群
@@ -388,7 +385,7 @@ ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster"
 ETCD_INITIAL_CLUSTER_STATE="new"
 ```
 
-```
+``` bash
 #ETCD_NAME 节点名称,node01改为etcd-2，node02改为etcd-3
 #ETCD_DATA_DIR 数据目录
 #ETCD_LISTEN_PEER_URLS 集群通信监听地址,接受其他etcd数据
@@ -870,25 +867,30 @@ chmod 777 kubernetes.sh # 修改执行权限
 ./kubernetes.sh # 执行脚本
 ```
 
-> 这时可以发现生成了 `bootstrap.kubeconfig` 和 `kube-proxy.kubeconfig` 两个文件（妥善保存，一旦泄露，集群炸了），将这两个文件通过scp发送到所有Node节点的/opt/kubernetes/cfg目录下。
+:::tip 说明
+这时可以发现生成了 `bootstrap.kubeconfig` 和 `kube-proxy.kubeconfig` 两个文件（妥善保存，一旦泄露，集群炸了）⚠️
 
+将这两个文件通过scp发送到所有Node节点的 `/opt/kubernetes/cfg` 目录下。
+:::
 
-- 3. master发送 `kubelet` 和 `kube-proxy` 至node节点
+3. master发送 `kubelet` 和 `kube-proxy` 至node节点
 
-```
+``` bash
 mkdir /opt/kubernetes/{bin,cfg,ssl,logs} -p # node节点执行
 ```
 
-解压kubernetes-server-linux-amd64.tar.gz后，在`/kubernetes/server/bin`下找到`kubelet`和`kube-proxy`两个文件，将这两个文件拷贝到Node节点的 `/opt/kubernetes/bin`目录下。
+:::tip 说明
+解压 `kubernetes-server-linux-amd64.tar.gz` 后，在 `/kubernetes/server/bin` 下找到 `kubelet` 和 `kube-proxy` 两个文件，将这两个文件拷贝到Node节点的 `/opt/kubernetes/bin` 目录下。
+:::
 
-- 4. master发送证书至node节点
+4. master发送证书至node节点
 
-```
+``` bash
 cd /root/TLS/k8s
 scp /root/TLS/k8s/{ca.pem, kube-proxy.pem, kube-proxy-key.pem} root@node:/opt/kubernetes/ssl
 ```
 
-- 4. 安装kubelet： 接受apiserver的指令，然后控制docker容器
+5. 安装kubelet： 接受apiserver的指令，然后控制docker容器
 
 
 > 1) 配置 `kubelet-config.yml` 文件
@@ -1044,29 +1046,34 @@ kubectl get nodes # 在master节点上可以查看，node节点已经加入集�
 
 ## 十. 部署k8s集群网络
 
-- 1. 确认启用CNI插件
+1. 确认启用CNI插件
 
-```
+``` bash
 grep "cni" /opt/kubernetes/cfg/kubelet.conf
 ```
 
-- 2. 创建目录
+2. 创建目录
 
-```
+``` bash
 mkdir -pv /opt/cni/bin /etc/cni/net.d
 ```
 
-- 3. 离线安装
+3. 离线安装
 
-```
+``` bash
 tar xf cni-plugins-linux-amd64-v0.8.5.tgz -C /opt/cni/bin/
 ```
 
-> https://github.com/coreos/flannel/releases/download/v0.10.0/flannel-v0.10.0-linux-amd64.tar.gz
+4. 下载
 
-- 5. 在`master`节点创建`kube-flannel.yaml`文件
-
+``` bash
+wget https://github.com/coreos/flannel/releases/download/v0.10.0/flannel-v0.10.0-linux-amd64.tar.gz
 ```
+
+ 
+5. 在 `master` 节点创建 `kube-flannel.yaml` 文件
+
+``` bash
 vi kube-flannel.yaml
 
 ---
@@ -1596,7 +1603,7 @@ kubectl  #kubectl: 未找到命令
 The connection to the server localhost:8080 was refused - did you specify the right host or port?
 ```
 
-1）生成管理员证书
+1. 生成管理员证书
 
 ``` bash
 # 在master执行
@@ -1604,16 +1611,16 @@ vi admin-csr.json
 ```
 
 
-2) 颁发admin证书
+2. 颁发admin证书
 
-``` bash
+``` bash bash
 cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=kubernetes admin-csr.json | cfssljson -bare admin
 ```
 
-2）创建kubeconfig文件
+3. 创建 `kubeconfig` 文件
 
 
-``` 
+``` bash
 vi /opt/kubernetes/cfg/kube-proxy.kubeconfig  #指定为masterip
 vi /opt/kubernetes/cfg/bootstrap.kubeconfig #指定masterip
 ```

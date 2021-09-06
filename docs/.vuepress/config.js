@@ -145,7 +145,7 @@ module.exports = {
             '/frontend/css/': ['basic', 'animation', 'module', 'case', 'interview'],
             '/frontend/js/': ['basic', 'function', 'object', 'memory', 'es6', 'module', 'async', 'network', 'domevent', 'loop', 'animation', 'canvas', 'eventloop', 'test', 'case'],
             '/frontend/react/': ['init', 'basic', 'redux', 'hooks', 'sourcecode', 'interview'], 
-            '/frontend/vue/': ['problem', 'interview'],
+            '/frontend/vue/': ['sourcecode', 'problem', 'interview'],
             '/frontend/vue3/': ['sourcecode'],
             '/frontend/flutter/': ['install', 'ios', 'case'],
             '/frontend/chart/': ['echarts'],
