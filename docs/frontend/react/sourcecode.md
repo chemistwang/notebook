@@ -1,11 +1,13 @@
 # 源码
 
-### 参考资料
 
+
+::: tip 参考资料
 卡颂大神的 B 站视频和电子书，推荐搭配食用
 
 - [B 站](https://space.bilibili.com/453618117/video)
 - [React 技术揭秘](https://react.iamkasong.com/)
+:::
 
 ---
 

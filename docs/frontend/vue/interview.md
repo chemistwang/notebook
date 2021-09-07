@@ -50,7 +50,7 @@ vue 中 scoped 属性效果主要通过 postcss 转译实现，postcss 给组件
 
 ### vue-router 有哪几种导航钩子
 
-### scss 是什么？安装使用的步骤是？有哪几大特性
+
 
 ### v-model 是什么？怎么使用？描述使用它实现登陆功能的流程？
 

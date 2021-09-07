@@ -142,7 +142,7 @@ module.exports = {
         sidebar: {
             //前端开发
             '/frontend/html/': ['html'],
-            '/frontend/css/': ['basic', 'animation', 'module', 'case', 'interview'],
+            '/frontend/css/': ['basic', 'animation', 'module', 'case', 'preprocessor', 'interview'],
             '/frontend/js/': ['basic', 'function', 'object', 'memory', 'es6', 'module', 'async', 'network', 'domevent', 'loop', 'animation', 'canvas', 'eventloop', 'test', 'case'],
             '/frontend/react/': ['init', 'basic', 'redux', 'hooks', 'sourcecode', 'interview'], 
             '/frontend/vue/': ['sourcecode', 'problem', 'interview'],
