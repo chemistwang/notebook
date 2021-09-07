@@ -24,8 +24,8 @@
 
 音视频涉及的东西很深，我在学习过程中整理了一些目前需要掌握的基础知识，可以作为入门参考。
 
-- 参考资料
+::: tip 参考资料
 
-这里首推CSDN上[雷霄骅(leixiaohua1020)的专栏](https://blog.csdn.net/leixiaohua1020)
+首推CSDN上[雷霄骅(leixiaohua1020)的专栏](https://blog.csdn.net/leixiaohua1020)
 
 B站上别人搬运雷神的视频[基于FFmpeg+SDL的视频播放器的制作](https://www.bilibili.com/video/av9927626?from=search&seid=4379175266447717364)

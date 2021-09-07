@@ -1,4 +1,4 @@
-# Kubernetes感性认识
+# 简介
 
 ::: tip 参考资料
 
@@ -8,6 +8,7 @@
 
 [Kubernetes GitHub地址](https://github.com/kubernetes/kubernetes)
 
+[Kubernetes 中文指南/云原生应用架构实践手册](https://jimmysong.io/kubernetes-handbook/)
 :::
 
 
@@ -57,7 +58,6 @@
 ## 五. k8s架构原理
 
 ![k8s逻辑架构图](http://cdn.chemputer.top/notebook/k8s/architecture.jpg)
-
 
 ## 六. 四组基本概念
 
@@ -131,78 +131,101 @@
 
 ### 1. 核心服务
 
-- etcd
+#### master节点
 
-```
+- `kube-apiserver`
+
+    - k8s网关, 所有服务访问统一入口
+    - 提供集群管理的RESTFUL接口（包括鉴权，数据校验及集群状态变更）
+    - 负责其他模块之间的数据交互，承担通信枢纽功能
+    - 资源配额控制的入口
+    - 提供完备的集群安全机制
+
+- `kube-controller-manager`
+
+    - 控制器，维护k8s资源对象 CRUD,维护副本期望数目
+    - 由一系列控制器组成，通过apiserver监控整个集群的状态，并确保集群处于预期的工作状态
+    - `Node Controller`/`Deployment Controller`/`Service Controller`...
+
+- `kube-scheduler`
+
+    - 调度器，使用调度算法，把请求资源调度某一个node节点, 选择择合适的节点进行分配任务
+    - 预算策略（predict）
+    - 优选策略（priorities）
+
+#### node节点
+
+- `docker`
+
+    - 运行容器的基础环境，容器引擎
+
+- `kube-kubelet`
+
+    - 直接跟容器引擎交互实现容器的生命周期管理
+    - 定时从某个地方获取节点上pod的预期状态（运行什么容器，运行的副本数量，网络或者存储如何配置等）,并调用对应的容器平台接口达到这个状态
+    - 代理服务，负载均衡，在多个Pod之间来做负载均衡
+    - 定时汇报当前节点的状态给apiserver，以供调度的时候使用
+    - 镜像和容器的清理工作，保证节点上镜像不会占满磁盘空间，退出的容器不会占用太多资源
+    
+- `kube-proxy`
+
+    - 负责写入规则至 IPTABLES,IPVS，实现服务映射访问
+    - k8s在每个节点上运行网络代理，service资源的载体,负载均衡，在多个Pod之间来做负载均衡
+    - 建立了pod网络和集群网络的关系（clusterip => podip）
+    - 负责建立和删除包括更新调度规则，通知apiserver自己的更新，或者从apiserver那里获取其他kube-proxy的调度规则变化来更新自己
+    - 常用三种流量调度模式 Userspace（废弃）/Iptables（濒临废弃）/Ipvs （推荐）
+    
+- `fluentd`
+
+    - 日志收集服务
+ 
+#### etcd
+
 键值对数据库，存储k8s集群所有重要信息（持久化）官方定位为一个可信赖的分布式键值存储服务，能够为整个分布式集群存储关键数据，协助分布式集群的正常运转
-```
- 
-- master节点
-    - kube-apiserver
-    > k8s网关, 所有服务访问统一入口
-    > 提供集群管理的RESTFUL接口（包括鉴权，数据校验及集群状态变更）
-    > 负责其他模块之间的数据交互，承担通信枢纽功能
-    > 资源配额控制的入口
-    > 提供完备的集群安全机制
 
-    - kube-controller-manager
-    > 控制器，维护k8s资源对象 CRUD,维护副本期望数目
-    > 由一系列控制器组成，通过apiserver监控整个集群的状态，并确保集群处于预期的工作状态
-    > Node Controller/Deployment Controller/Service Controller...
+### 2. 核心插件
 
-    - kube-scheduler
-    > 调度器，使用调度算法，把请求资源调度某一个node节点, 选择择合适的节点进行分配任务
-    > 预算策略（predict）
-    > 优选策略（priorities）
+| 核心插件 | 描述 |
+| --- | --- |
+| `flannel/calico` | `CNI` 网络插件 |
+| `coredns` | 服务发现插件, 可以为及群众的svc创建一个域名ip的对应关系解析 |
+| `traefik` | 服务暴露用插件 |
+| `Dashboard` | GUI管理插件, 给k8s提供一个b/s结构访问体系 |
+| `ingress contoller` | 官方只能实现 `4` 层代理，ingress可以实现 `7` 层代理 |
+| `federation ` | 提供一个可以跨集群中心多 `k8s` 统一管理功能 |
+| `prometheus` | 提供一个k8s集群的监控能力  |
+| `efk` | 提供 `k8s` 集群日志统一分析介入平台 |
 
-- node节点
-    - docker
-    > 运行容器的基础环境，容器引擎
 
-    - kube-kubelet 
-    > 直接跟容器引擎交互实现容器的生命周期管理
-    > 定时从某个地方获取节点上pod的预期状态（运行什么容器，运行的副本数量，网络或者存储如何配置等）,并调用对应的容器平台接口达到这个状态
-    > 代理服务，负载均衡，在多个Pod之间来做负载均衡
-    > 定时汇报当前节点的状态给apiserver，以供调度的时候使用
-    > 镜像和容器的清理工作，保证节点上镜像不会占满磁盘空间，退出的容器不会占用太多资源
-    
-    - kube-proxy
-    > 负责写入规则至 IPTABLES,IPVS，实现服务映射访问
-    > k8s在每个节点上运行网络代理，service资源的载体,负载均衡，在多个Pod之间来做负载均衡
-    > 建立了pod网络和集群网络的关系（clusterip => podip）
-    > 负责建立和删除包括更新调度规则，通知apiserver自己的更新，或者从apiserver那里获取其他kube-proxy的调度规则变化来更新自己
-    > 常用三种流量调度模式 Userspace（废弃）/Iptables（濒临废弃）/Ipvs （推荐）
-    
-    - fluentd  
-    > 日志收集服务
- 
-2. 核心插件
-
-- flannel/calico => CNI网络插件
-- coredns => 服务发现插件, 可以为及群众的svc创建一个域名ip的对应关系解析
-- traefik => 服务暴露用插件
-- Dashboard => GUI管理插件, 给k8s提供一个b/s结构访问体系
-- ingress contoller: 官方只能实现4层代理，ingress可以实现7层代理
-- federation：提供一个可以跨集群中心多k8s统一管理功能
-- prometheus: 提供一个k8s集群的监控能力
-- efk：提供k8s集群日志统一分析介入平台
-
-3. CLI客户端 （kubectl）
+### 3. CLI客户端 (`kubectl`)
 
 
 ## 八. 深入认识k8s核心组件原理（资源对象）
 
-1. ReplicaSet 副本控制器
-> - 控制pod副本（服务集群）的数量,永远与预期设定的数量保持一致
-> - ReplicaSet & ReplicationController区别：
->   - ReplicationController 单选
->   - ReplicaSet 单选+复合选择 （在新版本的k8s中，建议使用ReplicaSet）
+### 1. `ReplicaSet`
 
-2. Deployment 部署对象
-> - 服务部署结构模型 + 滚动更新
-> - ReplicaSet不支持滚动更新，Deployment对象支持滚动更新，通常和ReplicaSet一起使用
+副本控制器
 
-3. StatefulSet 有状态应用部署（对应Deployments和RS是为无状态服务设计）
+作用： 控制 `pod` 副本（服务集群）的数量,永远与预期设定的数量保持一致
+
+:::tip 说明
+`ReplicaSet` & `ReplicationController` 区别：
+
+`ReplicationController` 单选
+
+`ReplicaSet` 单选+复合选择 **（在新版本的k8s中，建议使用ReplicaSet）**
+:::
+
+
+### 2. `Deployment`
+
+服务部署结构模型 + 滚动更新
+
+作用：`ReplicaSet` 不支持滚动更新，`Deployment` 对象支持滚动更新，通常和 `ReplicaSet` 一起使用
+
+### 3. `StatefulSet`
+
+有状态应用部署 **对应 `Deployments` 和 `RS` 是为无状态服务设计**
 
 ```
 1). 对于k8s来说，不能使用Deployment部署模型部署有状态的服务，通常情况下，Deployment被用来部署无状态服务。对于有状态服务的部署，使用StatefulSet进行有状态服务的部署
@@ -214,21 +237,24 @@
 4. 有序收缩，有序删除（即从n-1到0）
 ```
 
-名词解释
-1) 有状态服务
+::: tip 名词解释
+有状态服务
     
     * 有实时的数据需要存储
     * 有状态服务集群中，把某一个服务抽离出去，一段时间之后再加入，集群网络无法使用
     * eg: DBMS
 
-2）无状态服务
+无状态服务
 
     * 没有-------------
     * -------------------------------------------------, 对集群服务没有任何影响
     * eg: LVS APACHE
 
+:::
 
-4. DaemonSet: 确保所有Node运行同一个Pod
+### 4. `DaemonSet`
+
+确保所有Node运行同一个Pod
 
 ```
 确保全部（或一些）Node运行一个Pod的副本。当有Node加入集群时，也会为他们新增一个Pod。当有Node从集群移除时，这些Pod也会被回收。删除DaemonSet将会删除它创建的所有Pod
@@ -240,20 +266,22 @@
 - 在每个Node上运行监控daemon，eg Prometheus Node Exporter
 ```
 
-5. Job: 一次性任务
+### 5. `Job`
 
-```
-Job负责批处理任务，即仅执行一次的任务，它保证批处理任务的一个或多个Pod成功结束
-```
+一次性任务
 
-6. Cronjob: 定时任务，管理基于时间的Job
+作用：Job负责批处理任务，即仅执行一次的任务，它保证批处理任务的一个或多个Pod成功结束
+
+### 6. `Cronjob`
+
+定时任务，管理基于时间的Job
 
 ```
 - 在给定时间点只运行一次
 - 周期性的给定时间点运行
 ```
 
-7. Service
+### 7. `Service`
 
 ```
 > 将一组pod关联起来，提供一个统一的入口，即使pod地址发生改变，这个统一入口也不会变化
@@ -261,7 +289,7 @@ Job负责批处理任务，即仅执行一次的任务，它保证批处理任�
 > 定义一组Pod的访问策略
 ```
 
-8. Label
+### 8. `Label`
 
 ```
 > 标签，附加到某个资源上，用于关联对象，查询和筛选
@@ -269,20 +297,19 @@ Job负责批处理任务，即仅执行一次的任务，它保证批处理任�
 > service是通过标签和一组pod进行关联
 ```
 
-9. Namespace
+### 9. `Namespace`
 
-```
 命名空间，将对象逻辑上隔离（默认情况，pod可以互相访问）
+
 使用场景：
-    1. 为不同的公司提供隔离的pod运行环境
-    2. 为开发环境，测试环境，生成环境分别准备不同的名称空间进行隔离
-```
+1. 为不同的公司提供隔离的 `pod` 运行环境
+2. 为开发环境，测试环境，生成环境分别准备不同的名称空间进行隔离
 
 
 ## 九. 网络通讯模式
 
-k8s的网络模型嘉定所有Pod都在一个可以直接连通的扁平的网络空间中，这在GCE（Google Compute Engine）里面是现成的网络模型，K8s假定这个网络已经存在，
-而在私有云里搭建k8s集群，就不能假定这个网络已经存在，我们需要实现这个网络假设，将不同节点上的docker容器之间的互相访问先打通，然后运行k8s
+k8s的网络模型嘉定所有Pod都在一个可以直接连通的扁平的网络空间中，这在 `GCE（Google Compute Engine）` 里面是现成的网络模型，`k8s` 假定这个网络已经存在，
+而在私有云里搭建 `k8s` 集群，就不能假定这个网络已经存在，我们需要实现这个网络假设，将不同节点上的docker容器之间的互相访问先打通，然后运行 `k8s`
 
 1. 同一个Pod内的多个容器之间：lo
 2. 各Pod之间的通讯：Overlay Network
@@ -298,11 +325,21 @@ ETCD之Flannel提供说明：
 
 
 
-Kubernetes里的3种IP
 
-Node IP：Node的ip地址。Node IP是Kubernetes集群中每个节点的物理网卡的IP地址，是一个真实存在的物理网络，所有属于这个网络的服务器都能通过这个网络直接通信，不管其中是否有部分节点不属于这个Kubernetes集群。这也表明在Kubernetes集群之外的节点访问Kubernetes集群之内的某个节点或者TCP/IP服务时，都必须通过NodeIP通信。
-Pod IP：Pod的ip地址。Pod IP是每个Pod的IP地址，它是Docker Engine根据docker0网桥的IP地址段进行分配的，通常是一个虚拟的二层网络，前面说过，Kubernetes要求位于不同Node上的Pod都能够彼此直接通信，所以Kubernetes里一个Pod里的容器访问另外一个Pod里的容器时，就是通过Pod IP所在的虚拟二层网络进行通信的，而真实的TCP/IP流量是通过Node IP所在的物理网卡流出的。
-Cluster IP：Service的ip地址。Cluster IP仅仅作用于Kubernetes Service这个对象，并由Kubernetes管理和分配IP地址；Cluster IP无法被Ping，因为没有一个“实体网络对象”来响应；Cluster IP只能结合Service Port组成一个具体的通信端口，单独的Cluster IP不具备TCP/IP通信的基础，并且它们属于Kubernetes集群这样一个封闭的空间，集群外的节点如果要访问这个通信端口，则需要做一些额外的工作。
+
+### k8s里的3种IP
+
+1. `Node IP` （ `Node的ip地址` ）
+
+`Node IP` 是 `Kubernetes` 集群中每个节点的物理网卡的IP地址，是一个真实存在的物理网络，所有属于这个网络的服务器都能通过这个网络直接通信，不管其中是否有部分节点不属于这个 `Kubernetes` 集群。这也表明在 `Kubernetes` 集群之外的节点访问 `Kubernetes` 集群之内的某个节点或者 `TCP/IP` 服务时，都必须通过 `NodeIP` 通信。
+
+2. `Pod IP` （ `Pod的ip地址` ）
+
+`Pod IP` 是每个Pod的IP地址，它是Docker Engine根据docker0网桥的IP地址段进行分配的，通常是一个虚拟的二层网络，前面说过，Kubernetes要求位于不同Node上的Pod都能够彼此直接通信，所以Kubernetes里一个Pod里的容器访问另外一个Pod里的容器时，就是通过Pod IP所在的虚拟二层网络进行通信的，而真实的TCP/IP流量是通过Node IP所在的物理网卡流出的。
+
+3. `Cluster IP` （ `Service的ip地址` ）
+
+`Cluster IP` 仅仅作用于 `Kubernetes Service` 这个对象，并由 `Kubernetes `管理和分配IP地址；Cluster IP无法被Ping，因为没有一个“实体网络对象”来响应；Cluster IP只能结合Service Port组成一个具体的通信端口，单独的Cluster IP不具备TCP/IP通信的基础，并且它们属于Kubernetes集群这样一个封闭的空间，集群外的节点如果要访问这个通信端口，则需要做一些额外的工作。
 
 
 

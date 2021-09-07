@@ -1,6 +1,6 @@
 ## 问题
 
-1.  MacOS 11.1 Version value must be a string; got a NilClass () (TypeError)
+1.  `MacOS 11.1 Version value must be a string; got a NilClass () (TypeError)`
 
 场景：
 

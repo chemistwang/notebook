@@ -1,4 +1,9 @@
-# 搭建kubernetes单master集群【centos离线部署】
+# 搭建单master集群【centos离线部署】
+
+
+::: tip 参考资料
+[Kubernetes(k8s)个人学习笔记](http://www.codedog.fun/2020/04/12/Kubernetes(k8s)%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0(%E6%9B%B4%E6%96%B0%E4%B8%AD)/)
+:::
 
 ## 一. 部署方式
 
