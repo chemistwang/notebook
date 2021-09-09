@@ -1,5 +1,10 @@
 # HTML标签
 
+
+:::tip 参考资料
+[HTML Living Standard](https://html.spec.whatwg.org/multipage/)
+:::
+
 ## video
 
 ``` html

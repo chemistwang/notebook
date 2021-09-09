@@ -1,7 +1,11 @@
 # VIM 操作
 
-- 参考资料
+::: tip 参考资料
   [what are the most used vim commands-keypresses](https://stackoverflow.com/questions/5400806/what-are-the-most-used-vim-commands-keypresses)
+
+:::
+
+
 
 有规律的记忆，看每个命令背后的含义
 

@@ -1,39 +1,58 @@
 # 事件循环
 
-::: tip
-`one thread === one call stack === one thing at a time`
-单线程 === 一个调用栈 === 每次只能做一件事
+
+:::tip 参考资料
+[JavaScript中的事件循环介绍 -Jake Archibald](https://www.bilibili.com/video/BV1XQ4y1P7L7?from=search&seid=4063426400438383115) 👍
 :::
 
-[事件循环 + 任务队列](https://www.bilibili.com/video/BV1XQ4y1P7L7?from=search&seid=4063426400438383115)
 
-任何时候 js 执行完毕，js 调用栈从满到空之后 ,就执行微任务
-所以：理论上，任务队列中的一个任务完毕，一个 js 栈空了，会执行微任务；一次样式计算完成了，一个 js 栈空了，执行微任务
+## 运行机制
 
-`promise`也运用了微任务，这保证了，Promise 的回调被执行的时候，不会有半途中的 js 需要被执行
+1. 同步任务都在主线程执行，形成一个执行栈（`execution context stack`）
+2. 对于异步任务，主线程之外，存在任务队列（`task queue`）
+3. 任务队列分为两大类，分别是宏任务（`macro task`）和微任务（`micro task`）
+4. 只有同步任务全部完成，即执行栈清空，才会执行异步任务
+5. 清空完当前微任务，才会再去执行下一个宏任务，如下代码
 
-微任务：运行到当前任务队列清空
+``` js
+for (macroTask of macroTaskQueue) {
+    // 1. Handle current MACRO-TASK
+    handleMacroTask();
+      
+    // 2. Handle all MICRO-TASK
+    for (microTask of microTaskQueue) {
+        handleMicroTask(microTask);
+    }
+}
+```
 
-任务队列
 
-- 宏任务 (macro-task)
-  - XHR 回调
-  - 事件回调（鼠标键盘事件）
-  - setImmediate
-  - setTimeout
-  - setInterval
-  - indexedDB 数据库操作等 I/O
+## 名词解释
 
-* 微任务 (micro-task)
+### 宏任务 (macro task)
 
-  - process.nextTick
-  - promise.then
-  - MutationObserver
+- `XHR` 回调
+- 事件回调（鼠标键盘事件）
+- `setImmediate`
+- `setTimeout`
+- `setInterval`
+- indexedDB 数据库操作等 I/O
 
-  进入到任务队列的是具体的执行任务函数
-  不同类型的任务会分别进入到他们所属类型的任务队列
+:::tip 说明
+`setTimeout` 的延时参数始终 `相对于主程序执行完毕的时间`，并且多个 `setTimeout` 执行的先后顺序也是由这个延迟时间决定
+:::
+
+### 微任务 (micro task)
+
+- `process.nextTick`
+- `Promise.then`
+- `MutationObserver`
+
+
+## 练习
 
 ```js
+// 代码输出
 console.log("global");
 
 setTimeout(function() {
@@ -78,16 +97,38 @@ new Promise(function(resolve) {
 });
 ```
 
-> 同步代码执行完之后才会检查是否有异步任务完成，并执行对应的回调
-> 微任务在宏任务之前执行
 
-> 在当前的微任务没有执行完成时，是不会执行下一个宏任务的
+:::details Answer
+``` js
+// global
+// 1
+// 2
+// 3
+// 4
+// 5
+// promise1
+// promise2
+// then1
+// then2
+// 6
+// timeout2
+// timeout2_promise
+// timeout2_then
+// timeout1
+// timeout1_promise
+// timeout1_then
+// 6
+// 6
+// 6
+// 6
+```
+:::
 
-> setTimeout()的延时参数始终相对于主程序执行完毕的时间，并且多个 setTimeout 执行的先后顺序也是由这个延迟时间决定
 
 ---
 
 ```js
+// 代码输出
 async function async1() {
   console.log("async1 start");
   await async2();
@@ -110,7 +151,6 @@ console.log("script end");
 ```
 
 :::details Result
-
 ```js
 //script start
 //async1 start
@@ -125,42 +165,58 @@ console.log("script end");
 ---
 
 ```js
+// 代码输出
 async function async1() {
   console.log("async1 start");
   await async2();
   console.log("async1 end");
 }
+
 async function async2() {
   console.log("async2");
 }
+
 console.log("script start");
+
 setTimeout(() => {
   console.log("setTimeout");
 }, 0);
+
 async1();
+
 new Promise((resolve) => {
   console.log("promise1");
   resolve();
 }).then(() => {
   console.log("promise2");
 });
-console.log("script end");
 
-//script start
-//async1 start
-//async2
-//promise1
-//script end
-//async1 end
-//promise2
-//setTimeout
+console.log("script end");
 ```
 
+:::details Answer
+``` js
+// script start
+// async1 start
+// async2
+// promise1
+// script end
+// async1 end
+// promise2
+// setTimeout
+```
+:::
+
+---
+
 ```js
+// 代码输出
 setTimeout(() => {
   console.log("setTimeout");
 }, 0);
+
 console.log("t1");
+
 fetch("http://localhost:8888")
   .then(function(response) {
     return response.json();
@@ -171,26 +227,37 @@ fetch("http://localhost:8888")
   .catch(function(err) {
     console.log(err);
   });
+
 console.log("fetch zhi hou");
+
 async function async1() {
   console.log("async1 start");
   await async2();
   console.log("async1 end");
 }
+
 async1();
+
 console.log("t2");
+
 new Promise((resolve) => {
   console.log("promise");
   resolve();
 }).then(() => {
   console.log("promise.then");
 });
+
 console.log("t3");
+
 async function async2() {
   console.log("async2");
 }
-console.log("t4");
 
+console.log("t4");
+```
+
+:::details Answer
+``` js
 //t1
 //fetch zhi hou
 //async1 start
@@ -206,25 +273,42 @@ console.log("t4");
 //myJson
 //error
 ```
+:::
+
+---
 
 ```js
+// 代码输出
 const promise = new Promise((resolve, reject) => {
   console.log(1);
   resolve();
   console.log(2);
 });
+
 promise.then(() => {
   console.log(3);
 });
-console.log(4);
 
+console.log(4);
+```
+
+:::details Answer
+
+```js
 //1
 //2
 //4
 //3
 ```
 
+:::
+
+
+
+---
+
 ```js
+// 代码输出
 console.log("script start");
 
 setTimeout(() => {
@@ -263,7 +347,11 @@ function bar() {
 }
 
 console.log("script end");
+```
 
+
+:::details Answer
+```js
 //script start
 //async2 end
 //script end
@@ -275,8 +363,14 @@ console.log("script end");
 //async1 success
 //setTimeout...
 ```
+:::
+
+
+---
+
 
 ```js
+// 代码输出
 console.log(1);
 
 setTimeout(() => {
@@ -320,11 +414,31 @@ setTimeout(() => {
     console.log(121);
   });
 });
-
-//1 7 12 8 2 4 3 5 9 11 10 121
 ```
 
+
+:::details Answer
 ```js
+// 1
+// 7
+// 12
+// 8
+// 2
+// 4
+// 3
+// 5
+// 9
+// 11
+// 10
+// 121
+```
+:::
+
+
+---
+
+```js
+// 代码输出
 new Promise((resolve, reject) => {
   console.log(1);
   resolve();
@@ -358,12 +472,27 @@ new Promise((resolve, reject) => {
   .then(() => {
     console.log(6);
   });
-// 1 2 3 4 5 6 7 8 9
 ```
 
-### 代码输出
+:::details Answer
+```js
+// 1
+// 2
+// 3
+// 4
+// 5
+// 6
+// 7
+// 8 
+// 9
+```
+:::
+
+
+---
 
 ```js
+// 代码输出
 var age = 16;
 var person = {
   age: 18,
@@ -375,22 +504,21 @@ var person = {
   },
 };
 
-person.getAge(); //16; 若setTimeout的回调为箭头函数。则为18
+person.getAge();
 ```
 
-### webworker
+:::details Answer
+```js
+// 16
+// 解析：若setTimeout的回调为箭头函数。则为18
+```
+:::
 
-[资料](http://www.ruanyifeng.com/blog/2018/07/web-worker.html)
 
-- 作用：为 JS 创造多线程环境
-- 优点：计算密集型或高延迟任务，被 Worker 线程负担，主线程（通常负责 UI 交互）就会很流畅不会被阻塞或拖慢
-- 限制：
-  > 同源：
-- 使用：
-
-### 下面代码输出
+---
 
 ```js
+// 代码输出
 setTimeout(function() {
   console.log(1);
 }, 0);
@@ -405,6 +533,32 @@ new Promise(function(a, b) {
 });
 
 console.log(5);
-
-//2 3 5 4 1
 ```
+
+:::details Answer
+``` js
+// 2 
+// 3
+// 5
+// 4
+// 1
+```
+:::
+
+
+
+
+
+
+
+## Web Worker
+
+:::tip 参考资料
+[阮一峰 Web Worker 使用教程](http://www.ruanyifeng.com/blog/2018/07/web-worker.html)
+:::
+
+
+- 作用：为 JS 创造多线程环境
+- 优点：计算密集型或高延迟任务，被 Worker 线程负担，主线程（通常负责 UI 交互）就会很流畅不会被阻塞或拖慢
+- 限制：`同源`
+- 使用
