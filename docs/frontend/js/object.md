@@ -14,6 +14,16 @@ let o = new Object();
 let o = {}
 ```
 
+---
+
+``` js
+Q: Object.create()、new Object() 和 {} 的区别
+```
+
+:::details Answer
+:::
+
+
 
 ## 属性描述符
 
@@ -343,7 +353,7 @@ instance1.show(); //Uncaught TypeError: instance1.show is not a function
 
 也称为：`伪经典继承`
 
-实现思路：`原型链（原型属性方法继承） + 借用构造函数(实例属性继承)`
+实现思路：`属性（构造函数）+ 方法（原型链）`
 
 ```js {10}
 function Super(name) {
@@ -362,12 +372,85 @@ Sub.prototype.constructor = Sub; //需要修复构造函数指向，否则指向
 最常用
 :::
 
+:::warning 缺点
+无论什么情况，都会调用 `2` 次 `Super` 的构造函数
+
+```js {6,9}
+function Super(name) {
+  this.name = name;
+  this.colors = ["red", "blue"];
+}
+function Sub(name) {
+  Super.call(this, name); //第 2 次调用
+}
+Super.prototype.show = function() {console.log('show')};
+Sub.prototype = new Super(); // 第 1 次调用
+Sub.prototype.constructor = Sub;
+```
+:::
+
 ### 4. 原型式继承
 
+实现思路：同原型链继承
+
+不同点：封装一个函数，不用在外面显式创建自定义类型
+
+``` js
+function object(o) {
+    function F(){}
+    F.prototype = o;
+    return new F();
+}
+```
+
+`ECMAScript5` 新增 `Object.create()` 方法规范原型式继承
+
+:::tip 优点
+同 `1. 原型链继承`
+:::
+
+:::warning 缺点
+同 `1. 原型链继承`
+:::
 
 ### 5. 寄生式继承
 
-### 6. 寄生组合式继承
+实现思路：在 `原型式继承` 基础之上，对实例化的对象进行增强
+
+``` js {5}
+function object(o) {
+    function F(){}
+    F.prototype = o;
+    let f = new F();
+    f.someMethod = function(){};
+    return f;
+}
+```
+
+:::warning 缺点
+函数不能复用而降低效率
+:::
+
+
+### 6. 寄生组合式继承 👍 
+
+实现思路：`属性（构造函数）+ 方法（原型链混合）`
+
+```js
+function inheritPrototype(subType, superType) {
+    // var prototype = object(superType.prototype);
+    function F(){}
+    F.prototype = superType.prototype;
+    let f = new F();
+    f.constructor = subType;
+    subType.prototype = f;
+}
+```
+
+:::tip 优点
+- 只会调用 `1` 次 `Super` 的构造函数
+- 目前最有效
+:::
 
 ### 7. `Class` 继承
 
