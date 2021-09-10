@@ -270,11 +270,11 @@ list.forEach(foo, obj); //1 awesome 2 awesome 3 awesome
 
 ### 箭头函数
 
-- 箭头函数不使用上述 `4` 种规则
+- 箭头函数 `不使用` 上述 `4` 种规则
 
 - 根据外层（函数或者全局）`作用域` 决定 this
 
-- 箭头函数的绑定无法被修改
+- 箭头函数的绑定 `无法` 被修改
 
 :::tip 参考资料
 [再来40道this面试题酸爽继续(1.2w字用手整理)](https://juejin.cn/post/6844904083707396109)
@@ -388,6 +388,130 @@ Function.prototype.bind2 = function(context) {
 ```
 :::
 
+
+## 用 setTimeout 实现 setInterval
+
+``` js
+let timerId = null;
+
+function mockSetInterval(fn, delay, ...args) {
+    const recur = function(){
+        timerId = setTimeout(() => {
+            fn.apply(this, args);
+            recur();
+        }, delay);
+        
+    }
+    recur();
+}
+
+function mockClearInterval(id) {
+    clearTimeout(id)
+}
+
+mockSetInterval((name) => {
+    console.log(name);
+}, 1000, 'chemputer')
+
+mockClearInterval(timerId);
+```
+
+
+## 防抖和节流
+
+### 基本概念
+
+- `debounce`: 持续触发事件， 一定时间内没有再触发，事件处理函数才会执行一次
+- `throttle`: 持续触发事件，保证一段时间内只调用一次事件处理函数
+
+### 分别适合用在什么场景
+
+防抖：`input`
+
+节流：`resize` `scroll`
+
+### 代码实现
+
+``` js
+// 时间戳实现，首节流，第一次立即执行，但是停止触发后，无法再次执行
+function throttle(fn, interval){
+    let last = 0;
+    return function(){
+        const now = Date.now();
+        if (now - last >= interval) {
+            last = now;
+            fn.apply(this, arguments);
+        }
+    }
+}
+
+// 计时器实现，尾节流，第一次不会立即执行，停止出发后，还会执行一次
+function throttle(fn, interval) {
+    let timer = null;
+    return function(){
+        const context = this;
+        const args = arguments;
+
+        if (!timer) {
+            timer = setTimeout(function() {
+                fn.apply(context, args);
+                timer = null;
+            }, interval)
+        }
+    }
+}
+
+// 包含首节流和尾节流
+function throttle(fn, delay) {
+    let timer = null;
+    let startTime = 0;
+
+    return function(){
+        let curTime = Date.now();
+        let remaining = delay - (curTime - startTime);
+        let context = this;
+        let args = arguments;
+        
+        clearTimeout(timer);
+
+        if (remaining <= 0) {
+            fn.apply(context, args);
+            startTime = Date.now();
+        } else {
+            timer = setTimeout(() => {
+                fn.apply(context, args);
+                startTime = Date.now();
+            }, remaining)
+        }
+    }
+}
+
+let btn = document.getElementById('btn');
+btn.onclick = throttle(function(){
+    console.log('throttle')
+}, 1000)
+
+```
+
+``` js
+function debounce(fn, delay){
+    let timerId = null;
+
+    return function(){
+        if (timerId !== null) {
+            clearTimeout(timerId);
+        }
+        timerId = setTimeout(() => {
+            fn.apply(this, arguments);
+        }, delay)
+    }
+}
+
+let btn = document.getElementById('btn');
+btn.onclick = debounce(function(){
+    console.log('debounce')
+}, 1000)
+```
 
 
 ## 函数式编程
