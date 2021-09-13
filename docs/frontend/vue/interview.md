@@ -46,9 +46,7 @@ vue 中 scoped 属性效果主要通过 postcss 转译实现，postcss 给组件
 
 ### active-class 是哪个组件的属性？嵌套路由怎么定义？
 
-### 怎么定义 vue-router 的动态路由？怎么获取传过来的值
 
-### vue-router 有哪几种导航钩子
 
 
 
@@ -66,9 +64,7 @@ vue 中 scoped 属性效果主要通过 postcss 转译实现，postcss 给组件
 
 ### 说出至少 4 种 vue 当前指令和它的用法
 
-### vue-router 是什么？它有哪些组件
 
-### 导航钩子有哪些？它们有哪些参数
 
 ### vue 双向数据绑定原理是什么
 
@@ -96,7 +92,7 @@ vue 中 scoped 属性效果主要通过 postcss 转译实现，postcss 给组件
 
 ### vue 响应式原理
 
-### vue-router 实现原理
+
 
 ### 为什么选择 vue？与其他框架对比的优势和劣势
 

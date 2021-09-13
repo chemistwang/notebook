@@ -6,6 +6,10 @@
 [Vue Template Explorer](https://template-explorer.vuejs.org/#%3Cdiv%20id%3D%22app%22%3E%7B%7B%20msg%20%7D%7D%3C%2Fdiv%3E)
 
 [Vue Github](https://github.com/vuejs/vue)
+
+[Bilibili 尤雨溪教你写vue](https://www.bilibili.com/video/BV1d4411v7UX?p=1)
+
+[Bilibili 尤雨溪教你写vue 视频配套讲义](https://vue-course-doc.vercel.app/#_0-%E5%BE%AE%E4%BF%A1%E7%BE%A4)
 :::
 
 

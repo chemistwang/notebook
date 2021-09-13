@@ -131,6 +131,7 @@ module.exports = {
                 ariaLabel: 'ClassNotebook Menu',
                 items: [
                     { text: '腾讯云学堂', link: '/class/tencentcloud/' },
+                    { text: 'Udacity', link: '/class/udacity/' },
                 ]
             }, 
             { text: '资源列表', link: '/link/' },
@@ -143,7 +144,7 @@ module.exports = {
             //前端开发
             '/frontend/html/': ['html'],
             '/frontend/css/': ['basic', 'animation', 'module', 'case', 'preprocessor', 'interview'],
-            '/frontend/js/': ['basic', 'loop', 'function', 'object', 'memory', 'es6', 'module', 'async', 'network', 'eventloop', 'domevent', 'animation', 'canvas', 'test', 'case'],
+            '/frontend/js/': ['basic', 'loop', 'function', 'object', 'memory', 'es6', 'module', 'async', 'network', 'eventloop', 'domevent', 'animation', 'canvas', 'test', 'security', 'case'],
             '/frontend/react/': ['init', 'basic', 'redux', 'hooks', 'sourcecode', 'interview'], 
             '/frontend/vue/': ['sourcecode', 'vuerouter', 'vuex', 'problem', 'interview'],
             '/frontend/vue3/': ['sourcecode'],
@@ -193,6 +194,7 @@ module.exports = {
             '/other/sso/': ['cas'],
             //课堂学习笔记
             '/class/tencentcloud/': ['class1', 'class2'],
+            '/class/udacity/': ['class1', 'class2'],
             //编码
             '/code/leetcode/': [],
             '/code/codewar/': ['codewar'],
