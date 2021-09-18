@@ -24,6 +24,7 @@ module.exports = {
                     { text: 'React', link: '/frontend/react/' },
                     { text: 'Flutter', link: '/frontend/flutter/' },
                     { text: 'Webpack', link: '/frontend/webpack/' },
+                    { text: 'Vite', link: '/frontend/vite/' },
                     { text: 'Infrastructure', link: '/frontend/infrastructure/' },
                 ]
             },
