@@ -183,6 +183,9 @@
 
 键值对数据库，存储k8s集群所有重要信息（持久化）官方定位为一个可信赖的分布式键值存储服务，能够为整个分布式集群存储关键数据，协助分布式集群的正常运转
 
+
+![etcd](http://cdn.chemputer.top/notebook/k8s/etcd.jpg)
+
 ### 2. 核心插件
 
 | 核心插件 | 描述 |
@@ -316,7 +319,7 @@ k8s的网络模型嘉定所有Pod都在一个可以直接连通的扁平的网�
 3. Pod与Service之间的通讯：各节点的Iptables规则
 
 
-Flannel是CoreOS团队针对k8s设计的一个网络规划服务，简单来说，它的功能是让集群中的不同节点主机创建的Docker容器都具有全集群唯一的虚拟IP地址。而且它还能在这些IP地址之间建立一个覆盖网络（Overlay Network），通过这个覆盖网络，将数据包原封不动地传递到目标容器内
+`Flannel` 是 `CoreOS` 团队针对 `k8s` 设计的一个网络规划服务，简单来说，它的功能是让集群中的不同节点主机创建的Docker容器都具有全集群唯一的虚拟IP地址。而且它还能在这些IP地址之间建立一个覆盖网络（Overlay Network），通过这个覆盖网络，将数据包原封不动地传递到目标容器内
 
 ETCD之Flannel提供说明：
 
@@ -324,6 +327,9 @@ ETCD之Flannel提供说明：
 - 监控ETCD中每个Pod的实际地址，并在内存中建立维护Pod节点路由表
 
 
+![network1](http://cdn.chemputer.top/notebook/k8s/network1.jpg)
+![network2](http://cdn.chemputer.top/notebook/k8s/network2.jpg)
+![network3](http://cdn.chemputer.top/notebook/k8s/network3.jpg)
 
 
 

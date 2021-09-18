@@ -1,6 +1,12 @@
 # Gitflow
 
+::: tip 参考资料
 [A successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)
+
+[Understanding the GitHub flow](https://guides.github.com/introduction/flow/index.html)
+:::
+
+
 
 不要直接在`master`分支提交代码，只能在该分支进行合并操作
 

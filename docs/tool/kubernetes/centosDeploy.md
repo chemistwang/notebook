@@ -807,10 +807,14 @@ kubectl create clusterrolebinding kubelet-bootstrap \
   --user=kubelet-bootstrap
 ```
 
+13. 生成好的目录如下
+
+![master-tree](http://cdn.chemputer.top/notebook/k8s/master-tree.jpg)
+
 
 ## 九. 部署node组件
 
-1. 安装docker： 启动容器 (根据k8s版本选择适合的docker版本,此处选择docker18.09)
+1. 安装docker： 启动容器 (根据 `k8s` 版本选择适合的docker版本,此处选择 `docker18.09`)
 
 2. 在master上执行 `kubernetes.sh` 文件
 
@@ -974,12 +978,14 @@ WantedBy=multi-user.target
 
 > 4) 启动 `kubelet`
 
-```
+``` bash
 systemctl start kubelet
 systemctl enable kubelet
 ```
 
 - 3. 安装kube-proxy：为node上的容器配置网络功能
+
+![kube-proxy](http://cdn.chemputer.top/notebook/k8s/kube-proxy.jpg)
 
 
 > 1) 配置 `kube-proxy-config.yml` (指定当前主机名)

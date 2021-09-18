@@ -14,7 +14,7 @@ Paul Lewis 和 Cameron Pittman 将为你解释常见的 Web 性能问题，以�
 学习 RAIL (Response, Animate, Idle, Load)，生命周期的每个部分要花多久，以及你要如何达到这些目标。
 
 
-## LESSON3 卡顿啥伤心武器
+## LESSON3 卡顿杀伤性武器
 
 学习如何使用开发者工具的时间线工具找出页面卡顿，将它从你的网站移除。
 
