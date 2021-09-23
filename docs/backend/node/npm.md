@@ -114,14 +114,20 @@ npm notice
 
 然后会收到一份发布成功的邮件 📧
 
-## 分享几个有趣的 NPM 包
+
+
+
+
+## 工具包
+
+- [supervisor](https://www.npmjs.com/package/supervisor) 代码热更新工具
+
+- [superagent](https://www.npmjs.com/package/superagent) 代理
 
 - [boxen](https://www.npmjs.com/package/boxen)
 
 - [chalk](https://www.npmjs.com/package/chalk)
 
-## 常用工具
+- [ora](https://www.npmjs.com/package/ora)
 
-- [supervisor](https://www.npmjs.com/package/supervisor) 代码热更新工具
-
-- [superagent](https://www.npmjs.com/package/superagent) 代理
+![ora](https://raw.githubusercontent.com/sindresorhus/ora/HEAD/screenshot-2.gif)

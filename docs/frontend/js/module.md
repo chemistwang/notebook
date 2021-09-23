@@ -132,6 +132,8 @@ define(function(require,exports,module){
 
 ## ES6 Modules
 
+ES6模块的设计思想是 `尽量的静态化` ，使得 `编译时` 就能确定模块的依赖关系，以及输入和输出的变量。
+
 export/import 对模块进行导入导出
 
 ### export 和 export default 的区别

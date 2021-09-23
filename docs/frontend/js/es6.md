@@ -56,6 +56,12 @@ console.log(b); // 2
 
 ## 解构
 
+
+``` js
+
+```
+
+
 ### 2. for...of 代替 for...in 配合解构
 
 ```js
@@ -78,7 +84,27 @@ for(const [ index, { name, age}] of arr.entries()) {
 
 ```
 
-## 二、箭头函数
+## 箭头函数
+
+:::tip 参考资料
+[MDN Arrow_functions](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+:::
+
+``` js
+//Q: 代码输出
+const getUser = user => {name: user.name; age: user.age};
+const user = {name: 'chemputer', age: 18};
+console.log(getUser(user));
+```
+
+::: details Answer
+``` js
+// undefined
+const getUser = user => ({name: user.name, age: user.age});
+```
+:::
+
+
 
 ### 1. 用法
 
@@ -152,7 +178,7 @@ let obj = {
 };
 ```
 
-## 五、解构
+## 解构
 
 ```js
 //基本用法
@@ -382,6 +408,9 @@ map.clear();
 ---
 
 ### obj 与 map 之间的相互转换
+
+
+## Proxy
 
 
 

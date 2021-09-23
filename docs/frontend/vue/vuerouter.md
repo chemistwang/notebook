@@ -1,6 +1,6 @@
 # Vue Router
 
-## 结构
+## 源码结构
 
 ``` bash
 src/
