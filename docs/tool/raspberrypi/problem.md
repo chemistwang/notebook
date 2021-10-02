@@ -8,13 +8,19 @@
 
 解决方案：
 
-1. 连接到树莓派
+1. 获取 ip 地址
+
+```bash
+ping raspberrypi.local
+```
+
+2. 连接到树莓派
 
 ```bash
 ssh pi@192.168.1.17
 ```
 
-2. 修改 `/boot/config.txt` 配置文件
+3. 修改 `/boot/config.txt` 配置文件
 
 ```bash
 sudo vi /boot/config.txt
@@ -26,7 +32,7 @@ sudo vi /boot/config.txt
 hdmi_force_hotplug=1 # 取消注释即可
 ```
 
-3. 重启
+4. 重启
 
 ```bash
 sudo reboot

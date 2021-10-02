@@ -39,7 +39,7 @@
 - [Linux 命令大全](https://man.linuxde.net/) `Linux`
 - [书栈网](https://www.bookstack.cn/) `文档`
 - [API 安全清单](https://github.com/shieldfy/API-Security-Checklist/blob/master/README-zh.md) `API` `Security`
-- [fly63前端网](http://www.fly63.com/)
+- [fly63 前端网](http://www.fly63.com/)
 
 ## 素材
 
@@ -96,6 +96,8 @@
 - [蓝色梦想](https://www.bluesdream.com/)
 - [KAYGB](https://blog.kaygb.com) `博客的功能好全面`
 - [zhuwenlong](https://www.zhuwenlong.com/) `首页是个视频，好有想法`
+- [晨晓 | Chinsyo](https://chinsyo.com/) `因为树莓派`
+- [fatedier](https://blog.fatedier.com/) `frp`
 
 ## 常用开发平台
 
