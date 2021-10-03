@@ -4,7 +4,7 @@
 
 问题描述：树莓派开启 `VNC` 之后，想通过 `VNC` 连接，但总是显示 `Cannot currently show the desktop`
 
-原因：如果树莓派检测到 `hdmi`，则默认不输出信号
+原因：如果树莓派未检测到 `hdmi`，则默认不输出信号
 
 解决方案：
 

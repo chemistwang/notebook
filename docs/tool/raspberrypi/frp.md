@@ -73,7 +73,7 @@ cd /usr/local/frp
 ssh -oPort=6000 pi@x.x.x.x
 ```
 
-正常情况会连接成功，但是云服务器需要配置相应端口
+正常情况会连接成功，但是云服务器需要配置相应端口，所以会失败
 
 ## 开启安全组
 
@@ -95,8 +95,8 @@ nohup ./frps -c ./frps.ini > frps.log 2>&1 &
 
 出于安全考虑，可以在服务器和树莓派的配置文件中增加 token 字段
 
-::: tips 参考资料
-https://github.com/fatedier/frp#token-authentication
+::: tip 参考资料
+[frp#token-authentication](https://github.com/fatedier/frp#token-authentication)
 :::
 
 ```md
@@ -106,7 +106,7 @@ When specifying authentication_method = token under [common] in frpc.ini and frp
 Make sure to specify the same token in the [common] section in frps.ini and frpc.ini for frpc to pass frps validation
 ```
 
-需要在 server 和 client 的 [common] 下面配置 `authentication_method` 和 `token`
+需要在 server 和 client 的 `[common]` 下面配置 `authentication_method` 和 `token`
 
 ```bash
 # frps.ini
@@ -114,6 +114,7 @@ Make sure to specify the same token in the [common] section in frps.ini and frpc
 bind_port = 7000
 authentication_method = token
 token = xxx
+
 # frpc.ini
 [common]
 server_addr = 127.0.0.1

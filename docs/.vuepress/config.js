@@ -107,6 +107,7 @@ module.exports = {
                     { text: 'Prometheus', link: '/tool/prometheus/' },
                     { text: 'Grafana', link: '/tool/grafana/' },
                     { text: 'Serverless', link: '/tool/serverless/' },
+                    { text: 'Raspberrypi', link: '/tool/raspberrypi/' },
                 ]
             },
             {
@@ -188,6 +189,7 @@ module.exports = {
             '/tool/prometheus/': ['install', 'plugin'],
             '/tool/grafana/': ['install', 'plugin'],
             '/tool/serverless/': [],
+            '/tool/raspberrypi/': ['frp', 'problem'],
             //视频
             '/video/live/': ['basic', 'protocol', 'tool', 'analysis', 'push', 'pull', 'server', 'testaddr', 'extra'],
             '/video/ffmpeg/': ['basic', 'practice', 'case'],
