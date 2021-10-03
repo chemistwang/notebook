@@ -149,3 +149,5 @@ import a from "...";
 export const b = function() {};
 import { b } from "...";
 ```
+
+### ES6模块 与 CommonJS 模块差异
