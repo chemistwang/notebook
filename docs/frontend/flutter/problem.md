@@ -77,3 +77,60 @@ Widget build(BuildContext context) {
         )
 ...
 ```
+
+## bottomNavigationBar 超过 3 个样式问题
+
+场景：设置 `bottomNavigationBar` 出现白屏
+
+```dart
+bottomNavigationBar: BottomNavigationBar( // 底部导航
+    items: <BottomNavigationBarItem>[
+        BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('首页')),
+        BottomNavigationBarItem(icon: Icon(Icons.paid), title: Text('资金')),
+        BottomNavigationBarItem(icon: Icon(Icons.store), title: Text('仓储/物流')),
+        BottomNavigationBarItem(icon: Icon(Icons.person), title: Text('我的')),
+    ],
+)
+```
+
+:::warning 报错
+出现白边
+:::
+
+<img src="http://cdn.chemputer.top/notebook/flutter/problem/1.jpg" width="30%">
+
+:::tip 原因
+数量小于等于 3 时会默认 `fixed` 模式下使用主题色，大于 `3` 时则会默认 `shifting` 模式下使用白色
+:::
+
+```dart {10}
+  // Computes the default value for the [type] parameter.
+  //
+  // If type is provided, it is returned. Next, if the bottom navigation bar
+  // theme provides a type, it is used. Finally, the default behavior will be
+  // [BottomNavigationBarType.fixed] for 3 or fewer items, and
+  // [BottomNavigationBarType.shifting] is used for 4+ items.
+  BottomNavigationBarType get _effectiveType {
+    return widget.type
+      ?? BottomNavigationBarTheme.of(context).type
+      ?? (widget.items.length <= 3 ? BottomNavigationBarType.fixed : BottomNavigationBarType.shifting);
+  }
+```
+
+:::tip 解决方案
+设置 `type` 为 `fixed`
+:::
+
+```dart {2}
+bottomNavigationBar: BottomNavigationBar( // 底部导航
+    type: BottomNavigationBarType.fixed,
+    items: <BottomNavigationBarItem>[
+        BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('首页')),
+        BottomNavigationBarItem(icon: Icon(Icons.paid), title: Text('资金')),
+        BottomNavigationBarItem(icon: Icon(Icons.store), title: Text('仓储/物流')),
+        BottomNavigationBarItem(icon: Icon(Icons.person), title: Text('我的')),
+    ],
+)
+```
+
+<img src="http://cdn.chemputer.top/notebook/flutter/problem/2.jpg" width="30%">
