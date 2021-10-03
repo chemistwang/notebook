@@ -2,6 +2,134 @@
 
 ### 使用 vue 脚手架，在实际开发中修改过哪些配置，eg: 代理/@
 
+
+## vue中 `8` 种组件通信方式
+
+1. `prop` | `$emit`
+
+父子通信基础方式
+
+``` vue {10,15}
+// child.vue
+<template>
+    <div class="child">
+      <h2>Title: {{title}}</h2>
+      <button @click="childClick">child btn</button>
+  </div>
+</template>
+<script>
+export default {
+    props: {
+        title: Number
+    },
+    methods: {
+        childClick(){
+            this.$emit('childClick')
+        }
+    }
+}
+</script>
+```
+
+``` vue {4}
+// parent.vue
+<template>
+  <div class="parent">
+      <child :title="cData" @childClick="parentClick"></child>
+  </div>
+</template>
+
+<script>
+import Child from './Child.vue'
+export default {
+  components: { Child },
+    data(){
+        return {
+            cData: 1,
+        }
+    },
+    methods: {
+        parentClick(){
+            this.cData++;
+        }  
+    }
+}
+</script>
+```
+
+:::tip 说明
+父子组件
+:::
+
+2. `$children` | `$parent`
+
+直接访问实例获取对应方法
+
+``` js
+// ...
+this.$parent.parentFunc()
+// ...
+this.$children[0].childFunc()
+// ...
+```
+
+:::tip 说明
+推荐应急使用
+:::
+
+3. `provide` | `inject`
+
+祖先 `provide` 属性（不支持方法），后代 `inject`
+
+``` js
+// parent.vue
+// ...
+provide: {
+  parentProvide: 'pValue'
+}
+// ...
+```
+
+``` js
+// grandson.vue
+// ...
+inject: ['parentProvide']
+// ...
+```
+
+:::tip 说明
+**不是**响应式的
+:::
+
+4. `ref` | `refs`
+
+`ref` 若在普通 `DOM` 上使用则指向 `DOM` 元素；若用在子组件，则指向组件实例
+
+```js
+// ...
+<List ref="list"></List>
+// ...
+this.$refs.list
+// ...
+```
+
+:::tip 说明
+- 组件渲染完成之后生效 `mounted`
+- **不是**响应式的
+:::
+
+
+5. `eventBus`
+
+参考：[事件发布订阅模式应用 vue eventBus](../js/domevent.md#事件发布订阅模式应用)
+
+6. `vuex`
+
+7. `$attr` | `$listeners`
+
+8. `localStorage` | `sessionStorage`
+
+
 ### vue 核心小知识点
 
 - vue 中 key 值的作用

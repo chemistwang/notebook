@@ -203,8 +203,11 @@ event.emit(1); //先输出？
 console.log(111); //先输出？
 ```
 
+:::details Answer
 需要看具体的实现：
-node eventEmitter3: 同步
+`vue eventBus` & `node eventEmitter3` 均是同步
+:::
+
 
 2. 实现一个简单的 eventEmitter
 

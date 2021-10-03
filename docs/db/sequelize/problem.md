@@ -1,4 +1,4 @@
-# error
+# 问题
 
 ```js
 // 值班人表
@@ -62,3 +62,12 @@ DutyPerson.hasOne(DutyMember, { foreignKey: "id", sourceKey: "memberId" });
 ```
 暂时结论：memberId必须为主键
 ```
+
+
+
+## 小技巧
+
+https://qastack.cn/programming/21961818/sequelize-convert-entity-to-plain-object
+
+
+有坑，raw和nest并不会合并同类项

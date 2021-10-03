@@ -171,6 +171,7 @@ module.exports = {
             '/db/mongo/': ['install', 'mongo', 'problem'],
             '/db/redis/': ['intro', 'install', 'redis', 'code', 'problem'],
             '/db/postgresql/': ['intro', 'install', 'command', 'code', 'problem'],
+            '/db/sequelize': ['problem'],
             '/db/case/': [],
             //大数据
             '/bigdata/hadoop/': ['route', 'cloud', 'hadoop', 'hdfs', 'mapreduce', 'yarn', 'hive'],

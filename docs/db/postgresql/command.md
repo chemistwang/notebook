@@ -69,7 +69,7 @@ dropdb xxx # 删除数据库
 
 ```bash
 sudo passwd -d postgres # 删除用户 postgres 密码
-sudo -u postgres passed # 设置用户 postgres 密码
+sudo -u postgres passwd # 设置用户 postgres 密码
 ```
 
 2. 操作数据表
