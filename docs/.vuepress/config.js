@@ -150,7 +150,7 @@ module.exports = {
             '/frontend/react/': ['init', 'basic', 'redux', 'hooks', 'sourcecode', 'interview'], 
             '/frontend/vue/': ['sourcecode', 'vuerouter', 'vuex', 'problem', 'interview'],
             '/frontend/vue3/': ['sourcecode'],
-            '/frontend/flutter/': ['install', 'ios', 'case'],
+            '/frontend/flutter/': ['install', 'ios', 'problem', 'case'],
             '/frontend/chart/': ['echarts'],
             //后端开发
             '/backend/linux/': ['intro', 'centos', 'command', 'network', 'shortcut'],
