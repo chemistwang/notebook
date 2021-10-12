@@ -1,5 +1,7 @@
 # 遇到的问题
 
+## 数据库删除失败
+
 删除数据库
 
 ```bash
@@ -31,4 +33,38 @@ WHERE datname='yourdbname' AND pid<>pg_backend_pid();
 
 ```
 DROP DATABASE devbe;
+```
+
+
+## 异常关机导致数据库连不上
+
+``` bash
+# brew services list
+postgresql        started chemputer /Users/yagao/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+redis             started chemputer /Users/yagao/Library/LaunchAgents/homebrew.mxcl.redis.plist
+redis@4.0         stopped
+unbound           stopped
+zookeeper         started chemputer /Users/yagao/Library/LaunchAgents/homebrew.mxcl.zookeeper.plist
+```
+
+`postgresql` 的 `started` 状态为 `黄色`，表示异常
+
+1. 查看日志文件
+
+```bash
+# vi /usr/local/var/log/postgres.log
+2021-10-12 10:00:49.408 CST [4369] HINT:  Is another postmaster (PID 638) running in data directory "/usr/local/var/postgres"?
+2021-10-12 10:00:59.428 CST [4389] FATAL:  lock file "postmaster.pid" already exists
+```
+
+2. 找到 `postmaster.pid` 文件并删除
+
+``` bash
+rm /usr/local/var/postgres/postmaster.pid
+```
+
+3. 重启服务
+
+``` bash
+brew services restart postgresql
 ```
