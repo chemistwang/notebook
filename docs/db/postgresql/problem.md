@@ -68,3 +68,26 @@ rm /usr/local/var/postgres/postmaster.pid
 ``` bash
 brew services restart postgresql
 ```
+
+### 连表查询使用 findAndCountAll 总数与期望不符
+
+`User` 和 `Role` 是 `多对多` 的关系，使用 `findAndCountAll` 搜索时总数总是大于 `User` 总数
+
+``` js
+// Sequelize
+User.belongsToMany(Role, { through: UserRole });
+Role.belongsToMany(User, { through: UserRole });
+```
+
+解决方案：
+
+``` js {2}
+ await User.findAndCountAll({
+    distinct:true,
+    include: [
+        {
+            model: Role,
+        }
+    ]
+ });
+```
