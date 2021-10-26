@@ -62,11 +62,12 @@ chown -R 1000:1000 /root/jenkins
 ```
 
 
-``` linux
+``` bash
 docker run \
 -d \
--p 8080:8080 \
+-p 10001:8080 \
 -u root \
+--restart=always
 -v /root/jenkins-volumes:/var/jenkins_home \
 -v /var/run/docker.sock:/var/run/docker.sock \
 jenkinsci/blueocean
@@ -95,6 +96,72 @@ docker run \
 -v $(which docker):/usr/bin/docker \
 jenkins/jenkins
 ```
+
+
+这里碰到一个小问题，启动之后日志没有报错，但是访问页面在不停刷新，容器也并没有重启，F12打开控制台发现，jenkins一直在访问 `127.0.0.1:7890` 这个地址，不清楚是否是云服务安全组策略的问题，我将 `7890` 端口放开之后就可以成功登陆了。但是随后将 `7890` 关闭之后，竟然可以进入系统。。。
+
+
+---
+
+1. 访问`10003`端口发现访问不到
+
+``` bash
+# curl 127.0.0.1:10003         
+<html><head><meta http-equiv='refresh' content='1;url=/login?from=%2F'/><script>window.location.replace('/login?from=%2F');</script></head><body style='background-color:white; color:white;'>
+
+
+Authentication required
+<!--
+-->
+
+</body></html>
+```
+
+发现 `jenkins` 会切分路由
+
+
+2. 设置环境变量
+
+``` bash {6,7}
+docker run \
+-d \
+-p 10003:8080 \
+--restart=always \
+-e TZ="Asia/Shanghai" \
+-e JENKINS_OPTS="--prefix=/jenkins" \
+-e JENKINS_ARGS="--prefix=/jenkins" \
+-v /root/jenkins-volumes:/var/jenkins-volumes \
+-v /var/run/docker.sock:/var/run/docker.sock \
+jenkinsci/blueocean
+```
+
+3. 修改 `nginx` 配置
+
+``` bash {4,5}
+server{
+        listen 80;
+        server_name chemputer.herinapp.com;
+        location /jenkins {
+                proxy_pass http://127.0.0.1:10003/jenkins;
+                proxy_set_header Host $http_host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto $scheme;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "upgrade";
+        }
+    listen 443 ssl;
+    ssl_certificate /etc/nginx/cert/chemputer.com.pem;
+    ssl_certificate_key /etc/nginx/cert/chemputer.com.key;
+}
+```
+
+4. 重启
+
+``` bash
+nginx -s reload
+```
+
 
 
 

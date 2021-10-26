@@ -187,6 +187,7 @@ module.exports = {
             '/tool/docker/': ['docker', 'version', 'harbor', 'portainer'],
             '/tool/dockercompose/': ['dockercompose', 'problem'],
             '/tool/kubernetes/': ['introduce', 'centosDeploy'],
+            '/tool/jenkins/': ['jenkins'],
             '/tool/travis/': [''],
             '/tool/prometheus/': ['install', 'plugin'],
             '/tool/grafana/': ['install', 'plugin'],

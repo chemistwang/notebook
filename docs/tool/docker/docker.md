@@ -14,6 +14,8 @@ docker 是一种容器技术，解决软件跨环境迁移的问题
 
 ## 3. 安装
 
+> [官方安装参考链接](https://docs.docker.com/)
+
 - MacOS
 
 > [官方下载地址](https://desktop.docker.com/mac/stable/arm64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=module)
@@ -52,8 +54,6 @@ yum list docker-ce --showduplicates | sort -r # 可选，查看docker版本
 sudo yum install docker-ce-<VERSION_STRING> docker-ce-cli-<VERSION_STRING> containerd.io # 可选，安装指定版本
 docker run hello-world # 测试是否成功
 ```
-
-> [官方安装参考链接](https://docs.docker.com/)
 
 ## 4. 配置国内镜像加速器(阿里云)
 
