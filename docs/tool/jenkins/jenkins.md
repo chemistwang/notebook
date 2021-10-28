@@ -33,7 +33,10 @@ docker  ps #测试
 ```
 
 
-考虑到环境迁移，使用 `docker`
+考虑到环境迁移，使用 `docker`，大概实现的思路如下图所示
+
+
+![]()
 
 ## 第一步：安装部署Jenkins
 
@@ -96,7 +99,7 @@ services:
      - /home/demo/jenkins-compose:/var/jenkins_home
 ```
 
-::: warning 小情况
+::: warning 小插曲
 ``` bash
 # 运行之前需要执行
 # 需要修改下目录权限, 因为当映射本地数据卷时，/home/docker/jenkins目录的拥有者为root用户，而容器中jenkins user的uid为1000
@@ -187,7 +190,7 @@ server{
 nginx -s reload
 ```
 
-::: warning 小情况
+::: warning 小插曲
 这里碰到一个小问题，启动之后日志没有报错，但是访问页面在不停刷新，容器也并没有重启，F12打开控制台发现，jenkins一直在访问 `127.0.0.1:7890` 这个地址，不清楚是否是云服务安全组策略的问题，我将 `7890` 端口放开之后就可以成功登陆了。但是随后将 `7890` 关闭之后，竟然可以进入系统。。。
 :::
 
@@ -208,11 +211,91 @@ nginx -s reload
 
 ![创建任务](http://cdn.chemputer.top/notebook/jenkins/step3.jpg)
 
-4. 关联远程仓库地址
+4. 添加凭据
+
+为了实现打包，`Jenkins` 需要能访问你的仓库，将代码放置在它的工作区。路径在 `root/jenkins-volumes/workspace`下。所以需要添加凭据
+
+![添加凭据](http://cdn.chemputer.top/notebook/jenkins/step4.jpg)
+
+5. 关联远程仓库
+
+![关联远程仓库](http://cdn.chemputer.top/notebook/jenkins/step5.jpg)
+
+6. 选择构建环境
+
+![构建环境](http://cdn.chemputer.top/notebook/jenkins/step6.jpg)
+
+7. 添加构建执行shell
+
+```bash
+npm install && npm run build && cd dist && tar -zcvf dist.tar.gz *
+```
+
+![构建环境](http://cdn.chemputer.top/notebook/jenkins/step7.jpg)
+
+8. 构建
+
+执行一次 `立即构建`，会在工作区中找到工程文件，并会发现一个 `dist` 文件夹
+
+![构建](http://cdn.chemputer.top/notebook/jenkins/step8.jpg)
+
+## 第三步：部署至服务器
+
+主要通过 `Publish over SSH` 插件实现部署
+
+1. 安装 `Publish over SSH` 插件
+
+2. 配置 `Publish over SSH` 项
+
+![Publish over SSH](http://cdn.chemputer.top/notebook/jenkins/step9.jpg)
+
+:::warning 小插曲
+配置秘钥之后，点击 `Test Configuration` 会发现 `Jenkins` 报错，`jenkins.plugins.publish_over.BapPublisherException: Failed to add SSH key. Message [invalid privatekey: [B@3ed3d4f0]`
+:::
+
+:::tip 原因
+生成密钥的 `openssh` 的版本过高的原因, 会发现秘钥文件是以 `-----BEGIN OPENSSH PRIVATE KEY-----` 开头，而目前 `Jenkins 2.303.2` 暂不支持
+:::
+
+3. 生成指定 `ssh` 秘钥格式
+
+``` bash
+ssh-keygen -m PEM -t rsa -b 4096
+
+# -m 指定秘钥格式，PEM 是 RSA 之前的旧格式
+# -b 指定秘钥长度，对于 RSA 秘钥，最小要求 768 位，默认是 2048 位
+```
+
+``` bash
+cat ~/.ssh/id_rsa_pem
+```
+
+秘钥文件以 `-----BEGIN RSA PRIVATE KEY-----` 开头，`Jenkins` 能够识别通过。
 
 
+4. 将生成的 `私钥` 填写在 `Publish over SSH` 的 `key` 中，将 `公钥` 填写在目标服务器的 `authorized_keys` 中，执行 `Test Configuration` ，`Success` 成功！
 
-## 第三步：上传至服务器
+5. 配置构建后操作选择 **Send build artifacts over SSH**
+
+- Name:
+
+`系统管理>系统设置` 设置的 `SSH Sverver` 的名字列表。
+
+- Source files: `dist/dist.tar.gz`
+
+复制到运程机上的文件，相对 `Jenkins workspace` 的路径，也支持表达式。
+
+- Remove prefix: `dist`
+
+文件复制时要过滤的目录，这样 `dist` 文件夹就不会复制。
+
+- Remote directory:
+
+文件得到到远程机上的目录，此目录是相对于 `SSH Server` 中的 `Remote directory` 的，如果不存在将会自动创建。
+
+- Exec command: `cd /p/a/t/h && tar -zxvf dist.tar.gz && rm -rf dist.tar.gz`
+
+在这里可以填写在运程机器上执行的脚本
 
 
 ## 第四步：git push代码执行自动构建
