@@ -183,7 +183,7 @@ module.exports = {
             '/tool/vim/': ['vim', 'gvimrc'],
             '/tool/chrome/': ['ch'],
             '/tool/vscode/': ['vs'],
-            '/tool/git/': ['install', 'gitCommand', 'gitflow', 'gitServer', 'gitlab', 'gitlfs'],
+            '/tool/git/': ['install', 'gitCommand', 'gitflow', 'gitServer', 'gitlab', 'gitlfs', 'problem'],
             '/tool/docker/': ['docker', 'version', 'harbor', 'portainer'],
             '/tool/dockercompose/': ['dockercompose', 'problem'],
             '/tool/kubernetes/': ['introduce', 'centosDeploy'],
