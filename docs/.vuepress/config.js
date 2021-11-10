@@ -173,7 +173,7 @@ module.exports = {
             '/db/mongo/': ['install', 'mongo', 'problem'],
             '/db/redis/': ['intro', 'install', 'redis', 'code', 'problem'],
             '/db/postgresql/': ['intro', 'install', 'command', 'code', 'problem'],
-            '/db/oracle/': [],
+            '/db/oracle/': ['diff'],
             '/db/sequelize': ['problem'],
             '/db/case/': [],
             //大数据
