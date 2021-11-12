@@ -109,6 +109,7 @@ module.exports = {
                     { text: 'Grafana', link: '/tool/grafana/' },
                     { text: 'Serverless', link: '/tool/serverless/' },
                     { text: 'Raspberrypi', link: '/tool/raspberrypi/' },
+                    { text: 'SonarQube', link: '/tool/sonarqube/' },
                 ]
             },
             {
@@ -156,7 +157,7 @@ module.exports = {
             //后端开发
             '/backend/linux/': ['intro', 'centos', 'command', 'network', 'shortcut'],
             '/backend/node/': ['basic', 'install', 'npm', 'express', 'koa', 'nest', 'io', 'rpc', 'performance', 'engineering'],
-            '/backend/java/': ['base', 'jdbc', 'interview'],
+            '/backend/java/': ['install', 'base', 'jdbc', 'interview'],
             '/backend/maven/': ['mavenIntro', 'mavenProblem'],
             '/backend/spring/': ['spring'],
             '/backend/springboot/': ['springbootJourney', 'case', 'problem'],
@@ -193,6 +194,7 @@ module.exports = {
             '/tool/grafana/': ['install', 'plugin'],
             '/tool/serverless/': [],
             '/tool/raspberrypi/': ['frp', 'problem'],
+            '/tool/sonarqube/': ['install'],
             //视频
             '/video/live/': ['basic', 'protocol', 'tool', 'analysis', 'push', 'pull', 'server', 'testaddr', 'extra'],
             '/video/ffmpeg/': ['basic', 'practice', 'case'],
