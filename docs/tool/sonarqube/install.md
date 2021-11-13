@@ -4,6 +4,14 @@
 [官方文档](https://docs.sonarqube.org/latest/setup/install-server/)
 :::
 
+## macOS
+
+``` bash
+docker run --name sonarqube --privileged=true -p 11111:9000 -p 11112:9092 sonarqube
+```
+
+
+## ubuntu
 
 1. `root` 创建 `sonarqube` 用户
 
