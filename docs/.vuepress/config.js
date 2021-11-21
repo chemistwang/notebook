@@ -13,6 +13,7 @@ module.exports = {
                 text: '前端开发',
                 ariaLabel: 'Frontend Menu',
                 items: [
+                    { text: 'Http', link: '/frontend/http/' },
                     { text: 'Html', link: '/frontend/html/' },
                     { text: 'CSS', link: '/frontend/css/' },
                     { text: 'Javascript', link: '/frontend/js/' },
@@ -154,6 +155,7 @@ module.exports = {
             '/frontend/vue3/': ['sourcecode'],
             '/frontend/flutter/': ['install', 'ios', 'problem', 'case'],
             '/frontend/chart/': ['echarts'],
+            '/frontend/http/': [''],
             //后端开发
             '/backend/linux/': ['intro', 'centos', 'command', 'network', 'shortcut'],
             '/backend/node/': ['basic', 'install', 'npm', 'express', 'koa', 'nest', 'io', 'rpc', 'performance', 'engineering'],
