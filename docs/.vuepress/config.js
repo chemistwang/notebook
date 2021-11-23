@@ -126,6 +126,7 @@ module.exports = {
                 text: '其他',
                 ariaLabel: 'Other Menu',
                 items: [
+                    { text: 'DevOps', link: '/other/devops/' },
                     { text: 'Gateway', link: '/other/gateway/' },
                     { text: 'SSO', link: '/other/sso/' },
                     { text: '知识点', link: '/other/point/' },
@@ -137,6 +138,7 @@ module.exports = {
                 items: [
                     { text: '腾讯云学堂', link: '/class/tencentcloud/' },
                     { text: 'Udacity', link: '/class/udacity/' },
+                    { text: 'AWS', link: '/class/aws/' },
                 ]
             }, 
             { text: '资源列表', link: '/link/' },
@@ -201,11 +203,13 @@ module.exports = {
             '/video/live/': ['basic', 'protocol', 'tool', 'analysis', 'push', 'pull', 'server', 'testaddr', 'extra'],
             '/video/ffmpeg/': ['basic', 'practice', 'case'],
             //其他
+            '/other/devops/': ['tool'],
             '/other/gateway/': [],
             '/other/sso/': ['cas'],
             //课堂学习笔记
             '/class/tencentcloud/': ['class1', 'class2'],
             '/class/udacity/': ['class1', 'class2'],
+            '/class/aws/': ['class1', 'class2'],
             //编码
             '/code/leetcode/': [],
             '/code/codewar/': ['codewar'],
