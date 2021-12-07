@@ -78,6 +78,7 @@ module.exports = {
                 text: '大数据',
                 ariaLabel: 'BigData Menu',
                 items: [
+                    { text: '参考资料', link: '/bigdata/reference/' },
                     { text: 'Hadoop', link: '/bigdata/hadoop/' },
                     { text: 'Sqoop', link: '/bigdata/sqoop/' },
                     { text: 'Hive', link: '/bigdata/hive/' },
@@ -182,6 +183,7 @@ module.exports = {
             '/db/sequelize': ['problem'],
             '/db/case/': [],
             //大数据
+            '/bigdata/reference/': [],
             '/bigdata/hadoop/': ['route', 'cloud', 'hadoop', 'hdfs', 'mapreduce', 'yarn', 'hive'],
             //开发工具
             '/tool/brew/': ['problem'],
