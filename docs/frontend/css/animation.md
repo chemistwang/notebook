@@ -1,4 +1,4 @@
 # 动画
 
-https://juejin.cn/post/6844903830094610446
-https://juejin.cn/post/6844903830098804743
+- [如何选取合适的前端动效方案](https://juejin.cn/post/6844903830094610446)
+- [可能是最全的前端动效库汇总](https://juejin.cn/post/6844903830098804743)
