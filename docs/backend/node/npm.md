@@ -124,10 +124,12 @@ npm notice
 
 - [superagent](https://www.npmjs.com/package/superagent) 代理
 
-- [boxen](https://www.npmjs.com/package/boxen)
+- [boxen](https://www.npmjs.com/package/boxen) 在控制台创建盒子
 
-- [chalk](https://www.npmjs.com/package/chalk)
+- [chalk](https://www.npmjs.com/package/chalk) 控制台画笔
 
-- [ora](https://www.npmjs.com/package/ora)
+- [ora](https://www.npmjs.com/package/ora) 控制台旋钮
 
-![ora](https://raw.githubusercontent.com/sindresorhus/ora/HEAD/screenshot-2.gif)
+- [commitizen](https://www.npmjs.com/package/commitizen) 规范化提交 `commit`
+
+- [conventional-changelog-cli](https://www.npmjs.com/package/conventional-changelog-cli) 输出 `CHANGELOG`
