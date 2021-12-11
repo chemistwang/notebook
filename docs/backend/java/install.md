@@ -2,5 +2,6 @@
 
 ## oracle账号
 
-- 用户名：chemputer_dev@163.com
-- 密码：Java@123
+- 用户名：`chemputer_dev@163.com`
+- 密码：`Java@123`
+

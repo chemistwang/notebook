@@ -42,6 +42,7 @@ module.exports = {
                 text: '后端开发',
                 ariaLabel: 'Backend Menu',
                 items: [
+                    { text: 'C', link: '/backend/c/' },
                     { text: 'Linux', link: '/backend/linux/' },
                     { text: 'Node', link: '/backend/node/' },
                     { text: 'Java', link: '/backend/java/' },
@@ -128,6 +129,8 @@ module.exports = {
                 text: '其他',
                 ariaLabel: 'Other Menu',
                 items: [
+                    { text: '部署', link: '/other/deploy/' },
+                    { text: '安全', link: '/other/safe/' },
                     { text: 'DevOps', link: '/other/devops/' },
                     { text: 'Gateway', link: '/other/gateway/' },
                     { text: 'SSO', link: '/other/sso/' },
@@ -161,6 +164,7 @@ module.exports = {
             '/frontend/chart/': ['echarts'],
             '/frontend/http/': [''],
             //后端开发
+            '/backend/c/': [''],
             '/backend/linux/': ['intro', 'centos', 'command', 'network', 'shortcut'],
             '/backend/node/': ['basic', 'install', 'npm', 'express', 'koa', 'nest', 'io', 'rpc', 'performance', 'engineering'],
             '/backend/java/': ['install', 'base', 'jdbc', 'interview'],
