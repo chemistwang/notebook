@@ -1,11 +1,6 @@
 # 网络和并发
 
 
-## 点击网站，浏览器都经历了什么
-
-DNS 缓存
-
-（包括 html，css，js 下载）
 
 ## 罗列常用的 http 状态码并简述其含义
 
@@ -17,15 +12,7 @@ DNS 缓存
 
 ## 列出 http 所有请求方法
 
-- GET
-- HEAD
-- POST
-- PUT
-- DELETE
-- CONNECT
-- OPTIONS
-- TRACE
-- PATCH
+`GET` `HEAD` `POST` `PUT` `DELETE` `CONNECT` `OPTIONS` `TRACE` `PATCH`
 
 ### GET | POST 请求区别
 

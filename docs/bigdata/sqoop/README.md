@@ -77,7 +77,7 @@ bin/sqoop import \
 --username postgres \
 --password chemputer123 \
 --table access_car_flow \
---target-dir /wyl/gaoling \
+--target-dir /wyl/demo \
 --delete-target-dir \
 --num-mappers 1 \
 --fields-terminated-by "\t"
@@ -90,7 +90,7 @@ bin/sqoop import \
 --connect jdbc:postgresql://192.168.0.35:5432/postgres \
 --username postgres \
 --password chemputer123 \
---target-dir /wyl/gaoling \
+--target-dir /wyl/demo \
 --delete-target-dir \
 --num-mappers 1 \
 --fields-terminated-by "\t" \
@@ -111,7 +111,7 @@ bin/sqoop import \
 --connect jdbc:postgresql://192.168.0.35:5432/postgres \
 --username postgres \
 --password chemputer123 \
---target-dir /wyl/gaoling \
+--target-dir /wyl/demo \
 --delete-target-dir \
 --num-mappers 1 \
 --fields-terminated-by "\t" \
@@ -131,7 +131,7 @@ bin/sqoop import \
 --connect jdbc:postgresql://192.168.0.35:5432/postgres \
 --username postgres \
 --password chemputer123 \
---target-dir /wyl/gaoling \
+--target-dir /wyl/demo \
 --delete-target-dir \
 --num-mappers 1 \
 --fields-terminated-by "\t" \

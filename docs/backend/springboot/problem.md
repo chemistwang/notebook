@@ -8,7 +8,7 @@ Caused by: org.springframework.beans.factory.NoUniqueBeanDefinitionException: No
 
 ``` java
 @Configuration
-@MapperScan(basePackages = {"com.herin.gaoling.wisdom.police.mapper.postgre"}, sqlSessionTemplateRef = "postgreSqlSessionTemplate")
+@MapperScan(basePackages = {"com.chemputer.demo.mapper.postgre"}, sqlSessionTemplateRef = "postgreSqlSessionTemplate")
 public class PostgreSqlServerConfig {
 
     @Bean(name = "postgreDataSource")
@@ -43,7 +43,7 @@ public class PostgreSqlServerConfig {
 
 ``` java
 @Configuration
-@MapperScan(basePackages = {"com.herin.gaoling.wisdom.police.mapper.oracle"}, sqlSessionTemplateRef = "oracleSqlSessionTemplate")
+@MapperScan(basePackages = {"com.chemputer.demo.mapper.oracle"}, sqlSessionTemplateRef = "oracleSqlSessionTemplate")
 public class OracleSqlServerConfig {
 
     @Bean(name = "oracleDataSource")

@@ -13,7 +13,7 @@ module.exports = {
                 text: '前端开发',
                 ariaLabel: 'Frontend Menu',
                 items: [
-                    { text: 'Http', link: '/frontend/http/' },
+                    { text: '网络', link: '/frontend/network/' },
                     { text: 'Html', link: '/frontend/html/' },
                     { text: 'CSS', link: '/frontend/css/' },
                     { text: 'Javascript', link: '/frontend/js/' },
@@ -154,15 +154,15 @@ module.exports = {
         // sidebar: 'auto',
         sidebar: {
             //前端开发
+            '/frontend/network/': ['model', 'ip', 'http', 'network', 'interview'],
             '/frontend/html/': ['html'],
             '/frontend/css/': ['basic', 'animation', 'module', 'case', 'preprocessor', 'interview'],
-            '/frontend/js/': ['basic', 'loop', 'function', 'object', 'memory', 'es6', 'module', 'async', 'network', 'eventloop', 'domevent', 'animation', 'canvas', 'test', 'security', 'case'],
+            '/frontend/js/': ['basic', 'loop', 'function', 'object', 'memory', 'es6', 'module', 'async', 'eventloop', 'domevent', 'animation', 'canvas', 'test', 'security', 'case'],
             '/frontend/react/': ['init', 'basic', 'redux', 'hooks', 'sourcecode', 'interview'],
             '/frontend/vue/': ['sourcecode', 'vuerouter', 'vuex', 'problem', 'interview'],
             '/frontend/vue3/': ['sourcecode'],
             '/frontend/flutter/': ['install', 'ios', 'problem', 'case'],
             '/frontend/chart/': ['echarts'],
-            '/frontend/http/': [''],
             //后端开发
             '/backend/c/': [''],
             '/backend/linux/': ['intro', 'centos', 'command', 'network', 'shortcut'],
