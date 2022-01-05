@@ -1,5 +1,6 @@
 ## 1.0.0 (2021-12-11)
 
+* refactor: add commitizen modules ([857b431](https://github.com/chemistwang/notebook/commit/857b431))
 * add devops ([d5db9ab](https://github.com/chemistwang/notebook/commit/d5db9ab))
 * add http module ([98d2298](https://github.com/chemistwang/notebook/commit/98d2298))
 * add raspberrypi note ([696dda6](https://github.com/chemistwang/notebook/commit/696dda6))
@@ -7,6 +8,7 @@
 * init bigdata ([4b1275f](https://github.com/chemistwang/notebook/commit/4b1275f))
 * Initial commit ([c1b4648](https://github.com/chemistwang/notebook/commit/c1b4648))
 * updage ([97b7be4](https://github.com/chemistwang/notebook/commit/97b7be4))
+* update ([240f643](https://github.com/chemistwang/notebook/commit/240f643))
 * update ([9695b72](https://github.com/chemistwang/notebook/commit/9695b72))
 * update ([0cab177](https://github.com/chemistwang/notebook/commit/0cab177))
 * update ([c0ea3dd](https://github.com/chemistwang/notebook/commit/c0ea3dd))

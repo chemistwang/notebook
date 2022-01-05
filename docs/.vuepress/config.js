@@ -123,6 +123,7 @@ module.exports = {
                     { text: '直播', link: '/video/live/' },
                     { text: 'FFmpeg', link: '/video/ffmpeg/' },
                     { text: 'WebRTC', link: '/video/webrtc/' },
+                    { text: '案例', link: '/video/case/' },
                 ]
             },
             {
@@ -154,7 +155,7 @@ module.exports = {
         // sidebar: 'auto',
         sidebar: {
             //前端开发
-            '/frontend/network/': ['model', 'ip', 'http', 'network', 'interview'],
+            '/frontend/network/': ['model', 'ip', 'http', 'network', 'proxy', 'interview'],
             '/frontend/html/': ['html'],
             '/frontend/css/': ['basic', 'animation', 'module', 'case', 'preprocessor', 'interview'],
             '/frontend/js/': ['basic', 'loop', 'function', 'object', 'memory', 'es6', 'module', 'async', 'eventloop', 'domevent', 'animation', 'canvas', 'test', 'security', 'case'],
@@ -211,6 +212,7 @@ module.exports = {
             '/video/live/': ['basic', 'protocol', 'tool', 'analysis', 'push', 'pull', 'server', 'testaddr', 'extra'],
             '/video/ffmpeg/': ['basic', 'practice', 'case'],
             //其他
+            '/other/safe/': ['clamav'],
             '/other/devops/': ['tool'],
             '/other/gateway/': [],
             '/other/sso/': ['cas'],

@@ -25,6 +25,15 @@ vi /etc/sudoers
 root  ALL=(ALL)   ALL
 YOUR_USER   ALL=(ALL)       NOPASSWD:ALL (其实不建议)
 
+
+# demo1
+YOUR_USER   ALL=ALL,!/bin/bash,!/bin/tcsh,!/bin/su,!/usr/bin/passwd,!/usr/bin/passwd 
+root,!/bin/vim /etc/sudoers,!/usr/bin/vim /etc/sudoers,!/usr/sbin/visudo,!/usr/bin/sudo -i,!/bin/bi /etc/ssh/*,!/bin/chmod 777 /etc/*,!/bin/chmod 777 *,!/bin/chmod 777,!/bin/chmod -R 777 *,!/bin/rm /*,!/bin/rm /,!/bin/rm -rf /,!/bin/rm -rf /*,!/bin/rm /etc,!/bin/rm -r /etc,!/bin/rm -rf /etc,!/bin/rm /etc/*,!/bin/rm -r /etc/*,!/bin/rm -rf /etc/*,!/bin/rm /root,!/bin/rm -r /root,!/bin/rm -rf /root,!/bin/rm /root/*,!/bin/rm -r /root/*,!/bin/rm -rf /root/*,!/bin/rm /bin,!/bin/rm -r /bin,!/bin/rm -rf /bin,!/bin/rm /bin/*,!/bin/rm -r /bin/*,!/bin/rm -rf /bin/*
+
+# demo2
+YOUR_USER   ALL=/usr/bin/*,/usr/sbin/*,!/usr/bin/rm,!/usr/bin/mount,!/usr/sbin/shutdown,!/usr/sbin/reboot,!/usr/sbin/halt,!/usr/sbin/poweroff,!/usr/bin/passwd,!/usr/sbin/mkfs,!/usr/bin/chmod,!/usr/bin/chown
+
+
 # 禁止 bash_history
 
 
