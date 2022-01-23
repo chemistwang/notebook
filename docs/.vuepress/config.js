@@ -43,6 +43,7 @@ module.exports = {
                 ariaLabel: 'Backend Menu',
                 items: [
                     { text: 'C', link: '/backend/c/' },
+                    { text: 'C++', link: '/backend/c++/' },
                     { text: 'Linux', link: '/backend/linux/' },
                     { text: 'Node', link: '/backend/node/' },
                     { text: 'Java', link: '/backend/java/' },
@@ -114,6 +115,7 @@ module.exports = {
                     { text: 'Serverless', link: '/tool/serverless/' },
                     { text: 'Raspberrypi', link: '/tool/raspberrypi/' },
                     { text: 'SonarQube', link: '/tool/sonarqube/' },
+                    { text: 'Ansible', link: '/tool/ansible/' },
                 ]
             },
             {
@@ -145,6 +147,7 @@ module.exports = {
                     { text: '腾讯云学堂', link: '/class/tencentcloud/' },
                     { text: 'Udacity', link: '/class/udacity/' },
                     { text: 'AWS', link: '/class/aws/' },
+                    { text: '极客时间', link: '/class/geekbang/' },
                 ]
             },
             { text: '资源列表', link: '/link/' },
@@ -167,7 +170,7 @@ module.exports = {
             //后端开发
             '/backend/c/': [''],
             '/backend/linux/': ['intro', 'centos', 'command', 'network', 'shortcut'],
-            '/backend/node/': ['basic', 'install', 'npm', 'express', 'koa', 'nest', 'io', 'rpc', 'performance', 'engineering'],
+            '/backend/node/': ['basic', 'install', 'npm', 'express', 'koa', 'nest', 'io', 'rpc', 'performance', 'engineering', 'sourcecode'],
             '/backend/java/': ['install', 'base', 'jdbc', 'interview'],
             '/backend/maven/': ['mavenIntro', 'mavenProblem'],
             '/backend/spring/': ['spring'],
@@ -208,6 +211,7 @@ module.exports = {
             '/tool/serverless/': [],
             '/tool/raspberrypi/': ['frp', 'problem'],
             '/tool/sonarqube/': ['install'],
+            '/tool/ansible/': [''],
             //视频
             '/video/live/': ['basic', 'protocol', 'tool', 'analysis', 'push', 'pull', 'server', 'testaddr', 'extra'],
             '/video/ffmpeg/': ['basic', 'practice', 'case'],
@@ -220,6 +224,7 @@ module.exports = {
             '/class/tencentcloud/': ['class1', 'class2'],
             '/class/udacity/': ['class1', 'class2'],
             '/class/aws/': ['class1', 'class2'],
+            '/class/geekbang/': ['class1', 'class2'],
             //编码
             '/code/leetcode/': [],
             '/code/codewar/': ['codewar'],
