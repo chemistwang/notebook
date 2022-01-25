@@ -133,3 +133,25 @@ npm notice
 - [commitizen](https://www.npmjs.com/package/commitizen) 规范化提交 `commit`
 
 - [conventional-changelog-cli](https://www.npmjs.com/package/conventional-changelog-cli) 输出 `CHANGELOG`
+
+- [xlsx](https://www.npmjs.com/package/xlsx) `xlsx`解析
+
+```js
+const multer = require('multer');
+const XLSX = require('xlsx');
+
+const {originalname, size, buffer} = req.files[0];
+const workbook = XLSX.read(buffer, {type: 'buffer'});
+const sheetName = workbook.SheetNames[0];
+const sheet = workbook.Sheets[sheetName];
+const result = XLSX.utils.sheet_to_json(sheet);
+
+console.log({name: 'name', birth: 111});
+
+/**
+ * Excel表格中遇到日期格式的数据，
+ * 一些情况下会被隐式转化为Int类型的数字，导致后台读不出来原始数据。
+ * 可以用下面的方法进行解析
+ */
+const date = new Date(1900, 0, 111);
+```
