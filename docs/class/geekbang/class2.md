@@ -59,7 +59,12 @@
 
 常见 `4` 种访问控制机制
 
-1. DAC（Discretionary Access Control，自主访问控制）
-2. role-BAC（role Based Access Control，基于角色的访问控制）
-3. rule-BAC（rule Based Access Control，基于规则的访问控制）
-4. MAC（Mandatory Access Control，强制访问控制）
+1. `DAC`（Discretionary Access Control，自主访问控制）
+
+**客体的所有者定义访问控制规则**
+
+2. `role-BAC`（role Based Access Control，基于角色的访问控制）
+3. `rule-BAC`（rule Based Access Control，基于规则的访问控制）
+4. `MAC`（Mandatory Access Control，强制访问控制）
+
+![安全攻防知识全景图](http://cdn.chemputer.top/notebook/classnotebook/geekbang/class1/1-7.jpg)

@@ -1,11 +1,8 @@
-### webRTC
+# WebRTC
 
-基于网页视频会议，通过浏览器使用 js 达到实时通讯
+:::tip 参考资料
+[WebRTC](https://webrtc.org/getting-started/peer-connections)
+:::
 
-背景：
-在线直播
+## 搭建 `coturn` 中继服务
 
-- 提供主播一个开播界面（向服务器发送图像数据）
-- 提供观众一个围观界面（接受服务器发送图像信息）
-
-https://webrtc.org/getting-started/peer-connections

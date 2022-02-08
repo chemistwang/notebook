@@ -1,5 +1,6 @@
 # 算法
 
+如果是像我一样非计算机专业的同学们，推荐先去看看 [labuladong](https://labuladong.gitee.io/algo/) 的算法梳理。
 
 ## 实现超出整数存储范围的两个大正整数相加 function add(a,b) 注意：参数a和b以及函数的返回值都是字符串
 

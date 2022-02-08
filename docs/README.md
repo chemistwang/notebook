@@ -18,6 +18,6 @@ features:
   details: mongoDB + redis + postgresQL
 - title: 服务器
   details: Linux + Docker + Jenkins + sonarQube 
-footer: MIT Licensed | Copyright © 2021-present Chemputer
+footer: MIT Licensed | Copyright © 2022-present Chemputer
 ---
 

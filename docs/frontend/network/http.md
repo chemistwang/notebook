@@ -2,22 +2,41 @@
 
 ## HTTP 0.9  `1991`
 
-仅有 `GET` 一种方式。当时的需求很简单，就是用来传输体积很小的 `HTML` 文件
+- 请求：仅有 `GET` 一种
+- 返回：仅 `HTML` 文本数据
 
+![http0.9](http://cdn.chemputer.top/notebook/network/http0.9.jpg)
+
+::: warning 不足
 - 只有请求行，没有 `请求头`，`请求体`
 - 同理，服务端只是返回数据。 没有 `响应头`, `响应体`
+- TCP 连接无法复用
+:::
+
 
 ## HTTP 1.0  `1996`
 
-内容大大增加。增加了 `POST` 和 `HEAD` 命令，可以发送任何形式的内容。也规定了请求和相应格式。
+- 请求端增加 HTTP 协议版本，响应端增加状态码。
+- 请求：增加了 `POST` 和 `HEAD`
+- 请求端和响应端增加头部字段。
+    - Content-Type 让响应数据不只限于超文本。
+    - Expires、Last-Modified 缓存头。
+    - Authorization 身份认证。
+    - Connection: keep-alive 支持长连接，但非标准
+
+
+![http1.0](http://cdn.chemputer.top/notebook/network/http1.0.jpg)
+
+
+:::warning 不足
+- TCP 连接无法复用
+- HTTP 队头阻塞 (一个 HTTP 请求响应结束之后，才能发起下一个 HTTP 请求)
+- 一台服务器只能提供一个 HTTP 服务
+:::
 
 ## HTTP 1.1  `1999`
 
-- 长连接
-
-默认使用长连接，长连接就是一次连接。连接期内多次发送请求。相比 `1.0` 每次请求都要进行 `TCP三次握手`, 节省大量时间。
-
-长连接的请求时长可以再请求头的 `keep-alive` 中设置。
+- 默认使用长连接 `Connection: keep-alive`
 
 - 管线化
 
@@ -35,12 +54,14 @@
 - 新增缓存标识。`E-tag`、 `if-match`、 `if-none-match`
 :::
 
-:::warning 缺点
-1. 队头阻塞
-2. 请求头信息太多
-3. 多次请求，请求头重复信息太多
-4. 请求没有优先级
-5. 只有客户端请求 - 服务端响应这个模式
+![http1.1](http://cdn.chemputer.top/notebook/network/http1.1.jpg)
+
+
+:::warning 不足
+- 队头阻塞
+- 多次请求，请求头重复信息太多
+- 请求没有优先级
+- 只有客户端请求 - 服务端响应这个模式
 :::
 
 
@@ -76,9 +97,14 @@
 
 服务端可以主动向客户端发送消息
 
-:::warning 缺点
-1. 多个 `HTTP` 请求在复用一个 `TCP` 连接，而 `TCP` 协议是不知道有多少个 `HTTP` 请求。所以一旦发生丢包现象，就会触发 `TCP` 的 `重传机制`。这样一个 `TCP` 连接中的所有请求都必须等待这个丢失的包重新传回来。
+:::warning 不足
+多个 `HTTP` 请求在复用一个 `TCP` 连接，而 `TCP` 协议是不知道有多少个 `HTTP` 请求。所以一旦发生丢包现象，就会触发 `TCP` 的 `重传机制`。这样一个 `TCP` 连接中的所有请求都必须等待这个丢失的包重新传回来。
 :::
 
 
 ## HTTP 3.0
+
+对传输层进行了优化，使用 `QUIC` 替换 `TCP`，彻底规避了 TCP 传输的效率问题。
+
+
+[参考](https://segmentfault.com/a/1190000039134645)
