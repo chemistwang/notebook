@@ -70,3 +70,8 @@ export class Station extends Model {
   creator: string;
 }
 ```
+
+## 参考项目
+
+- [nestjs-realworld-example-app](https://github.com/toozhuang/nestjs-realworld-example-app)
+- [nest-blog-api](https://github.com/onwuvic/nest-blog-api)

@@ -164,7 +164,7 @@ module.exports = {
             '/frontend/html/': ['html'],
             '/frontend/css/': ['basic', 'animation', 'module', 'case', 'preprocessor', 'interview'],
             '/frontend/js/': ['basic', 'loop', 'function', 'object', 'memory', 'es6', 'module', 'async', 'eventloop', 'domevent', 'animation', 'test', 'security', 'case'],
-            '/frontend/react/': ['init', 'basic', 'redux', 'hooks', 'sourcecode', 'interview'],
+            '/frontend/react/': ['init', 'basic', 'redux', 'hooks', 'sourcecode', 'interview', 'error', 'demo'],
             '/frontend/vue/': ['sourcecode', 'vuerouter', 'vuex', 'problem', 'interview'],
             '/frontend/vue3/': ['sourcecode'],
             '/frontend/flutter/': ['install', 'ios', 'problem', 'case'],
@@ -200,7 +200,7 @@ module.exports = {
             //开发工具
             '/tool/brew/': ['problem'],
             '/tool/vim/': ['vim', 'gvimrc'],
-            '/tool/chrome/': ['ch'],
+            '/tool/chrome/': ['extension', 'demo'],
             '/tool/vscode/': ['vs'],
             '/tool/atom/': [''],
             '/tool/git/': ['install', 'gitCommand', 'gitflow', 'gitServer', 'gitlab', 'gitlfs', 'problem'],
