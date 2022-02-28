@@ -136,6 +136,8 @@ npm notice
 
 - [xlsx](https://www.npmjs.com/package/xlsx) `xlsx`解析
 
+
+:::details xlsx-demo
 ```js
 const multer = require('multer');
 const XLSX = require('xlsx');
@@ -155,6 +157,9 @@ console.log({name: 'name', birth: 111});
  */
 const date = new Date(1900, 0, 111);
 ```
+:::
+
+- [inquirer](https://www.npmjs.com/package/inquirer) `提问-回答模式命令行交互工具`
 
 - [morgan](https://www.npmjs.com/package/morgan)
 

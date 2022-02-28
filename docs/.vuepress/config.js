@@ -69,6 +69,7 @@ module.exports = {
                 ariaLabel: 'DB Menu',
                 items: [
                     { text: 'SQL', link: '/db/sql/' },
+                    { text: 'GraphQL', link: '/db/graphql/' },
                     { text: 'Mongo', link: '/db/mongo/' },
                     { text: 'Redis', link: '/db/redis/' },
                     { text: 'PostgresQL', link: '/db/postgresql/' },
@@ -165,7 +166,7 @@ module.exports = {
             '/frontend/css/': ['basic', 'animation', 'module', 'case', 'preprocessor', 'interview'],
             '/frontend/js/': ['basic', 'loop', 'function', 'object', 'memory', 'es6', 'module', 'async', 'eventloop', 'domevent', 'animation', 'test', 'security', 'case'],
             '/frontend/react/': ['init', 'basic', 'redux', 'hooks', 'sourcecode', 'interview', 'error', 'demo'],
-            '/frontend/vue/': ['sourcecode', 'vuerouter', 'vuex', 'problem', 'interview', 'demo'],
+            '/frontend/vue/': ['sourcecode', 'snabbdom', 'vuerouter', 'vuex', 'problem', 'interview', 'demo'],
             '/frontend/vue3/': ['sourcecode'],
             '/frontend/flutter/': ['install', 'ios', 'problem', 'case'],
             '/frontend/visualization/': ['echarts', 'canvas', 'glsl'],
@@ -188,6 +189,7 @@ module.exports = {
             '/backend/zookeeper/': ['intro', 'install', 'code'],
             '/backend/kafka/': ['scene', 'intro', 'install', 'code', 'interview'],
             //数据库
+            '/db/graphql': [],
             '/db/mongo/': ['install', 'mongo', 'problem'],
             '/db/redis/': ['intro', 'install', 'redis', 'code', 'problem'],
             '/db/postgresql/': ['intro', 'install', 'command', 'code', 'problem'],

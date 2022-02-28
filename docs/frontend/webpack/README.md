@@ -31,5 +31,4 @@ module.exports = config;
 ### 简述 webpack 特性，类似的工具有哪些
 
 
-Q：构建工具除了webpack,还接触过其他的吗
 Q：webpack的优点和应用场景
