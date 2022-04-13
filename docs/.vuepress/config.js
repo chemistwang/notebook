@@ -161,9 +161,9 @@ module.exports = {
         // sidebar: 'auto',
         sidebar: {
             //前端开发
-            '/frontend/network/': ['model', 'ip', 'http', 'network', 'proxy', 'interview'],
-            '/frontend/html/': ['html'],
-            '/frontend/css/': ['basic', 'animation', 'module', 'case', 'preprocessor', 'interview'],
+            '/frontend/network/': ['model', 'ip', 'http', 'network', 'proxy', 'websocket', 'interview'],
+            '/frontend/html/': ['html', 'render'],
+            '/frontend/css/': ['basic', 'bem', 'animation', 'module', 'case', 'preprocessor', 'interview'],
             '/frontend/js/': ['basic', 'loop', 'function', 'object', 'memory', 'es6', 'module', 'async', 'eventloop', 'domevent', 'animation', 'test', 'security', 'case'],
             '/frontend/react/': ['init', 'basic', 'redux', 'hooks', 'sourcecode', 'interview', 'error', 'demo'],
             '/frontend/vue/': ['sourcecode', 'snabbdom', 'vuerouter', 'vuex', 'problem', 'interview', 'demo'],

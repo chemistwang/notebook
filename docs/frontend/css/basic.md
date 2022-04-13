@@ -13,15 +13,6 @@ CSS3 has the capability to split text sections into multiple columns so that it 
 - [参考资料](https://hackr.io/blog/difference-between-css-css2-and-css3)
 
 
-## Repaint & Reflow
-
-### 是什么
-
-
-
-### 如何优化
-
-
 ## 选择器和权重
 
 ## REM VW

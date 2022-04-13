@@ -23,6 +23,15 @@ P beforeDestroy > * > P destroyed
 C beforeDestroy > C destroyed
 
 
+## Vue.use的实现原理
+
+
+
+
+## elementUI如何实现v-model
+
+
+
 
 ## 使用 vue 脚手架，在实际开发中修改过哪些配置，eg: 代理/@
 
@@ -234,7 +243,7 @@ vue 中 scoped 属性效果主要通过 postcss 转译实现，postcss 给组件
 ## vuex 是用来做什么
 
 
-## webpack 打包原理
+
 
 
 ## vue 响应式原理
