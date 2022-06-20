@@ -141,6 +141,7 @@ module.exports = {
                     { text: 'Gateway', link: '/other/gateway/' },
                     { text: 'SSO', link: '/other/sso/' },
                     { text: '知识点', link: '/other/point/' },
+                    { text: 'Firebase', link: '/other/firebase/' },
                 ]
             },
             {
@@ -165,10 +166,10 @@ module.exports = {
             '/frontend/html/': ['html', 'render'],
             '/frontend/css/': ['basic', 'bem', 'animation', 'module', 'case', 'preprocessor', 'interview'],
             '/frontend/js/': ['basic', 'loop', 'function', 'object', 'memory', 'es6', 'module', 'async', 'eventloop', 'domevent', 'animation', 'test', 'security', 'case'],
-            '/frontend/react/': ['init', 'basic', 'redux', 'hooks', 'sourcecode', 'interview', 'error', 'demo'],
+            '/frontend/react/': ['init', 'dev', 'basic', 'redux', 'hooks', 'sourcecode', 'interview', 'error', 'demo'],
             '/frontend/vue/': ['sourcecode', 'snabbdom', 'vuerouter', 'vuex', 'problem', 'interview', 'demo'],
             '/frontend/vue3/': ['sourcecode'],
-            '/frontend/flutter/': ['install', 'ios', 'problem', 'case'],
+            '/frontend/flutter/': ['install', 'ios', 'plugin', 'problem', 'case'],
             '/frontend/visualization/': ['echarts', 'canvas', 'glsl'],
             '/frontend/blog/': ['hexo'],
             //后端开发
@@ -184,7 +185,7 @@ module.exports = {
             '/backend/mybatis/': ['problem'],
             '/backend/nginx/': ['install', 'https', 'conf', 'tengine'],
             '/backend/openresty/': [],
-            '/backend/rust/': ['rocket'],
+            '/backend/rust/': ['type', 'function', 'ownership', 'struct', 'collection', 'error', 'lifetimes', 'macro', 'rocket', 'actix'],
             '/backend/python/': ['jupyter'],
             '/backend/zookeeper/': ['intro', 'install', 'code'],
             '/backend/kafka/': ['scene', 'intro', 'install', 'code', 'interview'],
@@ -225,6 +226,7 @@ module.exports = {
             '/other/devops/': ['tool'],
             '/other/gateway/': [],
             '/other/sso/': ['cas'],
+            '/other/firebase/': ['login', 'adminsdk', 'hosting', 'storage'],
             //课堂学习笔记
             '/class/tencentcloud/': ['class1', 'class2'],
             '/class/udacity/': ['class1', 'class2'],
