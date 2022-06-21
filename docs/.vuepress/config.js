@@ -214,7 +214,7 @@ module.exports = {
             '/tool/travis/': [''],
             '/tool/prometheus/': ['install', 'plugin'],
             '/tool/grafana/': ['install', 'plugin'],
-            '/tool/serverless/': [],
+            '/tool/serverless/': ['faas', 'openfaas'],
             '/tool/raspberrypi/': ['frp', 'problem'],
             '/tool/sonarqube/': ['install'],
             '/tool/ansible/': [''],
