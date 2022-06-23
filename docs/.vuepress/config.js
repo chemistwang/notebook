@@ -29,6 +29,7 @@ module.exports = {
                     { text: 'Infrastructure', link: '/frontend/infrastructure/' },
                     { text: 'Data Visualization', link: '/frontend/visualization/' },
                     { text: 'Blog', link: '/frontend/blog/' },
+                    { text: 'BIM', link: '/frontend/bim/' },
                 ]
             },
             {
@@ -172,6 +173,7 @@ module.exports = {
             '/frontend/flutter/': ['install', 'ios', 'plugin', 'problem', 'case'],
             '/frontend/visualization/': ['echarts', 'canvas', 'glsl'],
             '/frontend/blog/': ['hexo'],
+            '/frontend/bim/': [''],
             //后端开发
             '/backend/c/': [''],
             '/backend/linux/': ['intro', 'centos', 'command', 'network', 'shortcut'],

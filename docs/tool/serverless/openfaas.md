@@ -317,7 +317,7 @@ deployment.apps "queue-worker" deleted
 
 ``` bash
 ➜ kubectl delete namespace openfaas-fn
-namespace "openfaas-fn" deleted
+namespace "openfaas-fn" deleted 
 ```
 
 清理框架命名空间 `openfaas`

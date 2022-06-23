@@ -2,7 +2,7 @@
 
 ## 应用层
 
-`HTTP` `DNS` `SMTP` `FTP` `TELNET` `RPC`
+`HTTP` `WEBSOCKET` `DNS` `SMTP` `FTP` `TELNET` `RPC`
 
 ## 传输层
 
