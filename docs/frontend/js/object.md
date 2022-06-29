@@ -282,7 +282,7 @@ Person.prototype.sayName = function() {
 
 ## 继承
 
-ECMAScript实现继承主要是依靠原型链
+**ECMAScript 实现继承主要是依靠原型链**
 
 ### 1. 原型链继承
 

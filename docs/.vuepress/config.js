@@ -23,6 +23,7 @@ module.exports = {
                     { text: 'Vue3', link: '/frontend/vue3/' },
                     { text: 'Angular', link: '/frontend/angular/' },
                     { text: 'React', link: '/frontend/react/' },
+                    { text: 'Antd', link: '/frontend/antd/' },
                     { text: 'Flutter', link: '/frontend/flutter/' },
                     { text: 'Webpack', link: '/frontend/webpack/' },
                     { text: 'Vite', link: '/frontend/vite/' },
@@ -163,11 +164,12 @@ module.exports = {
         // sidebar: 'auto',
         sidebar: {
             //前端开发
-            '/frontend/network/': ['model', 'ip', 'http', 'network', 'proxy', 'websocket', 'interview'],
+            '/frontend/network/': ['model', 'ip', 'http', 'network', 'proxy', 'websocket', 'socketio', 'interview'],
             '/frontend/html/': ['html', 'render'],
             '/frontend/css/': ['basic', 'bem', 'animation', 'module', 'case', 'preprocessor', 'interview'],
-            '/frontend/js/': ['basic', 'loop', 'function', 'object', 'memory', 'es6', 'module', 'async', 'eventloop', 'domevent', 'animation', 'test', 'security', 'case'],
+            '/frontend/js/': ['basic', 'loop', 'function', 'object', 'memory', 'es6', 'module', 'async', 'eventloop', 'domevent', 'animation', 'test', 'security', 'case', 'optimize'],
             '/frontend/react/': ['init', 'dev', 'basic', 'redux', 'hooks', 'sourcecode', 'interview', 'error', 'demo'],
+            '/frontend/antd/': [''],
             '/frontend/vue/': ['sourcecode', 'snabbdom', 'vuerouter', 'vuex', 'problem', 'interview', 'demo'],
             '/frontend/vue3/': ['sourcecode'],
             '/frontend/flutter/': ['install', 'ios', 'plugin', 'problem', 'case'],

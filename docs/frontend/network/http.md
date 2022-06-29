@@ -19,10 +19,10 @@
 - 请求端增加 HTTP 协议版本，响应端增加状态码。
 - 请求：增加了 `POST` 和 `HEAD`
 - 请求端和响应端增加头部字段。
-    - Content-Type 让响应数据不只限于超文本。
-    - Expires、Last-Modified 缓存头。
-    - Authorization 身份认证。
-    - Connection: keep-alive 支持长连接，但非标准
+    - `Content-Type` 让响应数据不只限于超文本。
+    - `Expires`、`Last-Modified` 缓存头。
+    - `Authorization` 身份认证。
+    - `Connection`: keep-alive 支持长连接，但非标准
 
 
 ![http1.0](http://cdn.chemputer.top/notebook/network/http1.0.jpg)
