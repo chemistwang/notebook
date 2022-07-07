@@ -5,6 +5,8 @@
 
 :::tip 参考资料
 [浏览器输入URL之后发生了什么](https://zhuanlan.zhihu.com/p/43369093)
+
+[当···时发生了什么？[github]](https://github.com/skyline75489/what-happens-when-zh_CN)
 :::
 
 ## DNS

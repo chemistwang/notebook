@@ -1,5 +1,10 @@
 # HTTP
 
+::: tip 参考文档
+[HTTP规范](https://httpwg.org/)
+:::
+
+
 ## HTTP 0.9  `1991`
 
 - 请求：仅有 `GET` 一种

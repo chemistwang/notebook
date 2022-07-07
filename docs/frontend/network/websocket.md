@@ -97,3 +97,32 @@ ws.onclose = function(event) {
 
 
 ## 掉线重连
+
+可以将 `websocket` 的 `onclose` 和 `onerror` 分别打印
+
+``` js
+const WS_URL = '';
+const socket = new WebSocket(WS_URL);
+// ...
+socket.onclose = (e) => {
+  console.log(e.code, e.reason, e.wasClean); // e.code 经常为 1006
+}
+socket.onerror = (e) => {
+  console.log(e);
+}
+// ...
+```
+
+解决方案：
+
+1. 修改 `nginx` 配置
+
+``` bash
+proxy_read_timeout 86400s;
+proxy_send_timeout 86400s;
+```
+
+2. 启用心跳断线重连
+
+
+

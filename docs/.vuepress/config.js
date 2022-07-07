@@ -168,6 +168,7 @@ module.exports = {
             '/frontend/html/': ['html', 'render'],
             '/frontend/css/': ['basic', 'bem', 'animation', 'module', 'case', 'preprocessor', 'interview'],
             '/frontend/js/': ['basic', 'loop', 'function', 'object', 'memory', 'es6', 'module', 'async', 'eventloop', 'domevent', 'animation', 'test', 'security', 'case', 'optimize'],
+            '/frontend/ts/': ['note'],
             '/frontend/react/': ['init', 'dev', 'basic', 'redux', 'hooks', 'sourcecode', 'interview', 'error', 'demo'],
             '/frontend/antd/': [''],
             '/frontend/vue/': ['sourcecode', 'snabbdom', 'vuerouter', 'vuex', 'problem', 'interview', 'demo'],
