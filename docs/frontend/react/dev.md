@@ -82,3 +82,19 @@ const lessModuleRegex = /\.module\.less$/;
 
 
 ```
+
+
+4. 如果需要使用模块化，避免样式污染
+
+- 修改 `index.less` 为 `index.module.less`
+- 导入方式 `import './index.less'` 为 `import style from './index.module.less'`
+- 添加 `ts` 声明，否则编译报错
+
+``` ts
+...
+
+declare module '*.module.less' {
+  const classes: { readonly [key: string]: string };
+  export default classes;
+}
+```
