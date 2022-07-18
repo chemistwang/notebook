@@ -175,7 +175,7 @@ module.exports = {
             '/frontend/vue3/': ['sourcecode'],
             '/frontend/flutter/': ['install', 'ios', 'plugin', 'problem', 'case'],
             '/frontend/visualization/': ['echarts', 'canvas', 'glsl'],
-            '/frontend/blog/': ['hexo'],
+            '/frontend/blog/': [],
             '/frontend/bim/': [''],
             //后端开发
             '/backend/c/': [''],
@@ -188,7 +188,7 @@ module.exports = {
             '/backend/springcloud/': [],
             '/backend/springsecurity/': ['temp'],
             '/backend/mybatis/': ['problem'],
-            '/backend/nginx/': ['install', 'https', 'conf', 'tengine'],
+            '/backend/nginx/': ['install', 'https', 'conf', 'http2', 'tengine'],
             '/backend/openresty/': [],
             '/backend/rust/': ['type', 'function', 'ownership', 'struct', 'collection', 'error', 'lifetimes', 'macro', 'rocket', 'actix'],
             '/backend/python/': ['jupyter'],

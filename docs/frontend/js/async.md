@@ -8,6 +8,11 @@
 
 ## Promise
 
+:::tip 参考资料
+`PromiseA+规范` [promisesaplus](https://promisesaplus.com/) 
+:::
+
+
 - promise
 
   - 当前事件循环得不到的结果，但是未来的事件循环会给到你结果
