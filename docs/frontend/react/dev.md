@@ -88,7 +88,7 @@ const lessModuleRegex = /\.module\.less$/;
 
 - 修改 `index.less` 为 `index.module.less`
 - 导入方式 `import './index.less'` 为 `import style from './index.module.less'`
-- 添加 `ts` 声明，否则编译报错
+- 在 `react-app-env.d` 添加 `ts` 声明，否则编译报错
 
 ``` ts
 ...
@@ -98,3 +98,47 @@ declare module '*.module.less' {
   export default classes;
 }
 ```
+
+## 集成 react-router v6
+
+``` bash
+npm install react-router-dom@6
+```
+
+## 集成 react-redux
+
+``` bash
+npm install react-redux
+```
+
+## 集成 antd
+
+``` bash
+npm install antd
+```
+
+## 集成 axios
+
+``` bash
+npm install axios
+```
+
+## 配置代理
+
+在 `src/` 创建 `setupProxy.js` 文件
+
+``` js
+const { createProxyMiddleware } = require('http-proxy-middleware');
+
+module.exports = function (app) {
+    app.use(
+        '/api',
+        createProxyMiddleware({
+            target: 'http://ip:port',
+            changeOrigin: true,
+            pathRewrite: { '^/': '' }
+        })
+    );
+};
+```
+

@@ -303,6 +303,12 @@ console.log(a[b]); //456
 > object 的键类型是 字符串，整数，或者 symbol
 > map 的键类型 可以是任意类型
 
+:::tip leetcode
+`leetcode` Map 应用场景 `https://leetcode.cn/problems/lru-cache/solution/by-freshman-16-8j6x/`
+:::
+
+
+
 ---
 
 ### ES6 新特性
