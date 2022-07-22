@@ -1,26 +1,6 @@
 # 基础
 
-:::tip
-- [create-react-app](https://create-react-app.dev/)
-- [react router](https://reactrouter.com/)
-- [v5 reactrouter](https://v5.reactrouter.com/)
-- [v6 reactrouter](https://reactrouter.com/docs/en/v6)
-- [react](https://reactjs.org/)
-:::
-
-
-## 1. React是什么
-
-React是一个UI框架，通过组件化的方式解决视图层开发复用的问题，本质是一个组件化框架。
-它的核心设计思路有三点，分别是声明式、组件化与通用性。
-声明式的优势在于直观与组合。
-组件化的优势在于视图的拆分与模块复用，可以更容易做到高内聚低耦合。
-通用性在于一次学习，随处编写。比如React Native，React 360等，这里主要依靠虚拟DOM来保证实现。
-这使得React的适用范围变得足够广，无论是Web、Native、VR，甚至Shell应用都可以进行开发。这也是React的优势。
-但作为一个视图层的框架，React的劣势也十分明显。他并没有提供一揽子的解决方案，在开发大型前端应用时，需要向社区寻找并整合解决方案。
-虽然一定程度上促进的社区的繁荣，但也为开发者在技术选型和学习适用上造成了一定的成本。
-
-## 2. 为什么React要用JSX
+## 为什么React要用JSX
 
 - 一句话解释JSX
 
@@ -114,9 +94,7 @@ Babel插件如何实现JSX到JS的编译（手写）
 ## 5. 如何设计React组件
 
 
-## 6. setState是同步更新还是异步更新
 
-`setState` 用于变更状态，触发组件重新渲染，更新视图UI
 
 :::tip 知识点 
 合成事件
@@ -126,13 +104,7 @@ Babel插件如何实现JSX到JS的编译（手写）
 - React找到对应的组件，造出一个合成事件出来
 - 并按组件树模拟一遍事件冒泡   
 
-
 :::
-
-### 同步更新
-
-### 异步更新
-
 
 
 ## 7. React如何面向组件跨层级通信

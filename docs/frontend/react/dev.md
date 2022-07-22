@@ -1,5 +1,13 @@
 # 开发
 
+:::tip 文档链接
+- [create-react-app](https://create-react-app.dev/)
+- [react router](https://reactrouter.com/)
+- [v5 reactrouter](https://v5.reactrouter.com/)
+- [v6 reactrouter](https://reactrouter.com/docs/en/v6)
+- [react](https://reactjs.org/)
+:::
+
 ## create react app
 
 直接使用官方推荐的脚手架[create react app](https://create-react-app.dev/)一键生成即可，但是默认使用`js`。入股哟需要使用ts，添加 `--template typescript` 即可。
@@ -141,4 +149,8 @@ module.exports = function (app) {
     );
 };
 ```
+
+## 配置脚手架模板
+
+
 

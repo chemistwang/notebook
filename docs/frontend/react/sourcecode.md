@@ -1,6 +1,37 @@
 # 源码
 
 
+## 源码调试
+
+1. 下载代码
+
+2. `npm i` 安装依赖
+
+:::warning 报错
+
+``` bash
+➜  react git:(main) npm i
+npm ERR! code EUNSUPPORTEDPROTOCOL
+npm ERR! Unsupported URL Type "link:": link:./scripts/eslint-rules
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /Users/wyl/.npm/_logs/2022-07-22T11_12_55_347Z-debug.log
+```
+
+解决方案：修改 `package.json` 的依赖并重新安装
+
+``` json
+...
+   // "eslint-plugin-react-internal": "link:./scripts/eslint-rules",
+   "eslint-plugin-react-internal": "file:./scripts/eslint-rules",
+...
+```
+
+:::
+
+
+
+
 
 ::: tip 参考资料
 卡颂大神的 B 站视频和电子书，推荐搭配食用
