@@ -1,4 +1,4 @@
-# 搭建Git服务器
+# Git Server
 
 [廖雪峰搭建git服务器教程](https://www.liaoxuefeng.com/wiki/896043488029600/899998870925664)
 

@@ -14,6 +14,8 @@
 
 ## 16.0.0 (September 26, 2017)
 
+[Fiber vs Stack Demo](https://claudiopro.github.io/react-fiber-vs-stack-demo/)
+
 引入fiber【待查】
 
 

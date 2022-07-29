@@ -1,5 +1,118 @@
 # 源码
 
+## 搭建调试环境
+
+1. 创建项目
+
+``` bash
+npx create-react-app my-debug-react
+```
+
+2. 暴露配置项
+
+``` bash
+npm run eject
+```
+
+3. 下载 `react` 源码并放在 `src` 文件下
+
+4. `config/webpack.config.js` 新增包引用
+
+``` js {14-17}
+// config/webpack.config.js
+   ...
+      alias: {
+        // Support React Native Web
+        // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
+        'react-native': 'react-native-web',
+        // Allows for better profiling with ReactDevTools
+        ...(isEnvProductionProfile && {
+          'react-dom$': 'react-dom/profiling',
+          'scheduler/tracing': 'scheduler/tracing-profiling',
+        }),
+        ...(modules.webpackAliases || {}),
+        // 新增
+        'react': path.resolve(__dirname, '../src/react/packages/react'),
+        'react-dom': path.resolve(__dirname, '../src/react/packages/react-dom'),
+        'shared': path.resolve(__dirname, '../src/react/packages/shared'),
+        'react-reconciler': path.resolve(__dirname, '../src/react/packages/react-reconciler'),
+      },
+   ...
+```
+
+5. `config/webpack.config.js` 关闭 `Eslint`
+
+``` js {6}
+// config/webpack.config.js
+
+...
+const emitErrorsAsWarnings = process.env.ESLINT_NO_DEV_ERRORS === 'true';
+// const disableESLintPlugin = process.env.DISABLE_ESLINT_PLUGIN === 'true';
+const disableESLintPlugin = 'true';
+...
+```
+
+6. `src/react/packages/react-reconciler/src/Scheduler.js` 修改 `unstable_yieldValue，unstable_yieldValu` 找不到的引用方式
+
+``` js {3}
+...
+// import * as Scheduler from 'scheduler';
+import Scheduler from 'scheduler'; // 生效，但是指向 node_modules
+// import * as Scheduler from '../../scheduler/src/forks/SchedulerMock'; // 没效果
+...
+```
+
+7. 修改 `config/env.js` 环境变量
+
+```js {3-6}
+...
+  const stringified = {
+    __DEV__: true,
+    __PROFILE__: true,
+    __EXPERIMENTAL__: true,
+   __UMD__: true,
+    'process.env': Object.keys(raw).reduce((env, key) => {
+      env[key] = JSON.stringify(raw[key]);
+      return env;
+    }, {}),
+  };
+...
+```
+
+8. 修改 `ReactSharedInternals` 引用方式
+
+``` js {6}
+import * as React from 'react';
+
+// const ReactSharedInternals =
+//   React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+
+import ReactSharedInternals from '../react/src/ReactSharedInternals'
+
+export default ReactSharedInternals;
+```
+
+9. 修改 `src/react/packages/react-reconciler/src/ReactFiberHostConfig.js`
+
+```js {3}
+// throw new Error('This module must be shimmed by a specific renderer.');
+
+export * from './forks/ReactFiberHostConfig.dom'
+```
+
+
+## 在 chrome 或者 vscode 调试源码
+
+1. 
+
+
+
+
+## 打印调用栈
+
+
+
+
 
 ## 源码调试
 

@@ -1,6 +1,6 @@
-# Gitflow
+# GitFlow
 
-::: tip 参考资料
+::: tip 参考资料
 [A successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)
 
 [Understanding the GitHub flow](https://guides.github.com/introduction/flow/index.html)

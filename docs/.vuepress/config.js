@@ -211,7 +211,7 @@ module.exports = {
             '/tool/chrome/': ['extension', 'demo'],
             '/tool/vscode/': ['vs'],
             '/tool/atom/': [''],
-            '/tool/git/': ['install', 'gitCommand', 'gitflow', 'gitServer', 'gitlab', 'gitlfs', 'problem'],
+            '/tool/git/': ['gitCommand', 'gitflow', 'gitServer', 'gitlab', 'gitlfs', 'problem'],
             '/tool/docker/': ['docker', 'version', 'harbor', 'portainer'],
             '/tool/dockercompose/': ['dockercompose', 'problem'],
             '/tool/kubernetes/': ['introduce', 'centosDeploy'],
