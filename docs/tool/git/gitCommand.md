@@ -22,12 +22,14 @@ git log # 查看从最近到最远的提交日志
 git log --pretty=oneline # 简洁日志
 
 
-# working directory - staging area
-git add yourFileName # 把文件修改添加到暂存区（stage）
+# working directory <-> staging area
+git add yourFileName # working directory -> staging area
 
 
-# staging area - repository
-git commit -m 'your commit log' # 把暂存区所有内容提交到当前分支
+# staging area <-> local repository
+git commit -m 'your commit log' # staging area -> local repository
+
+# remote repository <-> local repository
 ```
 
 
@@ -39,8 +41,6 @@ git commit -m 'your commit log' # 把暂存区所有内容提交到当前分支
 git diff yourFilename # 比对不同
 
 git diff HEAD -- yourFilename # 查看工作区和版本库最新版本区别
-
-git checkout -- yourFileName # 丢弃工作区的修改
 
 git restore yourFileName # 新版本中丢弃工作区修改
 
